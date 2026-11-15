@@ -309,7 +309,8 @@ def main() -> None:
 """, unsafe_allow_html=True)
 
     with st.sidebar:
-        if (not auth.sees("see_settings")) and not auth.is_cloud_host():
+        if (auth.can("collect") and not auth.sees("see_settings")
+                and not auth.is_cloud_host()):
             with st.expander("🔑 用我自己的 API Key（可选）", expanded=False):
                 import llm_settings as _ls
                 _keys = list(_ls.PROVIDERS)
