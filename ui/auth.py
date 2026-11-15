@@ -68,14 +68,25 @@ def request_host() -> str:
 
 
 def is_cloud_host() -> bool:
-    """是否运行在 Streamlit Community Cloud（*.streamlit.app）。
+    """是否运行在 Streamlit Community Cloud。
 
-    云端容器是临时的：写入的结果在重启后丢失，采集也容易超时，
-    因此云端只做只读展示，采集引导用户在本机进行。
+    注意：云端反代可能改写 Host（表现为 localhost），只靠域名判断会漏判，
+    所以同时看环境变量与 Linux 容器特征。
     """
-    if os.environ.get("STREAMLIT_SHARING_MODE") or os.environ.get("IS_STREAMLIT_CLOUD"):
+    if os.environ.get("STREAMLIT_SHARING_MODE"):
         return True
-    return request_host().endswith("streamlit.app")
+    if os.environ.get("IS_STREAMLIT_CLOUD"):
+        return True
+    if request_host().endswith("streamlit.app"):
+        return True
+    # Streamlit Cloud 的容器特征：Linux + HOME=/home/adminuser
+    try:
+        import sys as _sys
+        if _sys.platform.startswith("linux") and os.environ.get("HOME", "").startswith("/home/adminuser"):
+            return True
+    except Exception:
+        pass
+    return False
 
 
 def is_public_request() -> bool:
@@ -84,6 +95,8 @@ def is_public_request() -> bool:
     本机（localhost / 127.0.0.1 / 局域网 IP）视为可信，可用管理模式。
     """
     if os.environ.get("PUBLIC_DEMO"):
+        return True
+    if is_cloud_host():
         return True
     host = request_host()
     if host in LOCAL_HOSTS:
@@ -166,17 +179,20 @@ def allow_public_collect() -> bool:
         return True
 
 
-def can_collect() -> bool:
-    """当前会话能否发起采集。
+def must_offline() -> bool:
+    """是否强制离线采集。
 
-    云端（Streamlit Cloud）一律不允许：容器临时、结果不持久、采集易超时。
-    本机有权限即可；其它公网访问按配置允许「离线采集」。
+    云端（Streamlit Cloud）强制离线：容器里没有本机的 API Key，
+    且免费实例不适合长时间在线调用；离线用缓存 + 规则即可跑通流程。
     """
-    if is_cloud_host():
-        return False
+    return is_cloud_host()
+
+
+def can_collect() -> bool:
+    """当前会话能否发起采集：本机有权限即可；公网/云端按配置允许离线采集。"""
     if can("collect"):
         return True
-    return is_public_request() and allow_public_collect()
+    return (is_public_request() or is_cloud_host()) and allow_public_collect()
 
 
 def can(perm: str) -> bool:

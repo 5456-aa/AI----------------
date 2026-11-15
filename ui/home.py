@@ -366,9 +366,10 @@ def main() -> None:
     cloud_mode = auth.is_cloud_host()
     allow_collect = auth.can_collect()
     if cloud_mode:
-        st.info("☁ 云端部署为**只读展示**：可浏览全部批次与图表，但**不支持发起采集**——"
-                "云端容器是临时的，采集结果无法保存。需要采集请在本机运行"
-                "（`启动系统.bat`），或用本机局域网/隧道地址访问。", icon="☁")
+        st.info("☁ 云端为**演示环境**：可发起采集，但强制使用**本地缓存与规则**"
+                "（不调用任何外部 API，**无需填写 Key**）。"
+                "注意云端容器是临时的，新采集的批次在实例重启后可能丢失；"
+                "需要长期保存请在本机运行后 `git push`。", icon="☁")
     _has_key0 = bool((st.session_state.get("visitor_llm") or {}).get("key"))
     if public_mode and allow_collect and _has_key0:
         st.info("🔑 已使用**你自己的 API Key**：本次采集走在线模式，"
@@ -393,7 +394,9 @@ def main() -> None:
         go = False
 
     visitor = st.session_state.get("visitor_llm") or {}
-    if go and visitor.get("key"):
+    if go and cloud_mode:
+        offline = True           # 云端强制离线
+    elif go and visitor.get("key"):
         offline = False          # 用访客自己的 Key，走在线模式
     if go:
         if public_mode and not visitor.get("key"):
