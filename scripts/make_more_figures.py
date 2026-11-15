@@ -18,6 +18,8 @@ import io
 import sys
 from pathlib import Path
 
+import re
+
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -287,11 +289,231 @@ def fig_cluster_sizes(cfg) -> None:
     save(fig, "fig_cluster_sizes.png")
 
 
+
+
+def fig_time_trend(cfg) -> None:
+    """发布时间月度分布（机会 vs 非机会，堆叠柱）。"""
+    import collections
+    judged = read_jsonl(Path(cfg["paths"]["clean"]) / "judged.jsonl")
+    cnt = collections.defaultdict(lambda: [0, 0])
+    for r in judged:
+        d = str(r.get("published_at") or "")[:7]
+        if len(d) != 7:
+            continue
+        cnt[d][1 if r.get("is_opportunity") == 1 else 0] += 1
+    if not cnt:
+        print("  跳过时间趋势：无发布时间")
+        return
+    months = sorted(cnt)[-15:]
+    non_opp = [cnt[m][0] for m in months]
+    opp = [cnt[m][1] for m in months]
+    fig, ax = plt.subplots(figsize=(7.6, 3.4))
+    ax.bar(months, non_opp, color="#cbd5e1", label="非机会")
+    ax.bar(months, opp, bottom=non_opp, color="#2563eb", label="机会")
+    ax.set_xticks(range(len(months)))
+    ax.set_xticklabels(months, rotation=45, ha="right", fontsize=8)
+    ax.set_ylabel("记录数")
+    ax.set_title("按发布月份的内容分布（近 15 个月）")
+    ax.legend(fontsize=8)
+    ax.grid(axis="y", alpha=0.25)
+    save(fig, "fig_time_trend.png")
+
+
+def fig_source_category_heat(cfg) -> None:
+    """来源 × 功能类别 热力图（仅机会记录）。"""
+    import collections
+    judged = read_jsonl(Path(cfg["paths"]["clean"]) / "judged.jsonl")
+    pairs = collections.Counter()
+    for r in judged:
+        if r.get("is_opportunity") != 1:
+            continue
+        fc = (r.get("func_category") or "").strip()
+        src = (r.get("source") or "").strip()
+        if fc and src:
+            pairs[(src, fc)] += 1
+    if not pairs:
+        print("  跳过热力图：无机会记录")
+        return
+    srcs = sorted({k[0] for k in pairs})
+    cats = sorted({k[1] for k in pairs})
+    M = np.zeros((len(srcs), len(cats)))
+    for (s_, c_), v in pairs.items():
+        M[srcs.index(s_), cats.index(c_)] = v
+    fig, ax = plt.subplots(figsize=(8.2, max(2.6, 0.5 * len(srcs) + 1.2)))
+    im = ax.imshow(M, cmap="Blues", aspect="auto")
+    ax.set_xticks(range(len(cats)))
+    ax.set_xticklabels(cats, rotation=35, ha="right", fontsize=8)
+    ax.set_yticks(range(len(srcs)))
+    ax.set_yticklabels(srcs, fontsize=8)
+    for i in range(len(srcs)):
+        for j in range(len(cats)):
+            if M[i, j] > 0:
+                ax.text(j, i, int(M[i, j]), ha="center", va="center", fontsize=8,
+                        color="white" if M[i, j] > M.max() * 0.6 else "#1f2328")
+    ax.set_title("机会记录的来源 × 功能类别分布")
+    fig.colorbar(im, ax=ax, shrink=0.8, label="机会数")
+    save(fig, "fig_source_category_heat.png")
+
+
+def fig_confidence_hist(cfg) -> None:
+    """机会置信度分布 + 阈值线。"""
+    judged = read_jsonl(Path(cfg["paths"]["clean"]) / "judged.jsonl")
+    conf = [float(r.get("confidence", 0)) for r in judged]
+    if not conf:
+        return
+    tau = float(cfg["judge"]["threshold"])
+    fig, ax = plt.subplots(figsize=(6.6, 3.4))
+    ax.hist(conf, bins=40, color="#94a3b8", edgecolor="white")
+    ax.axvline(tau, color="#e15759", ls="--", lw=1.6, label=f"阈值 τ={tau}")
+    ax.set_xlabel("机会置信度"); ax.set_ylabel("记录数")
+    ax.set_title("置信度分布与判别阈值")
+    ax.legend(fontsize=8); ax.grid(axis="y", alpha=0.25)
+    save(fig, "fig_confidence_hist.png")
+
+
+
+
+STOP = set("""的 了 和 是 在 我 有 就 不 人 都 一 一个 上 也 很 到 说 要 去 你 会 着 没有 看 好
+自己 这 那 我们 他们 可以 这个 那个 因为 所以 但是 如果 就是 什么 怎么 如何 为什么
+以及 通过 进行 需要 问题 使用 目前 现在 已经 还是 或者 而且 并且 这样 那样 时候
+ai 人工智能 大模型 模型 技术 系统 平台 工具 功能 方法 方案 需求 数据 应用 场景""".split())
+
+
+def fig_word_freq(cfg) -> None:
+    """机会记录的关键词 Top-20（TF-IDF 抽取，替代词云）。"""
+    import jieba.analyse
+
+    judged = read_jsonl(Path(cfg["paths"]["clean"]) / "judged.jsonl")
+    texts = [r.get("clean_text", "") for r in judged if r.get("is_opportunity") == 1]
+    if not texts:
+        print("  跳过词频：无机会记录")
+        return
+
+    import collections
+    bag = collections.Counter()
+    for t in texts:
+        # TF-IDF 抽取：自带 IDF，天然压掉高频虚词
+        for w, weight in jieba.analyse.extract_tags(t, topK=15, withWeight=True):
+            bag[w] += weight
+    # 过滤：纯英文虚词、符号、单字
+    bad = {"the", "and", "for", "with", "this", "that", "you", "are", "not",
+           "can", "use", "using", "from", "have", "will", "would", "there",
+           "they", "your", "our", "its", "was", "but", "all", "any"}
+    items = [(w, v) for w, v in bag.items()
+             if w.lower() not in bad and len(w) >= 2
+             and re.fullmatch(r"[\u4e00-\u9fa5A-Za-z0-9+#.\-]{2,}", w or "")
+             and not re.fullmatch(r"[0-9.#\-]+", w)]
+    items.sort(key=lambda x: -x[1])
+    top = items[:20]
+    if not top:
+        return
+    words = [w for w, _ in top][::-1]
+    vals = [round(v, 1) for _, v in top][::-1]
+    fig, ax = plt.subplots(figsize=(6.8, 5.2))
+    bars = ax.barh(words, vals, color="#2563eb", alpha=0.9)
+    for b, v in zip(bars, vals):
+        ax.text(v + max(vals) * 0.01, b.get_y() + b.get_height() / 2, f"{v}",
+                va="center", fontsize=8, color="#334155")
+    ax.set_xlabel("TF-IDF 累计权重（机会记录内）")
+    ax.set_title("机会记录的关键词 Top-20（TF-IDF 抽取）")
+    ax.grid(axis="x", alpha=0.25)
+    save(fig, "fig_word_freq.png")
+
+
+def fig_flow_sankey(cfg) -> None:
+    """来源 → 主题簇 流向图（桑基风格，用贝塞尔带绘制）。"""
+    from matplotlib.path import Path as MPath
+    from matplotlib.patches import PathPatch
+    import collections
+
+    judged = read_jsonl(Path(cfg["paths"]["clean"]) / "judged.jsonl")
+    scored = read_jsonl(Path(cfg["paths"]["clean"]) / "scored.jsonl")
+    id2clu = {}
+    for c in scored:
+        for rid in c.get("record_ids", []):
+            id2clu[rid] = (c.get("cluster_id"), c.get("topic_name"))
+    flows = collections.Counter()
+    for r in judged:
+        if r.get("is_opportunity") != 1:
+            continue
+        c = id2clu.get(r.get("record_id"))
+        if not c:
+            continue
+        flows[(r.get("source", ""), c[0])] += 1
+    if not flows:
+        print("  跳过流向图：无可用映射")
+        return
+
+    srcs = sorted({k[0] for k in flows})
+    clus = sorted({k[1] for k in flows}, key=lambda x: int(str(x).lstrip("C") or 0))
+    name_map = {c.get("cluster_id"): c.get("topic_name") for c in scored
+                if c.get("cluster_id") in clus}
+
+    src_tot = {s_: sum(v for (a, _), v in flows.items() if a == s_) for s_ in srcs}
+    clu_tot = {c_: sum(v for (_, b), v in flows.items() if b == c_) for c_ in clus}
+    total = sum(src_tot.values())
+
+    fig, ax = plt.subplots(figsize=(9.2, max(4.2, 0.42 * max(len(srcs), len(clus)) + 1.5)))
+    ax.set_xlim(0, 10); ax.set_ylim(0, total * 1.06); ax.axis("off")
+
+    def layout(nodes, sizes):
+        gap = total * 0.035
+        span = total - gap * (len(nodes) - 1)
+        y, pos = total, {}
+        for n in nodes:
+            h = sizes[n] / total * span
+            pos[n] = (y - h, h)
+            y -= h + gap
+        return pos
+
+    lpos, rpos = layout(srcs, src_tot), layout(clus, clu_tot)
+    lcur = {k: v[0] + v[1] for k, v in lpos.items()}
+    rcur = {k: v[0] + v[1] for k, v in rpos.items()}
+    palette = ["#2563eb", "#59a14f", "#f28e2b", "#e15759", "#7c3aed",
+               "#0ea5e9", "#94a3b8", "#db2777"]
+
+    for i, s_ in enumerate(srcs):
+        for c_ in clus:
+            v = flows.get((s_, c_), 0)
+            if not v:
+                continue
+            h = v / total * (total - total * 0.035 * (len(srcs) - 1))
+            y0a, y0b = lcur[s_] - h, lcur[s_]
+            h2 = v / total * (total - total * 0.035 * (len(clus) - 1))
+            y1a, y1b = rcur[c_] - h2, rcur[c_]
+            lcur[s_] -= h
+            rcur[c_] -= h2
+            # 上边：左 -> 右 的贝塞尔；下边：右 -> 左 返回，形成带状闭合
+            x0, x1, xm = 1.15, 8.85, (1.15 + 8.85) / 2
+            verts = [(x0, y0b), (xm, y0b), (xm, y1b), (x1, y1b),
+                     (x1, y1a), (xm, y1a), (xm, y0a), (x0, y0a), (x0, y0b)]
+            codes = [MPath.MOVETO, MPath.CURVE4, MPath.CURVE4, MPath.CURVE4,
+                     MPath.LINETO, MPath.CURVE4, MPath.CURVE4, MPath.CURVE4,
+                     MPath.CLOSEPOLY]
+            ax.add_patch(PathPatch(MPath(verts, codes),
+                                   facecolor=palette[i % len(palette)],
+                                   alpha=0.35, edgecolor="none"))
+
+    for s_ in srcs:
+        y, h = lpos[s_]
+        ax.add_patch(plt.Rectangle((0.7, y), 0.45, h, color="#334155"))
+        ax.text(0.6, y + h / 2, f"{s_} ({src_tot[s_]})", ha="right", va="center", fontsize=9)
+    for c_ in clus:
+        y, h = rpos[c_]
+        ax.add_patch(plt.Rectangle((8.85, y), 0.45, h, color="#2563eb"))
+        label = f"{c_} {str(name_map.get(c_, ''))[:10]} ({clu_tot[c_]})"
+        ax.text(9.4, y + h / 2, label, ha="left", va="center", fontsize=8)
+    ax.set_title("机会记录从来源到主题簇的流向（带宽 = 记录数）", fontsize=11)
+    save(fig, "fig_flow_sankey.png")
+
+
 def main() -> int:
     cfg = load_config(track="all")
     print("生成补充配图：")
     for fn in (fig_ablation, fig_confusion, fig_source_status,
-               fig_batch_compare, fig_weight_compare, fig_cluster_sizes):
+               fig_batch_compare, fig_weight_compare, fig_cluster_sizes,
+               fig_time_trend, fig_source_category_heat, fig_confidence_hist,
+               fig_word_freq, fig_flow_sankey):
         try:
             fn(cfg)
         except Exception as exc:

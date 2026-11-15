@@ -110,17 +110,19 @@ C_BLUE, C_RED, C_GREY, C_GREEN = "#2563eb", "#e15759", "#94a3b8", "#59a14f"
 
 
 def hbar(df, xcol: str, ycol: str, color: str = C_BLUE,
-         fmt: str = ",.0f", height_per: int = 28, x_title: str = "") -> alt.Chart:
+         fmt: str = ",.0f", height_per: int = 34, x_title: str = "") -> alt.Chart:
     """横向条形图：按给定顺序排列，条尾标数值。"""
     order = df[ycol].tolist()
     base = alt.Chart(df).encode(
-        y=alt.Y(f"{ycol}:N", sort=order, title=None),
+        y=alt.Y(f"{ycol}:N", sort=order, title=None,
+                axis=alt.Axis(labelOverlap=False, labelLimit=180,
+                              labelFontSize=11, tickCount=len(order))),
         x=alt.X(f"{xcol}:Q", title=x_title or None,
                 axis=alt.Axis(format="~s", grid=True, gridColor="#eef1f6")))
     bars = base.mark_bar(cornerRadius=4, color=color, height=16)
     text = base.mark_text(align="left", dx=6, fontSize=12, color="#334155").encode(
         text=alt.Text(f"{xcol}:Q", format=fmt))
-    return (bars + text).properties(height=max(140, height_per * len(df)))
+    return (bars + text).properties(height=max(180, height_per * len(df)))
 
 
 @st.cache_data(show_spinner=False)
@@ -341,6 +343,128 @@ def main() -> None:
                        "各阶段数量接近，因此左图柱高差异很小；"
                        "右图单独展示剔除量，才是真正能看出差异的视图。")
 
+    # ---------------- ①d 数据透视（多角度可视化） ----------------
+    st.subheader("①d 数据透视")
+    dv = view.copy()
+    pv_col = "published_at" if "published_at" in dv.columns else None
+
+    t1, t2, t3, t4, t5 = st.tabs(
+        ["时间分布", "来源 × 功能类别", "置信度分布", "需求关键词", "来源 → 簇"])
+
+    with t1:
+        if pv_col:
+            dv["月份"] = dv[pv_col].astype(str).str.slice(0, 7)
+            dv_m = dv[dv["月份"].str.len() == 7]
+            if not dv_m.empty:
+                g = (dv_m.groupby(["月份", "is_opportunity"]).size()
+                     .reset_index(name="记录数"))
+                g["类型"] = g["is_opportunity"].map({1: "机会", 0: "非机会"})
+                area = alt.Chart(g).mark_area(opacity=0.75, interpolate="monotone").encode(
+                    x=alt.X("月份:N", title=None,
+                            axis=alt.Axis(labelAngle=-45, labelOverlap=True)),
+                    y=alt.Y("记录数:Q", title="记录数", stack=True),
+                    color=alt.Color("类型:N", scale=alt.Scale(
+                        domain=["非机会", "机会"], range=["#cbd5e1", "#2563eb"])),
+                    tooltip=["月份:N", "类型:N", "记录数:Q"],
+                ).properties(height=300)
+                st.altair_chart(area, use_container_width=True)
+                st.caption("按月统计采集内容的发布时间（机会记录用深色标识）。"
+                           "可见近期内容以 2026 年下半年为主，机会记录与总记录同向波动。")
+        else:
+            st.info("当前数据缺发布时间字段。")
+
+    with t2:
+        opp = dv[dv["is_opportunity"] == 1]
+        if not opp.empty and "func_category" in opp.columns:
+            hm = (opp.groupby(["source", "func_category"]).size()
+                  .reset_index(name="机会数"))
+            heat = alt.Chart(hm).mark_rect(cornerRadius=2).encode(
+                x=alt.X("func_category:N", title="功能类别",
+                        axis=alt.Axis(labelAngle=-40, labelLimit=120)),
+                y=alt.Y("source:N", title=None),
+                color=alt.Color("机会数:Q", scale=alt.Scale(scheme="blues"),
+                                title="机会数"),
+                tooltip=["source:N", "func_category:N", "机会数:Q"],
+            ).properties(height=max(240, 26 * hm["source"].nunique()))
+            st.altair_chart(heat, use_container_width=True)
+            st.caption("机会记录在「来源 × 功能类别」上的分布。空白表示该组合没有机会记录，"
+                       "颜色越深机会越密集——可据此看出不同来源擅长暴露哪类需求。")
+        else:
+            st.info("当前筛选下没有机会记录。")
+
+    with t3:
+        if "confidence" in dv.columns:
+            hist = alt.Chart(dv).mark_bar(opacity=0.85).encode(
+                x=alt.X("confidence:Q", bin=alt.Bin(maxbins=30), title="机会置信度"),
+                y=alt.Y("count()", title="记录数"),
+                color=alt.Color("is_opportunity:N", scale=alt.Scale(
+                    domain=[0, 1], range=["#cbd5e1", "#2563eb"]), title="是否机会"),
+            ).properties(height=300)
+            rule = alt.Chart(pd.DataFrame({"x": [cfg["judge"]["threshold"]]})).mark_rule(
+                color="#e15759", strokeDash=[5, 4]).encode(x="x:Q")
+            st.altair_chart(hist + rule, use_container_width=True)
+            st.caption(f"置信度分布，红色虚线为判别阈值 τ = {cfg['judge']['threshold']}。"
+                       "阈值右侧即判为机会；分布呈明显双峰，说明打分具备区分度。")
+        else:
+            st.info("当前数据缺置信度字段。")
+
+
+    with t4:
+        try:
+            import jieba.analyse
+            opp_txt = dv[dv["is_opportunity"] == 1]["clean_text"].astype(str).tolist()
+            if opp_txt:
+                import collections as _c
+                bag = _c.Counter()
+                for t in opp_txt:
+                    for w, wt in jieba.analyse.extract_tags(t, topK=15, withWeight=True):
+                        bag[w] += wt
+                bad = {"the", "and", "for", "with", "this", "that", "you", "are",
+                       "not", "can", "use", "using", "from", "have", "will"}
+                items = [(w, v) for w, v in bag.items()
+                         if w.lower() not in bad and len(w) >= 2]
+                items.sort(key=lambda x: -x[1])
+                df_w = pd.DataFrame(items[:20], columns=["关键词", "权重"])
+                df_w = df_w.iloc[::-1]
+                st.altair_chart(hbar(df_w, "权重", "关键词", fmt=".1f",
+                                     height_per=26, x_title="TF-IDF 累计权重"),
+                                use_container_width=True)
+                st.caption("对机会记录做 TF-IDF 关键词抽取（jieba.analyse），"
+                           "可看出这批需求集中在哪些主题上。")
+            else:
+                st.info("当前筛选下没有机会记录。")
+        except Exception as exc:
+            st.info(f"关键词抽取不可用：{exc}")
+
+    with t5:
+        try:
+            scored_now = read_jsonl(Path(cfg["paths"]["clean"]) / "scored.jsonl")
+            id2c = {}
+            for c in scored_now:
+                for rid in c.get("record_ids", []):
+                    id2c[rid] = c.get("cluster_id")
+            rows = []
+            for _, r in dv[dv["is_opportunity"] == 1].iterrows():
+                cid = id2c.get(r.get("record_id"))
+                if cid:
+                    rows.append({"来源": r.get("source"), "主题簇": cid})
+            if rows:
+                df_f = pd.DataFrame(rows).groupby(["来源", "主题簇"]).size().reset_index(name="记录数")
+                heat2 = alt.Chart(df_f).mark_rect(cornerRadius=2).encode(
+                    x=alt.X("主题簇:N", title="主题簇", axis=alt.Axis(labelAngle=-40)),
+                    y=alt.Y("来源:N", title=None),
+                    color=alt.Color("记录数:Q", scale=alt.Scale(scheme="tealblues"),
+                                    title="记录数"),
+                    tooltip=["来源:N", "主题簇:N", "记录数:Q"],
+                ).properties(height=max(200, 26 * df_f["来源"].nunique()))
+                st.altair_chart(heat2, use_container_width=True)
+                st.caption("机会记录在「来源 × 主题簇」上的流向矩阵（颜色越深流向越集中）。"
+                           "论文里另有一张桑基风格流向图 `figs/all/fig_flow_sankey.png`。")
+            else:
+                st.info("当前筛选下没有可映射到主题簇的记录。")
+        except Exception as exc:
+            st.info(f"流向矩阵不可用：{exc}")
+
     # ---------------- ② 主题簇 ----------------
     st.subheader(f"② 主题簇与优先级（当前 {len(cview)} / {len(clusters)} 个）")
     if not cview.empty:
@@ -410,7 +534,7 @@ def main() -> None:
                 df_d = pd.DataFrame({
                     "维度": [dim_map.get(k, k) for k in d.keys()],
                     "得分": list(d.values())})
-                st.altair_chart(hbar(df_d, "得分", "维度", height_per=30,
+                st.altair_chart(hbar(df_d, "得分", "维度", height_per=38,
                                      fmt=".1f", x_title="得分（0~100）"),
                                 use_container_width=True)
         with d2:
@@ -439,8 +563,6 @@ def main() -> None:
                                key=f"dl_docx_{track}_{pick}")
         st.divider()
         st.markdown(_f.read_text(encoding="utf-8"))
-    else:
-        st.info("还没有策划案。运行 `python run_all.py --track all` 生成。")
 
     # ---------------- ⑤ 方法与参数 ----------------
     with st.expander("⑤ 方法与参数（论文引用这里）"):

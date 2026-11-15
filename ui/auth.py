@@ -25,7 +25,7 @@ ROLES: dict[str, dict] = {
         "label": "决策者",
         "role_name": "决策者",
         "desc": "查看各批次结论、主题簇排序与立项策划案；不能发起采集，看不到原始链接",
-        "perm": {"view", "export"},
+        "perm": {"view", "view_all", "export"},
         "see_raw_links": False,
         "see_labels": False,
         "see_settings": False,

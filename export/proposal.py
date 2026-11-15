@@ -59,6 +59,8 @@ def build_proposal(cluster: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, An
     }
 
 
+
+
 def render_markdown(cluster: Dict[str, Any], proposal: Dict[str, Any],
                     cfg: Dict[str, Any]) -> str:
     dims = cluster.get("dim_scores", {})
@@ -136,6 +138,19 @@ def export_docx(md_text: str, path: Path, title: str) -> bool:
             doc.add_heading(s[2:], level=0)
         elif s.startswith("## "):
             doc.add_heading(s[3:], level=1)
+        elif s.startswith("!["):
+            import re as _re
+            m = _re.match(r"!\[[^\]]*\]\(([^)]+)\)", s)
+            if m:
+                img = path.parent / m.group(1)
+                if img.exists():
+                    try:
+                        from docx.shared import Inches
+                        doc.add_picture(str(img), width=Inches(4.6))
+                        continue
+                    except Exception:
+                        pass
+            continue
         elif s.startswith("| "):
             cells = [c.strip() for c in s.strip("|").split("|")]
             if set("".join(cells)) <= set("- "):
