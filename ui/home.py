@@ -358,10 +358,10 @@ def main() -> None:
     else:
         label = "开始采集与分析"
     go = allow_collect and st.button(label, type="primary",
-                                     disabled=not direction.strip(),
                                      use_container_width=True)
-    if allow_collect and not direction.strip():
-        st.caption("⬆ 按钮是灰色的：**先在上面输入方向，或点一个模板卡片**，按钮就会变亮。")
+    if go and not direction.strip():
+        st.warning("请先在上面输入需求方向，或点一个模板卡片（例如「医疗在线问诊」）。")
+        go = False
 
     visitor = st.session_state.get("visitor_llm") or {}
     if go and visitor.get("key"):

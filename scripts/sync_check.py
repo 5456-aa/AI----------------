@@ -31,7 +31,9 @@ try:
 except Exception:
     pass
 
-PAGES = ["ui/home.py", "ui/app.py", "ui/qa.py"]
+# 第一个是云端真实入口（streamlit_app.py）——必须测它，否则
+# 「本地跑 ui/main.py 正常、云端跑根入口崩」这类问题发现不了
+PAGES = ["streamlit_app.py", "ui/home.py", "ui/app.py", "ui/qa.py"]
 
 
 def sh(args: list[str]) -> str:
@@ -140,6 +142,7 @@ def main(argv=None) -> int:
     print("结论：" + ("✅ 可以提交" if ok else "❌ 有问题，先修"))
     if not args.commit and ok:
         print('提交命令：python scripts/sync_check.py --commit "说明" --push')
+        print('或双击根目录的「一键同步.bat」（等同上面这条命令）')
     return 0 if ok else 1
 
 
