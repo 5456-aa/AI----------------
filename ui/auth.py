@@ -67,6 +67,17 @@ def request_host() -> str:
     return h.split(":")[0] if h else "localhost"
 
 
+def is_cloud_host() -> bool:
+    """是否运行在 Streamlit Community Cloud（*.streamlit.app）。
+
+    云端容器是临时的：写入的结果在重启后丢失，采集也容易超时，
+    因此云端只做只读展示，采集引导用户在本机进行。
+    """
+    if os.environ.get("STREAMLIT_SHARING_MODE") or os.environ.get("IS_STREAMLIT_CLOUD"):
+        return True
+    return request_host().endswith("streamlit.app")
+
+
 def is_public_request() -> bool:
     """公网隧道（如 *.trycloudflare.com）来的请求 → 受限访问（可浏览 + 离线采集）。
 
@@ -156,7 +167,13 @@ def allow_public_collect() -> bool:
 
 
 def can_collect() -> bool:
-    """当前会话能否发起采集：有权限，或（公网 + 允许离线采集）。"""
+    """当前会话能否发起采集。
+
+    云端（Streamlit Cloud）一律不允许：容器临时、结果不持久、采集易超时。
+    本机有权限即可；其它公网访问按配置允许「离线采集」。
+    """
+    if is_cloud_host():
+        return False
     if can("collect"):
         return True
     return is_public_request() and allow_public_collect()

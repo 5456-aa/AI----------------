@@ -309,7 +309,7 @@ def main() -> None:
 """, unsafe_allow_html=True)
 
     with st.sidebar:
-        if auth.is_public_request():
+        if auth.is_public_request() and not auth.is_cloud_host():
             with st.expander("🔑 用我自己的 API Key（可选）", expanded=False):
                 import llm_settings as _ls
                 _keys = list(_ls.PROVIDERS)
@@ -363,7 +363,12 @@ def main() -> None:
                 st.caption(f"- **{name}**：{why}")
 
     public_mode = auth.is_public_request()
+    cloud_mode = auth.is_cloud_host()
     allow_collect = auth.can_collect()
+    if cloud_mode:
+        st.info("☁ 云端部署为**只读展示**：可浏览全部批次与图表，但**不支持发起采集**——"
+                "云端容器是临时的，采集结果无法保存。需要采集请在本机运行"
+                "（`启动系统.bat`），或用本机局域网/隧道地址访问。", icon="☁")
     _has_key0 = bool((st.session_state.get("visitor_llm") or {}).get("key"))
     if public_mode and allow_collect and _has_key0:
         st.info("🔑 已使用**你自己的 API Key**：本次采集走在线模式，"
