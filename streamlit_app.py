@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 """Streamlit Community Cloud 默认入口。
 
-本项目的界面在 ui/ 下，且 ui/*.py 之间用「同目录模块」方式互相引用
-（例如 `import auth`、`from _init import page_config`）。
-本地运行时 `streamlit run ui/home.py` 会把 ui/ 加入 sys.path，云端跑本文件时不会，
-所以这里显式把 ui/ 也加进去，两种入口行为一致。
+界面的真正入口是 ui/main.py —— 它用 st.navigation 注册了三个页面
+（首页 / 分析看板 / 问答咨询），页面之间可以用 st.switch_page 互相跳转。
 
-用法：
-  * Main file path 留默认            → 走这个文件
-  * Main file path 填 ui/home.py     → 直接跑首页
+若直接跑 ui/home.py，switch_page("app.py") 会报
+StreamlitPageNotFoundError（页面未注册），所以这里必须走 main.py。
+
+两种部署方式都成立：
+  * Main file path 留默认            → 走这个文件 → ui/main.py
+  * Main file path 填 ui/main.py     → 同样效果
 """
 from __future__ import annotations
 
@@ -19,9 +20,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 UI = ROOT / "ui"
 
-# 顺序很重要：ui/ 放最前，保证 `import auth` / `from _init import ...` 能解析
+# ui/ 必须在 sys.path 里：ui/*.py 之间用同目录模块方式互相引用（import auth 等）
 for p in (str(ROOT), str(UI)):
     if p not in sys.path:
         sys.path.insert(0, p)
 
-runpy.run_path(str(UI / "home.py"), run_name="__main__")
+runpy.run_path(str(UI / "main.py"), run_name="__main__")
