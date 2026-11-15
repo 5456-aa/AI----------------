@@ -1,0 +1,4 @@
+{"source": "掘金", "raw": 34, "kept": 34, "dropped": 0, "drop_too_short": 0, "drop_not_chinese": 0, "drop_ad_like": 0, "missing_publish_time": 0, "missing_heat": 0, "missing_title": 0, "len_raw_sum": 4136, "len_clean_sum": 4044, "translated": 2}
+{"source": "GitHub", "raw": 11, "kept": 11, "dropped": 0, "drop_too_short": 0, "drop_not_chinese": 0, "drop_ad_like": 0, "missing_publish_time": 0, "missing_heat": 0, "missing_title": 0, "len_raw_sum": 104321, "len_clean_sum": 84149, "translated": 1}
+{"source": "SegmentFault", "raw": 10, "kept": 10, "dropped": 0, "drop_too_short": 0, "drop_not_chinese": 0, "drop_ad_like": 0, "missing_publish_time": 0, "missing_heat": 10, "missing_title": 0, "len_raw_sum": 6890, "len_clean_sum": 6741, "translated": 1}
+{"source": "博客园", "raw": 6, "kept": 6, "dropped": 0, "drop_too_short": 0, "drop_not_chinese": 0, "drop_ad_like": 0, "missing_publish_time": 0, "missing_heat": 6, "missing_title": 0, "len_raw_sum": 1147, "len_clean_sum": 1147}

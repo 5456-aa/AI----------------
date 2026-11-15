@@ -24,10 +24,8 @@ data/runtime/
 !data/tracks/
 !data/tracks/*.json
 !data/cache/llm_calls.jsonl
-!data/clean/ecommerce/
-!data/clean/education/
-!data/clean/ecommerce/*.jsonl
-!data/clean/education/*.jsonl
+!data/clean/*/
+!data/clean/*/*.jsonl
 
 # 日志与临时
 logs/

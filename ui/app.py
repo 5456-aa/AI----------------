@@ -121,7 +121,7 @@ def main() -> None:
         st.title("🎯 机会评估系统")
         st.caption("AI 应用场景的智能挖掘与机会评估")
         if is_public_demo():
-            st.info("公网演示：仅展示已生成的批次结果，不提供采集与配置入口。", icon="🔒")
+            st.caption("🌐 公网访问：可浏览全部批次；发起新需求请回「首页」")
         if st.button("← 返回首页", use_container_width=True):
             # 必须用绝对路径：云端主入口在仓库根目录，
             # 相对路径 "home.py" 会以主入口目录为基准解析，导致找不到页面
@@ -154,17 +154,41 @@ def main() -> None:
             _q = {}
         _want = _q.get("track") or st.session_state.get("view_track")
         _idx = all_tracks.index(_want) if _want in all_tracks else 0
-        track = st.radio(
-            "赛道 / 批次", all_tracks, index=_idx,
+        # 批次列表自动刷新：data/tracks 有新增/修改时，自动重跑一次
+        try:
+            _sig = "|".join(f"{p.name}:{int(p.stat().st_mtime)}"
+                            for p in sorted((ROOT / "data" / "tracks").glob("*.json")))
+            _prev = st.session_state.get("_track_sig")
+            if _prev is not None and _prev != _sig:
+                st.session_state["_track_sig"] = _sig
+                st.rerun()
+            st.session_state["_track_sig"] = _sig
+        except Exception:
+            pass
+
+        _c1, _c2 = st.columns([3, 1])
+        if _c2.button("⟳", help="刷新批次列表（刚创建的批次没出现时点这里）",
+                      use_container_width=True):
+            st.rerun()
+        with _c1:
+            track = st.radio(
+                "赛道 / 批次", all_tracks, index=_idx,
             format_func=lambda t: TRACK_LABEL.get(
                 t, (base_cfg.get("tracks", {}).get(t, {}) or {}).get("label", t)))
         st.divider()
 
     cfg, judged, clusters, metrics, detail, funnel = load_data(str(ROOT), track)
 
+    if judged.empty and track != "all":
+        # 这批数据可能只在本地跑过、没随仓库发布（如云端演示只带了部分批次）
+        st.warning(f"批次「{TRACK_LABEL.get(track, track)}」在当前环境没有明细数据，"
+                   f"已自动切换到「两赛道合并（提交版）」。")
+        track = "all"
+        cfg, judged, clusters, metrics, detail, funnel = load_data(str(ROOT), track)
+
     if judged.empty:
-        st.error(f"赛道「{TRACK_LABEL.get(track, track)}」还没有结果。"
-                 f"请先运行：`python run_all.py --track {track}`")
+        st.error("当前环境没有任何可用的结果数据。"
+                 "本地可运行：`python run_all.py --track all --offline --force`")
         return
 
     with st.sidebar:

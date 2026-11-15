@@ -1,0 +1,2 @@
+{"source": "掘金", "raw": 78, "kept": 78, "dropped": 0, "drop_too_short": 0, "drop_not_chinese": 0, "drop_ad_like": 0, "missing_publish_time": 0, "missing_heat": 0, "missing_title": 0, "len_raw_sum": 9121, "len_clean_sum": 9115}
+{"source": "GitHub", "raw": 65, "kept": 65, "dropped": 0, "drop_too_short": 0, "drop_not_chinese": 0, "drop_ad_like": 0, "missing_publish_time": 0, "missing_heat": 0, "missing_title": 0, "len_raw_sum": 229153, "len_clean_sum": 216053, "translated": 9}

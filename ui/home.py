@@ -272,8 +272,23 @@ def result_block(slug: str, label: str) -> None:
 
 
 # ---------------------------------------------------------------------------
+def _watch_tracks() -> None:
+    """批次目录有新增/修改时自动重跑一次，保证列表不过期。"""
+    try:
+        sig = "|".join(f"{p.name}:{int(p.stat().st_mtime)}"
+                       for p in sorted((ROOT / "data" / "tracks").glob("*.json")))
+        prev = st.session_state.get("_home_track_sig")
+        if prev is not None and prev != sig:
+            st.session_state["_home_track_sig"] = sig
+            st.rerun()
+        st.session_state["_home_track_sig"] = sig
+    except Exception:
+        pass
+
+
 def main() -> None:
     st.markdown(CSS, unsafe_allow_html=True)
+    _watch_tracks()
     tracks = all_tracks()
     total_opp = sum(batch_stats(s)["opp"] for s in tracks)
     total_src = len(ENABLED_SOURCES)
@@ -425,6 +440,10 @@ def main() -> None:
             slug = list(all_tracks())[-1]
         st.success("完成，结果如下")
         result_block(slug, direction.strip())
+        if st.button("⟳ 刷新批次列表并定位到该批次", use_container_width=True):
+            st.session_state["view_slug"] = slug
+            st.session_state["view_track"] = slug
+            st.rerun()
 
     # ---------- 第二步 ----------
     st.markdown('<div class="section"><em>2</em>　已有批次</div>',
