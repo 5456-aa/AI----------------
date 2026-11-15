@@ -121,6 +121,7 @@ def main() -> None:
         st.caption("AI 应用场景的智能挖掘与机会评估")
         if is_public_demo():
             st.info("公网演示：仅展示已生成的批次结果，不提供采集与配置入口。", icon="🔒")
+        auth.mode_switcher()
         auth.role_selector()
         st.divider()
         render_llm_settings(base_cfg)
@@ -197,6 +198,36 @@ def main() -> None:
         st.caption(f"处理漏斗：去重前 {f.get('raw', 0)} → 去重后 {f.get('after_L3_semantic', 0)}"
                    f"（去重率 {f.get('dedup_rate', 0) * 100:.1f}%）")
 
+    # ---------------- ①b 结果文件下载 ----------------
+    with st.expander("⬇ 下载本批次结果文件（result1~4.csv）"):
+        out_dir = Path(cfg["paths"]["out"])
+        cols = st.columns(4)
+        for i, name in enumerate(["result1.csv", "result2.csv",
+                                  "result3.csv", "result4.csv"]):
+            f = out_dir / name
+            if f.exists():
+                cols[i].download_button(
+                    name, f.read_bytes(), file_name=f"{track}_{name}",
+                    mime="text/csv", use_container_width=True,
+                    key=f"dl_{track}_{name}")
+
+    # ---------------- ①c 清洗与去重漏斗 ----------------
+    if funnel:
+        with st.expander("①c 清洗与去重漏斗（任务一过程）", expanded=False):
+            f0 = funnel[0]
+            st.markdown(
+                f"原始采集 **{f0.get('raw',0)}** → 清洗保留 **{f0.get('after_clean', f0.get('raw',0))}** → "
+                f"L1 URL 去重 **{f0.get('after_L1_url',0)}** → "
+                f"L2 SimHash **{f0.get('after_L2_simhash',0)}** → "
+                f"L3 语义 **{f0.get('after_L3_semantic',0)}**")
+            st.bar_chart(pd.Series({
+                "原始采集": f0.get("raw", 0),
+                "清洗保留": f0.get("after_clean", f0.get("raw", 0)),
+                "L1 后": f0.get("after_L1_url", 0),
+                "L2 后": f0.get("after_L2_simhash", 0),
+                "L3 后": f0.get("after_L3_semantic", 0),
+            }, name="记录数"))
+
     # ---------------- ② 主题簇 ----------------
     st.subheader("② 主题簇与优先级")
     if not clusters.empty:
@@ -242,7 +273,19 @@ def main() -> None:
     reports = sorted(rep_dir.glob("proposal_*.md")) if rep_dir.exists() else []
     if reports:
         pick = st.selectbox("选择策划案", [p.name for p in reports])
-        st.markdown((rep_dir / pick).read_text(encoding="utf-8"))
+        _f = rep_dir / pick
+        st.download_button("⬇ 下载策划案（Markdown）", _f.read_bytes(),
+                           file_name=pick, mime="text/markdown",
+                           key=f"dl_prop_{track}_{pick}")
+        _docx = _f.with_suffix(".docx")
+        if _docx.exists():
+            st.download_button("⬇ 下载策划案（Word）", _docx.read_bytes(),
+                               file_name=_docx.name,
+                               mime="application/vnd.openxmlformats-officedocument"
+                                    ".wordprocessingml.document",
+                               key=f"dl_docx_{track}_{pick}")
+        st.divider()
+        st.markdown(_f.read_text(encoding="utf-8"))
     else:
         st.info("还没有策划案。运行 `python run_all.py --track all` 生成。")
 

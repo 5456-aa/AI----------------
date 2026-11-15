@@ -63,8 +63,7 @@ def main(argv=None) -> int:
                 print(f"    {f.name}: 内容去重 {len(recs)} -> {len(uniq)}")
             recs = uniq
             for r in recs:
-                new = stable_record_id(prefix, r.get("source", ""), r.get("url", ""),
-                                       r.get("title", ""), taken)
+                new = f"{prefix}{len(taken) + 1:05d}"
                 taken.add(new)
                 per_track += 1
                 if r.get("record_id") != new:

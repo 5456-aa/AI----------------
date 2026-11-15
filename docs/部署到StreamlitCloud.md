@@ -25,18 +25,44 @@ Streamlit Cloud 的本质是：**把你的 GitHub 仓库克隆到云端，用 `s
 
 ---
 
-## 二、用 GitHub Desktop 上传（你已经有这个）
+## 二、本机仓库已经建好了（2026-11-15 完成）
 
-### 1. 新建仓库
+项目根目录已经初始化 git 并完成首次提交：
+
+```
+提交号  327352c
+文件    255 个
+体积    15.75 MiB
+自检    26 项全过（含 .env 已忽略、无明文密钥）
+```
+
+**所以你不需要「New repository」，只需要「Add Local Repository」。**
+
+### 1. 把本机仓库加入 GitHub Desktop
+
+1. 打开 GitHub Desktop → 菜单 `File` → **`Add local repository…`**
+2. Local path 选 **项目文件夹本身**
+3. 点 `Add repository`
+
+### 2. 发布到 GitHub
+
+1. 点右上角 **`Publish repository`**
+2. Name 保持 `ai-opp-system`
+3. **取消勾选** `Keep this code private`（免费账号私有仓库不能用 Streamlit Cloud）
+4. 点 `Publish repository`
+
+完成。浏览器打开 `https://github.com/你的用户名/ai-opp-system` 应能看到代码。
+
+### （保留）从零新建仓库的老办法
 
 1. 打开 **GitHub Desktop** → 菜单 `File` → `New repository…`
 2. 填写：
    - **Name**：`ai-opp-system`
-   - **Local path**：选到 `D:\sjwjbs`（**注意是上一级**，不要选项目文件夹本身）
+   - **Local path**：选到项目文件夹的**上一级**（不要选项目文件夹本身）
    - **Initialize with README**：不要勾
 3. 点 `Create repository`
 
-> GitHub Desktop 会在 `D:\sjwjbs` 下建 `.git`，你的项目在 `D:\sjwjbs\ai-opp-system`，
+> GitHub Desktop 会在上一级目录下建 `.git`，你的项目在其中的 `ai-opp-system` 子目录，
 > 这样仓库根目录就是 `ai-opp-system`，符合云端要求。
 
 ### 2. 提交文件

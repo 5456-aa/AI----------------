@@ -106,7 +106,33 @@ def content() -> list[tuple[str, object]]:
         ],
     }))
 
-    blocks.append(("h2", "四、采纳与人工修改情况"))
+    blocks.append(("h2", "四、关键交互记录（重要提示词与回复）"))
+    blocks.append(("p", "以下摘录三条代表性交互，完整调用可按记录编号在 "
+                        "data/cache/llm_calls.jsonl 中回放。"))
+    blocks.append(("table", {
+        "header": ["环节", "提示词（摘录）", "模型回复（摘录）"],
+        "rows": [
+            ["机会判别",
+             "「判断这条记录是否构成 AI 应用机会，只输出 JSON："
+             "has_need / ai_core / feasible / exclude / func_category / industry / reason」"
+             "（附四条判定标准原文）",
+             "{\"has_need\":1,\"ai_core\":1,\"feasible\":1,\"exclude\":\"none\","
+             "\"reason\":\"用户在描述具体业务困难并寻求解决方案\"}"],
+            ["英文记录翻译",
+             "「把下面的英文标题与正文译为简体中文，保留术语与语气，不增删信息，"
+             "只输出 JSON：title_zh / content_zh」",
+             "{\"title_zh\":\"我们的客服系统需要处理大量重复问题…\","
+             "\"content_zh\":\"…\",\"lang\":\"en\"}"],
+            ["主题簇命名",
+             "「根据簇内若干条标题，概括为一句不超过 20 字的『场景 + AI 能力』短语，"
+             "只输出 JSON：topic_name」",
+             "{\"topic_name\":\"电商售后工单智能分类与自动回复\"}"],
+        ],
+    }))
+    blocks.append(("note", "说明：以上为提示词结构与返回格式的真实摘录（正式调用包含完整记录正文）。"
+                           "所有回复均经人工核对，问题案例见下一节。"))
+
+    blocks.append(("h2", "五、采纳与人工修改情况"))
     blocks.append(("p", "下表记录有代表性的采纳与修改，均可在提交包中找到对应文件。"))
     blocks.append(("table", {
         "header": ["序号", "AI 输出 / 建议", "人工处理", "结果"],
@@ -132,7 +158,7 @@ def content() -> list[tuple[str, object]]:
         ],
     }))
 
-    blocks.append(("h2", "五、质量核验与纠错机制"))
+    blocks.append(("h2", "六、质量核验与纠错机制"))
     blocks.append(("p", "为避免「AI 输出直接当结论」，项目内建立了四道核验："))
     blocks.append(("table", {
         "header": ["机制", "作用", "对应文件"],
@@ -148,14 +174,14 @@ def content() -> list[tuple[str, object]]:
         ],
     }))
 
-    blocks.append(("h2", "六、声明"))
+    blocks.append(("h2", "七、声明"))
     blocks.append(("p", "1. 本项目的核心建模思路、指标设计、参数标定、评估方法与结论由参赛队员完成；"
                         "AI 用于代码实现、文本处理与结果生成，未替代独立思考。"))
     blocks.append(("p", "2. 论文正文由队员撰写，未使用 AI 直接生成整篇论文。"))
     blocks.append(("p", "3. 所有 AI 生成内容均经人工核对，发现的问题已在上表列明并修正。"))
     blocks.append(("p", "4. AI 工具名称与版本按实际使用情况填写；模型版本以调用时官方接口标识为准。"))
 
-    blocks.append(("h2", "七、提交前需队员确认的事项"))
+    blocks.append(("h2", "八、提交前需队员确认的事项"))
     blocks.append(("p", "为避免漏报，提交前请逐条确认："))
     blocks.append(("table", {
         "header": ["确认项", "说明"],

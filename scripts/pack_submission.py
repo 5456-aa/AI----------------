@@ -54,8 +54,10 @@ def zip_code(dest: Path) -> Path:
             if not path.is_file():
                 continue
             rel = path.relative_to(ROOT)
-            # 例外：把 LLM 预置缓存带上，用户不填 key 也能复现大模型结果
-            if rel.as_posix() == "data/cache/llm_calls.jsonl":
+            # 例外：把「复现快照」带上，评委不联网、不填 key 也能完整跑一遍
+            if rel.as_posix() == "data/cache/llm_calls.jsonl" or \
+                    rel.as_posix() == "data/tracks" or \
+                    rel.parts[:2] in {("data", "raw"), ("data", "tracks")}:
                 zf.write(path, rel)
                 n += 1
                 continue
@@ -233,25 +235,82 @@ streamlit run ui/label.py                      # 人工标注工具
 
 系统内置三种角色（`ui/auth.py`）：
 
-| 角色 | 发起需求 | 查看批次 | 原始链接 | 模型设置 | 标注数据 |
-|---|---|---|---|---|---|
-| 访客 viewer | ❌ | ✅ | ❌ | ❌ | ❌ |
-| 分析师 analyst | ✅ | ✅ | ✅ | ❌ | ❌ |
-| 管理员 admin | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 角色 | 对应赛题 | 发起需求 | 查看批次 | 原始链接 | 模型设置 | 标注数据 |
+|---|---|---|---|---|---|---|
+| 决策者 decider | 决策者 | ❌ | ✅ | ❌ | ❌ | ❌ |
+| 需求发起者 requester | 需求发起者 | ✅ | ✅ | ✅ | ❌ | ❌ |
+| 系统管理员 admin | 运维角色 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-本机默认管理员；公网部署（`PUBLIC_DEMO=1`）强制为访客只读。
+本机默认系统管理员；**按访问来源自动降权**：通过公网隧道或云主机访问时自动变为
+决策者只读（侧栏不显示「管理模式」开关，也看不到模型设置）。
 
 ### 复现提交结果（推荐给评委）
 
 ```bash
+python scripts/doctor.py --run          # 先自检环境并试跑（约 20 秒，不改动原有结果）
 python run_all.py --track all --batch B20261113-01 --offline --force
 ```
+
+**评委模拟验证（已实测）**：把 `源代码.zip` 解压到全新目录，直接跑上面第二条命令，
+得到四份 CSV 与 `02_结果文件/` **逐字节一致**（md5 相同）。
+源码包含 `data/raw/` 原始快照与 `data/cache/` 模型缓存，因此**无需联网、无需 API Key**。
 
 `--offline` 表示**只用随包缓存、不发起任何网络请求**，因此不需要 API Key、
 不产生费用，且四个结果文件与提交版本**逐字节一致**。
 自检命令：`python scripts/check_determinism.py --offline`
 """
     (dest / "03_源代码" / "运行说明.md").write_text(text, encoding="utf-8")
+
+
+JUDGE_README = """# 评委请先看我（3 分钟看完）
+
+本提交包含五个部分，**不联网也能看完全部结论**。
+
+## 一、只想快速了解结论（不需要运行）
+
+1. `04_成果截图/01_总览与来源.png` —— 数据规模与各来源机会密度
+2. `04_成果截图/02_主题簇排名.png` —— 13 个主题簇的价值分与优先级
+3. `系统可视化报告.html` —— 单文件网页，双击即可看全部图表（无需联网）
+4. `01_论文/` —— 论文 Word 与 PDF
+
+## 二、想验证"结果是不是真的"（3 条命令，约 1 分钟）
+
+```bash
+pip install -r requirements.txt          # 1. 装依赖（一次即可）
+python scripts/doctor.py --run           # 2. 环境自检 + 离线跑一遍
+python run_all.py --track all --batch B20261113-01 --offline --force   # 3. 重算四份结果
+```
+
+第 3 步**不需要 API Key、不需要联网**，跑完的四份 CSV 与 `02_结果文件/` 里的
+**逐字节一致**（可用 `python scripts/check_determinism.py --offline` 自证）。
+
+> 源码包里已附带原始采集快照（`data/raw/`）与模型调用缓存
+> （`data/cache/llm_calls.jsonl`），所以离线也能完整重算，不是只给结论。
+
+## 三、想看界面
+
+| 方式 | 操作 |
+|---|---|
+| 本机 | 双击 `启动系统.bat`，浏览器打开 http://localhost:8500 |
+| 只看静态 | 双击 `系统可视化报告.html` |
+
+## 四、数据与合规
+
+- 只采集公开接口（官方 API / RSS / 公开搜索），不登录、不绕验证码；
+- **CSDN 的 robots.txt 为 `Disallow: /`，已主动放弃**；
+- 手册 20 个来源逐个实测，可用 8 个 + 清单外补充 3 个，共 11 个；
+- 抓取文本中的密钥类字符串已在清洗阶段脱敏（`sk-***`）。
+
+## 五、匿名声明
+
+本作品及全部附件不含队号、学校、学院、团队成员与指导教师信息；
+文档元数据（作者/单位）已清空，可运行 `python scripts/anonymity_check.py` 复核。
+
+## 六、如果只想看"系统能力"而不装环境
+
+`04_成果截图/10~15_阶段*.png` 是六个阶段的运行截图（采集→清洗→判别→聚类→评估→导出），
+每张都带实际执行的命令与真实数字。
+"""
 
 
 def main(argv=None) -> int:
@@ -354,6 +413,8 @@ def main(argv=None) -> int:
         (ROOT / "docs" / "部署到StreamlitCloud.md", dirs["refs"]),
         (ROOT / "reports" / "成本与资源.md", dirs["refs"]),
         (ROOT / "reports" / "标签体系对照.md", dirs["refs"]),
+        (ROOT / "reports" / "需求完成度复核.md", dirs["refs"]),
+        (ROOT / "reports" / "系统任务覆盖自检.md", dirs["refs"]),
         (ROOT / "reports" / "复现性说明.md", dirs["refs"]),
         (ROOT / "reports" / "答辩问答准备.md", dirs["refs"]),
         (ROOT / "reports" / "答辩PPT.pptx", dirs["refs"]),
@@ -361,12 +422,14 @@ def main(argv=None) -> int:
         (ROOT / "reports" / "多批次验证.md", dirs["refs"]),
         (ROOT / "reports" / "来源探测结果.md", dirs["refs"]),
         (ROOT / "reports" / "结果文件核对.md", dirs["refs"]),
+        (ROOT / "reports" / "阈值稳健性.md", dirs["refs"]),
         (ROOT / "reports" / "标注一致性报告.md", dirs["refs"]),
         (ROOT / "data" / "label" / "人工标注表.xlsx", dirs["refs"]),
         (ROOT / "data" / "label" / "双标样本_B.xlsx", dirs["refs"]),
         (ROOT / "data" / "label" / "双标样本_C.xlsx", dirs["refs"]),
         (ROOT / "docs" / "标注说明_给标注人.md", dirs["refs"]),
-    ]:
+        (ROOT / "docs" / "判定细则_v2.md", dirs["refs"]),
+            ]:
         if f.exists():
             shutil.copy(f, target / f.name)
     print(f"  06_参考文献与数据来源：{len(list(dirs['refs'].glob('*')))} 个文件")
@@ -376,6 +439,10 @@ def main(argv=None) -> int:
         "把论文的 Word 和 PDF 放进这个文件夹。\r\n"
         "要求：正文不超过 30 页（含图表，不含附录）；\r\n"
         "论文里不能出现队号、学校、学院、姓名、指导教师。\r\n", encoding="utf-8")
+    for _ext in (".pdf",):
+        _f = ROOT / "reports" / f"AI使用情况说明{_ext}"
+        if _f.exists():
+            shutil.copy(_f, dirs["ai"] / _f.name)
     ai_doc = ROOT / "reports" / "AI使用情况说明.docx"
     if ai_doc.exists():
         shutil.copy(ai_doc, dirs["ai"] / ai_doc.name)
@@ -387,6 +454,8 @@ def main(argv=None) -> int:
 
     write_checklist(root_dir, {"结果行数": rows_n, "截图": len(shots)})
 
+    (root_dir / "00_评委请先看我.md").write_text(JUDGE_README, encoding="utf-8")
+    print("  00_评委请先看我.md：已生成")
     print(f"\n完成：{root_dir}")
     print("  ⬜ 01_论文 —— 待放入（论文还没写完）")
     print("  ✅ 02_结果文件 / 03_源代码 / 04_成果截图 / 06_参考文献")

@@ -1,0 +1,19 @@
+{
+  "slug": "track-839",
+  "label": "电商客服与售后",
+  "demand_direction": "电商客服与售后",
+  "record_prefix": "T970",
+  "keywords": [
+    "退货",
+    "售后",
+    "客服",
+    "退款",
+    "评价"
+  ],
+  "sources": [
+    "GitHub",
+    "掘金",
+    "SegmentFault",
+    "博客园"
+  ]
+}

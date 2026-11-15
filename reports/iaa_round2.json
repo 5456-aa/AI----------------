@@ -1,0 +1,19 @@
+{
+  "n": 40,
+  "kappa": -0.05,
+  "level": "较弱（slight/poor）",
+  "p_o": 0.475,
+  "pairs": {
+    "R2-liukaiwen-R2-xiangyanbi": {
+      "p_o": 0.475,
+      "p_e": 0.5,
+      "kappa": -0.05,
+      "both1": 0,
+      "both0": 19,
+      "x1y0": 20,
+      "x0y1": 1
+    }
+  },
+  "unanimous": 19,
+  "unanimous_rate": 0.475
+}

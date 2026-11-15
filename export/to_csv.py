@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 from io_utils import get_logger, write_csv_bom
+from pipeline.clean import redact_secrets
 from schema import RESULT1_COLS, RESULT2_COLS, RESULT3_COLS, RESULT4_COLS
 
 
@@ -19,6 +20,10 @@ def export_result1(cfg: Dict[str, Any], records: List[Dict[str, Any]]) -> Path:
         "发布时间": r.get("published_at", "未知"),
         "热度指标（如浏览数、点赞数、讨论数等）": r.get("heat_str", "无"),
     } for r in records]
+    for row in rows:
+        for k, v in row.items():
+            if isinstance(v, str):
+                row[k] = redact_secrets(v)
     path = Path(cfg["paths"]["out"]) / "result1.csv"
     n = write_csv_bom(path, RESULT1_COLS, rows)
     get_logger(cfg, "export").info("result1.csv：%d 行", n)

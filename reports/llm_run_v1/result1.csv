@@ -6151,7 +6151,7 @@ B20261111-01,DS00040,GitHub,https://github.com/LiYiHJ/Decision_System/issues/84,
 7. **dot 头的变化**：如果 113 或 112 的补件改动了本批锚点行段，按 00a §0.3 停下重新定锚。
 
 ## 11. 仍然只有 Owner 能决定的事
-1. ~~批准派发本批~~（已批准 2026-10-18 00:01）。阶段末执行 B 单时同意本机 GPT 在 `D:\05_Workspace\Projects\` 下新建 `Decision_System_wt117…wt121` 及其 `_base`，在独立克隆里写 `refs/dot/117…121`，并在 `C:\Users\Liyi\agent-tools\g13_117\`、`…\bundles\117\` 下写文件。
+1. ~~批准派发本批~~（已批准 2026-10-18 00:01）。阶段末执行 B 单时同意本机 GPT 在 `D:\05_Workspace\Projects\` 下新建 `Decision_System_wt117…wt121` 及其 `_base`，在独立克隆里写 `refs/dot/117…121`，并在 `<用户目录>Liyi\agent-tools\g13_117\`、`…\bundles\117\` 下写文件。
 2. ~~编号~~（已定：117–121；122 起用于 112–115 复核与补件）。
 3. **116 号需要的东西**：(a) Owner 批准 m3-merge 任务单（总工另出）；(b) **117 验收**——它是首次切换的前置（116 §3.2-2）；(c) 切换任务单（总工另出，沿用 116 §3.3）；(d) 116 §5 的两项（批准派发 112–115 的 D 盘写入、是否删除 `ds_read112` 临时目录）；(e) 切换检查表加一条：R-114-P1 落地前 `chats`、`stocks` 不得设为 ON。
 4. **D07**（不阻断派发；120 按单执行：Owner 设预算前不发模型请求）：模型路由、任务预算、外发范围；120 合入后，Owner 用 `PUT /api/llm-budget`（带口令）设预算，AI 起草才会真正调用模型。
@@ -6161,7 +6161,7 @@ B20261111-01,DS00040,GitHub,https://github.com/LiYiHJ/Decision_System/issues/84,
 ## 附录 A `g13_run117.py`
 由 112 批的 `g13_run112.py` 改三处（`diff` 结果）：
 1. 说明行注明来源；
-2. `TMP` 改为 `C:\Users\Liyi\agent-tools\g13_117\tmp`；
+2. `TMP` 改为 `<用户目录>Liyi\agent-tools\g13_117\tmp`；
 3. 工作树名断言改为 `Decision_System_wt(11[7-9]|12[01])(_base)?`。
 其余逐字相同（运行器字节核对、只在内存替换 REPO、证据 json 等）。
 
@@ -6177,8 +6177,8 @@ B20261111-01,DS00040,GitHub,https://github.com/LiYiHJ/Decision_System/issues/84,
 $P = 'D:\05_Workspace\Projects'
 $SVC= ""$P\Decision_System""
 $R = ""$P\Decision_System_wt112"" # 112–115 执行单 B3 建的独立克隆（对象库）
-$G = 'C:\Users\Liyi\agent-tools\g13_117'
-$IN = 'C:\Users\Liyi\agent-tools\bundles\117\in'
+$G = '<用户目录>Liyi\agent-tools\g13_117'
+$IN = '<用户目录>Liyi\agent-tools\bundles\117\in'
 $PY = ""$SVC\.venv\Scripts\python.exe""
 $RUN= ""$G\g13_run117.py""
 New-Item -ItemType Directory -Force ""$G\tmp"", ""$IN\dl"" | Out-Null
@@ -37236,7 +37236,7 @@ Dism /Online /Cleanup-Image /StartComponentCleanup /ResetBase
 
 ### 两个容易忽略的目录
 
-* **AppData**。软件即使装在别的盘，日志与缓存通常还是写在 `C:\Users\ \AppData` 下。这部分可以用 [AppData 管理](csh://tool/appdata) 按分类查看与清理，比手动翻目录安全。
+* **AppData**。软件即使装在别的盘，日志与缓存通常还是写在 `<用户目录> \AppData` 下。这部分可以用 [AppData 管理](csh://tool/appdata) 按分类查看与清理，比手动翻目录安全。
 * **幽灵文件**。桌面或某个文件夹里明明没有文件，却占着空间，或者某个文件删了又重新出现。这类情况用 [幽灵文件清理](csh://tool/ghostfile) 扫一遍，它只检查指定的那一层目录，不会往下翻，所以填哪一层就清哪一层。删除是永久的，不进回收站，动手前确认目录选对。
 
 ## 三、内存与分页

@@ -55,7 +55,7 @@ def html_to_text(raw: str) -> str:
     """HTML 实体还原 + 去标签。"""
     text = html.unescape(raw or "")
     text = RE_HTML_TAG.sub(" ", text)
-    return text
+    return redact_secrets(text)
 
 
 def mask_pii(text: str) -> str:
@@ -83,6 +83,44 @@ def normalize(text: str) -> str:
     text = text.translate(_T2S)
     text = RE_SPACE.sub(" ", text)
     text = re.sub(r" *\n *", "\n", text)
+    return text
+
+
+SECRET_PATTERNS = [
+    # 各类 API Key / Token：抓来的文本里常有人贴自己的密钥，必须脱敏后再入表
+    (re.compile(r"sk-[A-Za-z0-9_\-]{16,}"), "sk-***"),
+    (re.compile(r"gh[pousr]_[A-Za-z0-9]{20,}"), "gh***"),
+    (re.compile(r"AKIA[0-9A-Z]{16}"), "AKIA***"),
+    (re.compile(r"(?i)(api[_-]?key|token|secret)\s*[=:]\s*[A-Za-z0-9_\-]{16,}"), r"\1=***"),
+]
+
+
+PATH_PATTERNS = [
+    # 抓来的文本里常有人贴自己的目录，含用户名，一并脱敏（保护他人隐私）
+    (re.compile(r"[A-Za-z]:\\Users(\\[^\\\s\"'<>]{1,32})?"), "<用户目录>"),
+    (re.compile(r"/home/[A-Za-z0-9._-]{1,32}"), "<用户目录>"),
+    (re.compile(r"/Users/[A-Za-z0-9._-]{1,32}"), "<用户目录>"),
+]
+
+
+PII_PATTERNS = [
+    # 赛题要求「不得采集个人信息」：手机号、邮箱、身份证号一律脱敏
+    (re.compile(r"\b1[3-9]\d{9}\b"), "<手机号>"),
+    (re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"), "<邮箱>"),
+    (re.compile(r"\b\d{17}[\dXx]\b"), "<身份证>"),
+]
+
+
+def redact_secrets(text: str) -> str:
+    """脱敏：密钥与含用户名的本地路径都替换掉，避免随结果文件外泄。"""
+    if not text:
+        return text
+    for pat, rep in SECRET_PATTERNS:
+        text = pat.sub(rep, text)
+    for pat, rep in PATH_PATTERNS:
+        text = pat.sub(rep, text)
+    for pat, rep in PII_PATTERNS:
+        text = pat.sub(rep, text)
     return text
 
 
@@ -115,7 +153,7 @@ def clean_text(raw: str, cfg: Dict[str, Any]) -> Tuple[str, Dict[str, Any]]:
 
     ad_hits = sum(1 for p in c.get("ad_patterns", []) if p in text)
     stats["ad_hits"] = ad_hits
-    return text, stats
+    return redact_secrets(text), stats
 
 
 def is_valid(text: str, stats: Dict[str, Any], cfg: Dict[str, Any]) -> Tuple[bool, str]:
@@ -243,7 +281,7 @@ def run(cfg: Dict[str, Any]) -> List[Dict[str, Any]]:
             "source": source,
             "source_category": rec.get("source_category", ""),
             "url": rec.get("url", ""),
-            "title": (rec.get("title") or "").strip(),
+            "title": redact_secrets((rec.get("title") or "").strip()),
             "clean_text": text,
             "published_at": normalize_time(rec.get("published_at")),
             "heat": rec.get("heat") or {},

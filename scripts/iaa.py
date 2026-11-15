@@ -61,19 +61,23 @@ def kappa_level(k: float) -> str:
     return "较弱（slight/poor）"
 
 
-def main() -> int:
+def main(people_dir: Path | None = None, tag: str = "") -> int:
+    pdir = people_dir or (LABEL_DIR / "by_person")
+    out_json = ROOT / "reports" / (f"iaa{tag}.json" if tag else "iaa.json")
+    out_md = ROOT / "reports" / (f"标注一致性报告{tag}.md" if tag else "标注一致性报告.md")
     if not A_PATH.exists():
         raise SystemExit(f"找不到 {A_PATH.name}")
-    if not list(LABEL_DIR.glob("双标样本_*.xlsx")):
+    if not people_dir and not list(LABEL_DIR.glob("双标样本_*.xlsx")):
         raise SystemExit("还没有双标样本，先运行：python scripts/make_iaa_sample.py --who B")
 
-    a = read_labels(A_PATH, "标注表")
+    # 第二轮（指定 --dir）时，所有人都在同一个目录里，不再单读 A 的 Excel
+    a = read_labels(A_PATH, "标注表") if not people_dir else {}
 
     # 标注人来源有两类，合并读取：
     #   1) 在线的 data/label/by_person/<姓名>.csv（优先，按人名分目录）
     #   2) 离线的 双标样本_B.xlsx / C.xlsx
     others = {}
-    for f in sorted((LABEL_DIR / "by_person").glob("*.csv")) if (LABEL_DIR / "by_person").exists() else []:
+    for f in sorted(pdir.glob("*.csv")) if pdir.exists() else []:
         with io.open(f, encoding="utf-8-sig", newline="") as fh:
             lab = {r["记录编号"]: int(r["label"]) for r in csv.DictReader(fh)
                    if (r.get("label") or "").strip() in ("0", "1")}
@@ -86,11 +90,12 @@ def main() -> int:
         lab = read_labels(f, "标注")
         if lab:
             others[who] = lab
-    if not others:
-        raise SystemExit("没有找到任何双标样本，先运行 python scripts/make_iaa_sample.py --who B")
+    people = ({**({"A": a} if a else {}), **others})
+    if not people:
+        raise SystemExit("没有找到任何标注结果，先运行 python scripts/make_iaa_sample.py --who B")
 
     # 以所有标注人都标了的记录为准
-    common = set(a)
+    common = set(next(iter(people.values())))
     for lab in others.values():
         common &= set(lab)
     ids = sorted(common)
@@ -112,7 +117,6 @@ def main() -> int:
                     x1y0=x1y0, x0y1=x0y1)
 
     # 两两一致性
-    people = {"A": a, **others}
     names = sorted(people)
     pairs = {}
     for i in range(len(names)):
@@ -134,8 +138,8 @@ def main() -> int:
                           for kk, vv in v.items()} for k, v in pairs.items()},
             "unanimous": agree_all, "unanimous_rate": round(agree_all / n, 4)}
 
-    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUT_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    out_json.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
     L = ["# 标注一致性报告", "",
          f"- 标注人数：**{len(names)}**（{'、'.join(names)}）",
@@ -160,16 +164,24 @@ def main() -> int:
                  "否则标注集不宜作为评测基准。")
     L += ["", "> 备注：κ 只反映标注人是否按同一套标准判断，不代表标准本身对不对——"
               "标准以赛题四条规则为准。分歧条目建议复盘一次，形成统一口径说明写进论文。"]
-    OUT_MD.write_text("\n".join(L) + "\n", encoding="utf-8")
+    out_md.write_text("\n".join(L) + "\n", encoding="utf-8")
 
     print(f"重叠 {n} 条 | 标注人 {'、'.join(names)} | 三人全一致 {agree_all}/{n}")
     for kk, v in pairs.items():
         print(f"  {kk}: 一致率 {v['p_o']:.1%}  κ = {v['kappa']:.3f}（{kappa_level(v['kappa'])}）")
     print(f"  列联表 {names[0]}-{names[1]}: 都判1 {p0['both1']} / 都判0 {p0['both0']} / "
           f"{names[0]}1{names[1]}0 {p0['x1y0']} / {names[0]}0{names[1]}1 {p0['x0y1']}")
-    print(f"报告 -> {OUT_MD}")
+    print(f"报告 -> {out_md}")
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dir", default=None, help="标注目录，如 data/label/by_person_round2")
+    ap.add_argument("--tag", default="", help="报告后缀，如 _round2")
+    args = ap.parse_args()
+    d = None
+    if args.dir:
+        d = Path(args.dir) if Path(args.dir).is_absolute() else ROOT / args.dir
+    sys.exit(main(d, args.tag))

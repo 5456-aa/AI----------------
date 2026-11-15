@@ -43,7 +43,12 @@ def load_items() -> list[dict]:
 
 def person_file(name: str) -> Path:
     safe = "".join(c for c in name if c.isalnum() or c in "-_")
-    return PEOPLE_DIR / f"{safe or 'anonymous'}.csv"
+    # 第二轮：名字以 R2- 开头，写入独立目录，避免和第一轮混在一起
+    if safe.upper().startswith("R2"):
+        d = PEOPLE_DIR.parent / "by_person_round2"
+    else:
+        d = PEOPLE_DIR
+    return d / f"{safe or 'anonymous'}.csv"
 
 
 def load_answers(name: str) -> dict[str, str]:

@@ -65,10 +65,12 @@ def collect_one(cfg, log) -> int:
             log.info("[%s] %s 内容去重：%d -> %d 条", track, name, len(records), len(uniq))
         records = uniq
 
-        # 再按内容排序，保证分配顺序固定
+        # 按内容排序后「顺序编号」：满足赛题「同一批次内按顺序编号」，
+        # 同时因为排序依据是内容而非采集顺序，重跑同一批数据编号不变（可复现）。
         records.sort(key=lambda r: ((r.source or ""), (r.url or ""), (r.title or "")))
-        for rec in records:
-            rec.record_id = stable_record_id(prefix, rec.source, rec.url, rec.title, taken_ids)
+        start = len(taken_ids) + 1
+        for i, rec in enumerate(records, start=start):
+            rec.record_id = f"{prefix}{i:05d}"
             taken_ids.add(rec.record_id)
             rec.batch = batch
             rec.extra = dict(rec.extra or {}, track=track)

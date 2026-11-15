@@ -71,16 +71,25 @@ def render_markdown(cluster: Dict[str, Any], proposal: Dict[str, Any],
         f"- **机会记录数**：{cluster['n_records']} 条，覆盖 {cluster['n_sources']} 个来源",
         f"- **来源覆盖**：{'、'.join(cluster['sources'])}",
         "",
-        "## 一、目标功能",
+        "## 一、目标用户与核心痛点",
+        f"**目标用户**：{cluster['industry']}领域的一线从业者与业务负责人"
+        f"（对应功能类别「{cluster['func_category']}」）。",
+        "",
+        f"**核心痛点**：本簇 {cluster['n_records']} 条机会记录来自 "
+        f"{cluster['n_sources']} 个来源（{'、'.join(cluster['sources'])}），"
+        f"多条独立记录共同指向同一类问题，说明痛点真实且具有普遍性。"
+        f"典型诉求见下方「依据来源」。",
+        "",
+        "## 二、目标功能",
         proposal.get("goal", ""),
         "",
-        "## 二、技术路线",
+        "## 三、技术路线",
         proposal.get("tech_route", ""),
         "",
-        f"## 三、实施周期",
+        f"## 四、实施周期",
         f"共 {proposal.get('duration_weeks', 12)} 周。",
         "",
-        "## 四、子任务分解",
+        "## 五、子任务分解",
         "",
         "| 子任务 | 周期（周） | 负责角色 |",
         "|---|---|---|",
@@ -88,11 +97,11 @@ def render_markdown(cluster: Dict[str, Any], proposal: Dict[str, Any],
     for st in proposal.get("subtasks", []):
         lines.append(f"| {st.get('name', '')} | {st.get('weeks', '')} | {st.get('owner_role', '')} |")
 
-    lines += ["", "## 五、价值评分依据", "", "| 维度 | 得分（0~100） |", "|---|---|"]
+    lines += ["", "## 六、价值评分依据", "", "| 维度 | 得分（0~100） |", "|---|---|"]
     for k, v in dims.items():
         lines.append(f"| {k} | {v} |")
 
-    lines += ["", "## 六、依据来源（可溯源）", ""]
+    lines += ["", "## 七、依据来源（可溯源）", ""]
     for r in cluster["records"]:
         lines.append(f"- `{r['record_id']}` [{r.get('source')}] "
                      f"{r.get('title') or r.get('clean_text', '')[:50]} —— {r.get('url', '')}")

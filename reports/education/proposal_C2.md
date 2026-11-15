@@ -1,76 +1,64 @@
-# 立项策划案：个性化学习辅导与课堂互动
+# 立项策划案：电力波形与学生成绩智能分析
 
-- **功能类别**：自动化流程
-- **所属行业**：教育
-- **簇机会价值分**：51.2（全簇排名第 2）
-- **机会记录数**：23 条，覆盖 2 个来源
-- **来源覆盖**：GitHub、SegmentFault
+- **功能类别**：预测分析
+- **所属行业**：能源
+- **簇机会价值分**：58.1（全簇排名第 2）
+- **机会记录数**：2 条，覆盖 2 个来源
+- **来源覆盖**：SegmentFault、哔哩哔哩
 
-## 一、目标功能
-构建一个面向K12课堂的个性化学习辅导与互动自动化系统，通过AI分析学生学情数据，自动生成分层学习任务与课堂互动方案，并实时推送个性化辅导内容，提升教学效率与学生参与度。
+## 一、目标用户与核心痛点
+**目标用户**：能源领域的一线从业者与业务负责人（对应功能类别「预测分析」）。
 
-## 二、技术路线
-1. 数据层：接入课堂互动记录、作业与测评数据，构建学生学情画像；2. 模型层：基于开源大模型微调学科辅导能力，结合RAG检索高考真题与校本知识库；3. 流程层：设计自动化工作流引擎，实现学情诊断→任务生成→互动推送→反馈收集的闭环；4. 交互层：开发教师端仪表盘与学生端聊天/录音交互界面，支持课堂实时互动与课后辅导。
+**核心痛点**：本簇 2 条机会记录来自 2 个来源（SegmentFault、哔哩哔哩），多条独立记录共同指向同一类问题，说明痛点真实且具有普遍性。典型诉求见下方「依据来源」。
 
-## 三、实施周期
+## 二、目标功能
+构建一个面向能源行业与教育场景的智能分析平台，实现电力波形异常检测与学生成绩预测与质量分析。通过融合波形特征提取与多模态预测模型，为电力监测提供实时预警，并为教学管理提供数据驱动的决策支持。
+
+## 三、技术路线
+1. 数据采集与预处理：电力波形数据通过传感器/SCADA采集，进行降噪、归一化；学生成绩数据从教务系统导入，进行清洗与特征工程。
+2. 波形检测模型：基于CNN-LSTM或Transformer架构，提取时频特征，实现异常波形分类与定位。
+3. 成绩预测模型：采用时序预测（如Prophet、LSTM）与回归模型（XGBoost），结合学生历史成绩、行为数据预测成绩趋势。
+4. 质量分析模块：利用聚类与关联规则挖掘，分析成绩分布与影响因素，生成可视化报告。
+5. 系统集成与部署：微服务架构，提供API接口，支持实时波形监测与批量成绩分析。
+
+## 四、实施周期
 共 12 周。
 
-## 四、子任务分解
+## 五、子任务分解
 
 | 子任务 | 周期（周） | 负责角色 |
 |---|---|---|
-| 需求分析与学情数据模型设计 | 2 | 产品经理 |
-| 学科知识库构建与RAG检索优化 | 3 | 算法工程师 |
-| 个性化辅导模型微调与评估 | 3 | 机器学习工程师 |
-| 自动化工作流引擎开发 | 2 | 后端工程师 |
-| 教师端与学生端交互界面开发 | 2 | 前端工程师 |
-| 系统集成与课堂试点测试 | 2 | 测试工程师 |
+| 需求分析与数据调研 | 2 | 产品经理 |
+| 数据采集与预处理管道搭建 | 2 | 数据工程师 |
+| 波形检测模型开发与训练 | 3 | 算法工程师 |
+| 成绩预测模型开发与验证 | 3 | 算法工程师 |
+| 质量分析模块与可视化开发 | 2 | 全栈工程师 |
+| 系统集成与测试 | 2 | 测试工程师 |
+| 部署上线与文档编写 | 1 | 运维工程师 |
 
-## 五、价值评分依据
+## 六、价值评分依据
 
 | 维度 | 得分（0~100） |
 |---|---|
-| multi_source | 50.0 |
-| scale | 100.0 |
-| heat | 0.01 |
-| need_strength | 15.63 |
+| multi_source | 100.0 |
+| scale | 0.0 |
+| heat | 100.0 |
+| need_strength | 1.34 |
 
-## 六、依据来源（可溯源）
+## 七、依据来源（可溯源）
 
-- `JY00008` [GitHub] 作文指导：内置江苏近三届高考作文真题与指导 —— https://github.com/hjwcxq/test/issues/3
-- `JY00014` [GitHub] 提案：添加一个 llms.txt —— https://github.com/ArnaudGuiovanna/tutor-mcp/issues/191
-- `JY00015` [GitHub] 发布 FDE Coach 测试版：个性化 AI 聊天 + 可选加入的评估语料库 —— https://github.com/ogkranthi/theairuntime/issues/154
-- `JY00022` [GitHub] P0 无限课堂：恢复原有的自由形式导师与个性化学习世界 —— https://github.com/jgaethle10/forge-operator/issues/1965
-- `JY00027` [GitHub] [20261001] Concept Driven Domain Adaptation: Finding an Abstract Needle in a Haystack —— https://github.com/Larry2000error/Larry-PaperClaw/issues/564
-- `JY00043` [GitHub] [Discussion]: reasoning_content ，cherrystudio 在调用deepseek-Reasoner api的时候报错，简单的也报错 —— https://github.com/CherryHQ/cherry-studio/issues/11751
-- `JY00063` [GitHub] 连续手记 UI 与交互优化：按住录音、明确查找、详情与追加闭环 —— https://github.com/destinyTaoTao/nianxia/issues/16
-- `JY00066` [GitHub] Spec：个人科研工作区自助开通、项目内用户上传、默认数据隔离与预标注确认契约 —— https://github.com/tudousir123/lingsight-ai/issues/69
-- `JY00067` [GitHub] [Spec] implement 真实运行验证与独立安全差异审计 —— https://github.com/Zengxiansheng007/develop-system/issues/25
-- `JY00075` [GitHub] 01-家长会-1112 —— https://github.com/guzufeng-source/pomodoro/issues/1
-- `JY00076` [GitHub] perf(classroom): 探索超大并发下课堂互动状态（晴雨表/心跳）轻量写入节流与批量落库机制 —— https://github.com/aymwoo/OpenLearn-Next-V2/issues/411
-- `JY00079` [GitHub] W06 拓展阅读：整合 Web 演进 × 爬虫技术交互长页 —— https://github.com/anjingcuc/courses-wiki/issues/16
-- `JY00090` [GitHub] 全局搜索别名：俗称「骠骑兵」无匹配，Hussar／Winged Hussar 俗称收录待核对 —— https://github.com/linhongcun/aoe2-analyzer/issues/1055
-- `JY00091` [GitHub] 需求C：结果页显示本浏览器最近收到有效实时数据的时间 —— https://github.com/boardflow-lab-lenshood/vote/issues/62
-- `JY00211` [SegmentFault] 请问，AI产品，最终是进行了LLM 的调用。请问下AI产品是通过了哪些方式进行了优化实现产品呢？ —— https://segmentfault.com/q/1010000048355276
-- `JY00213` [SegmentFault] 想做一个自研项目，不知道合不合理？ —— https://segmentfault.com/q/1010000048330682
-- `JY00214` [SegmentFault] Node.js 内置 fetch 无法走 SOCKS5 代理，只能换掉整个 HTTP 栈吗？ —— https://segmentfault.com/q/1010000048330130
-- `JY00228` [SegmentFault] Python 爬取 Google 搜索结果时频繁遇到验证码，有什么可靠的解决方案？ —— https://segmentfault.com/q/1010000048353146
-- `JY00229` [SegmentFault] 开发 Agent 时，RAG 检索到底应该设计成 Tool 还是 Node？ —— https://segmentfault.com/q/1010000048337048
-- `JY00230` [SegmentFault] 本地跑大模型做 Agent，内存占用为什么会比模型文件大十倍？ —— https://segmentfault.com/q/1010000048317158
-- `JY00231` [SegmentFault] 网页护眼倒计时，切到其他界面后不弹提醒，如何修复？ —— https://segmentfault.com/q/1010000048315623
-- `JY00249` [SegmentFault] 滴滴、哈啰单车类似的免密支付的业务怎么实现的？ —— https://segmentfault.com/q/1010000048327538
-- `JY00256` [SegmentFault] 小程序界面问题：分页下拉不了，如何解决？ —— https://segmentfault.com/q/1010000048312494
+- `JY00098` [SegmentFault] java如何实现电力监测行业的波形检测？ —— https://segmentfault.com/q/1010000048302091
+- `JY00244` [哔哩哔哩] 老师如何处理学生 成绩 ？如何质量 分析 ？！ —— https://www.bilibili.com/video/BV1xQJD6uE5a
 
 ## 七、风险与对策
 
-- 学生数据隐私与合规风险，需严格脱敏与权限控制
-- 模型生成内容准确性不足，可能误导学生，需人工审核与置信度过滤
-- 课堂互动实时性要求高，网络与系统延迟影响体验
-- 教师接受度与使用习惯差异，推广阻力较大
+- 电力波形数据标注困难，异常样本稀缺，影响模型泛化能力
+- 学生成绩数据涉及隐私，需合规处理，可能限制数据使用范围
+- 跨领域模型融合复杂度高，可能导致系统性能下降
 
 ## 八、衡量指标
 
-- 课堂互动参与率提升≥20%
-- 个性化辅导内容准确率≥90%
-- 教师备课时间平均减少30%
-- 学生课后作业完成率提升≥15%
+- 波形异常检测准确率≥90%
+- 成绩预测平均绝对误差≤5分
+- 系统响应时间≤2秒
+- 用户满意度≥85%
