@@ -123,7 +123,9 @@ def main() -> None:
         if is_public_demo():
             st.info("公网演示：仅展示已生成的批次结果，不提供采集与配置入口。", icon="🔒")
         if st.button("← 返回首页", use_container_width=True):
-            st.switch_page("home.py")
+            # 必须用绝对路径：云端主入口在仓库根目录，
+            # 相对路径 "home.py" 会以主入口目录为基准解析，导致找不到页面
+            st.switch_page(str(Path(__file__).resolve().parent / "home.py"))
         auth.mode_switcher()
         auth.role_selector()
         st.divider()

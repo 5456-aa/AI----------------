@@ -21,6 +21,7 @@ from pathlib import Path
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
+_UI_DIR = Path(__file__).resolve().parent      # 页面跳转用绝对路径
 sys.path.insert(0, str(ROOT))
 
 import auth  # noqa: E402
@@ -264,9 +265,9 @@ def result_block(slug: str, label: str) -> None:
     a, b = st.columns(2)
     if a.button("📊 打开分析看板", use_container_width=True, key=f"go_dash_{slug}"):
         st.session_state["view_track"] = slug
-        st.switch_page("app.py")
+        st.switch_page(str(_UI_DIR / "app.py"))
     if b.button("💬 就这批结果提问", use_container_width=True, key=f"go_qa_{slug}"):
-        st.switch_page("qa.py")
+        st.switch_page(str(_UI_DIR / "qa.py"))
     st.caption("单应用多页：点按钮直接切换，不会跳出站点。")
 
 

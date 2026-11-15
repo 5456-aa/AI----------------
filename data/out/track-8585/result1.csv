@@ -1,0 +1,1473 @@
+﻿采集批次号,记录编号,来源网站名称,来源链接,内容,发布时间,热度指标（如浏览数、点赞数、讨论数等）
+B20261115-01,T7F200001,GitHub,https://github.com/GuoCong1881/ai-reading-agent/issues/232,"社会趋势 · 2026-11-15 · 美中同意建立AI对话与事件热线,深圳会面在即但细节与中方确认仍稀薄
+## 今天发生了什么
+
+2026-09-21(周日),美国财长Bessent与中国副总理何立峰会谈后,次日接受CNBC采访(路透9-22转载)称:双方同意建立**正式的AI对话机制**,含一条针对""AI安全事件""的**incident line(事件热线)**,约两个月后(即约11月中下旬)在深圳再会,议程是先就""主要AI风险""达成共识。Bessent列出的风险是:失控的AI agent、非国家行为体、有网络攻击能力的非国家行为体。9-23他又宣布贸易休战延至2027-01-10(原定11-10到期)。距今约八周,深圳会面据报道与APEC同期(11-18/19,单一二手来源),**我没有找到会面已确认或已举行的报道**,所以本文讨论的是""会前""状态。
+
+> 说明:选这条是因为它是一个正在进入关键节点的地缘政治动作,且近期条目没讲过。超出1-2周窗口(约8周),属放宽。所有信息均来自二手转述(路透经The Standard、Toda Peace Institute、Atlantic Council、CFR等),**未读任何官方文本;美中双方是否有书面文件我没查到**。
+
+## 深度拆解
+
+**1. 实际""达成""了什么,比标题小得多。**
+- 已知内容只有:一个""对话""、一条""事件热线""的设想、一次后续会面。没有公开的文本、没有门槛定义(什么算""AI安全事件"")、没有说明谁接电话、有什么权限。
+- 路透原文里**没有中方官员对AI对话的表态**。后来有报道称中方确认了首次AI会谈(Quartz标题,我读不到正文,不能引用其细节),另有报道称热线""尚待确定""。即:美方单方面描述远多于中方确认。
+- 美方官员明确说**出口管制不在这个对话范围内**(Toda文章转述)。这去掉了最大的摩擦源,同时也意味着对话回避了双方真正在竞争的核心。
+
+**2. Bessent的话里藏着一个值得注意的立场。** 他说Hugging Face事件""是OpenAI管理层的责任,不是一堆agent的责任"",""这些实验室需要为自己负责,它们随时可以放慢""。也就是说,美国财政部门在公开把**事故责任归给企业**,而同期白宫又在(Bloomberg 11-14标题)主张放宽责任以鼓励AI事件披露——两个信号方向并不一致,但我只看到了标题,没读正文,不能判断它们是否矛盾。
+
+**3. 证据质量。** 这不是研究,是外交事件,没有""数据""可以评估可靠性。可检验的只有:是否真的开会、热线是否真被接起、是否产生书面门槛。当前可验证的事实基础极薄。
+
+**4. 休战日期的信息混乱**:9-21路透原文说没有明确延期;9-23多家媒体报道延至2027-01-10。这说明早期报道里""没说延期""和后来""宣布延期""是同一事件的两个时点,不是矛盾。
+
+## 理论透镜
+
+**安全困境(security dilemma,Jervis 1978)与冷战热线的先例。** 该理论想解释:即使双方都不想打仗,一方为自保做的事(加强军备)会被对方读成威胁,从而螺旋升级。1963年美苏热线的逻辑就是降低""误读""概率而不是削减军备。Toda那篇文章(Taiyi Sun)的论点正是这个:AI对话不必是军控协议,只要共享事故信息、明确门槛,就能降低""一次说不清的技术事件被当作蓄意攻击""的风险。
+但这个类比有限:核武器可数、可核查;AI能力和""事件""定义模糊,且Atlantic Council的Thibaut指出,中方怀疑这是借安全之名限制自己,美方怀疑中方不会履约。所以这件事**更像是对理论的一次压力测试,而不是印证**。
+
+## 不同的声音
+
+- **Kenton Thibaut**(Atlantic Council数字取证研究室高级驻院中国研究员,2026-09-14):[链接](
+- **Chris McGuire**(CFR中国与新兴技术高级研究员,前拜登政府NSC负责美中AI政策,2026-05):[链接](
+- **支持方视角**:Toda的[Taiyi Sun]( Newport大学政治学副教授,2026-09-22)认为小步措施有价值,但也承认双方不会接受让自己落后的限制。
+
+注意:这几位的分歧主要是""该怎么做""(对话+施压 vs 对话本身),不是""事实是什么""。我没找到中方官方对该机制的详细一手表态。
+
+## 对你意味着什么
+
+1. 美中AI对话如果实质性推进,对你的资产与职业而言是""尾部风险降低""还是""出口管制/供应链松动""?你持有的AI相关敞口(直接或通过指数)主要暴露在哪条路径?
+2. 休战到2027-01-10的""硬日期""意味着政策风险按季度重置。你的居住地与薪资币种,对美中关系波动的敏感度如何?
+3. 欧洲在这个双边机制里没有席位。作为在欧洲的银行软件工程师,你认为欧洲监管(AI Act等)在这种""两强对话""格局下会被边缘化,还是成为第三条规则体系?这影响你职业上对合规/风控技能的价值判断。
+
+## 怎么读这份材料
+
+警惕两种偏误:一是**""宣布即实现""**——外交会谈的新闻标题往往远大于实际达成物,美方单方面叙述尤其如此;二是**确认你已有立场**——""必然是空谈""和""重大突破""都缺乏证据。判断标准很简单:深圳会面是否真的举行、有没有书面文本、热线是否在真实事件中被接起。在这些出现之前,把它当作""意图声明""而非""制度""。另外,本文全部依赖二手来源,写作模型也未读任何官方文本。",2026-11-15T20:41:32+08:00,评论:0
+B20261115-01,T7F200002,GitHub,https://github.com/MaaAssistantArknights/MaaAssistantArknights/issues/19267,"主题“天想”现疑似无法被识别
+Checkboxes
+
+### 请确认自己完成了下列必选项之后再进行勾选，若未完成必选项或勾选了""我未仔细阅读""选项将视为自愿接受被直接关闭 Issue
+
+- [x] 我理解 Issue 是用于反馈和解决问题的，而非吐槽评论区，将尽可能提供更多信息帮助问题解决
+- [ ] 我未仔细阅读这些内容，只是一键已读[所有内容](/MaaAssistantArknights/MaaAssistantArknights/issues)，并相信这不会影响问题的处理
+- [x] 我填写了简短且清晰明确的标题，以便开发者在翻阅 Issue 列表时能快速确定大致问题。而不是“一个建议”、“卡住了”等
+- [x] 我使用的是当前更新版本的最新版, 并已查看版本发布至今的 [更新内容]( [Pull Requests]( 中尚未发布的更新内容并未提及该 Bug 已被修复的情况
+- [x] 我已检查了 [常见问题]( [公告]( [活跃议题]( [已关闭议题]( 确认我的问题未被提及
+
+### 问题描述
+
+使用了动态主题“天想”，当前为夜间即为黑色模式，MAA执行任务时总会尝试切换我的主题为“日间”。
+
+### Version
+
+UI Version: v6.22.0
+Core Version: v6.22.0
+Resource Version: 卫戍协议:规程
+Build Time: 2026/11/9 22:34:42
+Resource Time: 2026/11/9 10:40:31
+
+### 日志和配置文件
+
+[report_11-15_21-24-37_part01.zip](
+
+[report_11-15_21-24-37_part02.zip](
+
+### 配置信息
+
+win11 v25H2
+雷电模拟器9
+1920x1080 DPI280 60FPS，启用截图增强
+GPU加速推理开启，RTX 4050 Laptop
+
+### 截图或录屏
+
+### 还有别的吗？
+
+_No response_",2026-11-15T21:35:02+08:00,评论:2
+B20261115-01,T7F200003,GitHub,https://github.com/MaybeBio/Daily-Paper-Agent-idp-interaction-ai/issues/10,"2026-11-08 ~ 2026-11-14 本周文献推送（20 篇）
+本周推送 20 篇（2026-11-08 ~ 2026-11-14）
+
+## pubmed（15）
+
+| 标题 | 作者 | 日期 | 评分 | 一句话 | 链接 |
+|---|---|---|---|---|---|
+| [Design of synthetic activators for programmable gene expression.]( | Chen, Wei; Jiao, Ruopu; Coventry, Brian; et al. | 2026-11-08 | 7 | 该文用AlphaFold3预测TAD-共激活因子互作并设计合成结合蛋白，定量关联结合亲和力与转录输出，虽对象为无序转录激活域(TAD)介导的PPI且含AI方法，但核心是工程化设计而非互作机制建模，故评7分。 | [解析]( |
+| [So similar, yet so different: alpha-synuclein recognition of the isoform-specific VDAC protein-lipid interface.]( | Rostovtseva, Tatiana K; Rajendran, Megha; Rosencrans, William M; et al. | 2026-11-08 | 7 | 该文用分子动力学模拟结合电生理实验，研究无序蛋白α-突触核蛋白识别VDAC亚型蛋白-脂质界面的异构特异性互作机制，对象为IDP且涉及PPI机制，但方法以实验为主、模拟为辅，机制深度中等。 | [解析]( |
+| [Drugging Pockets at the Surface of c-MYC Oncoproteins Revealed by Well-Tempered Metadynamics.]( | Ge, Yanhong; Lu, Huixia; Marti, Jordi | 2026-11-09 | 7 | 该文用全原子MD和well-tempered metadynamics研究c-MYC无序区域的构象景观并发现可成药口袋，虽聚焦小分子抑制剂而非PPI机制，但对象为IDP且方法为物理模拟，对无序蛋白互作机制建模有启发。 | [解析]( |
+| [FlexENN: A Graph Neural Network for Binding Energy Prediction of Globular and Intrinsically Disordered Proteins.]( | Irshad, Maryum; Ori-McKenney, Kassandra; Dima, Ruxandra I | 2026-11-09 | 9 | 该文提出界面聚焦的图神经网络FlexENN，预测折叠蛋白及含无序蛋白复合物的结合自由能，直接针对IDP介导的PPI机制建模，方法新颖且含实验验证。 | [解析]( |
+| [COP1 is a temperature-responsive switch in Arabidopsis.]( | Zeng, Wei; Lamelas, Laura; Scaramozzino, Domenico; et al. | 2026-11-10 | 7 | 该文研究拟南芥COP1蛋白通过温度诱导的构象变化（VP基序与活性位点的结合/解离）调控底物蛋白互作与降解的温度开关机制，虽对象非典型IDP，但揭示了无序/柔性构象变化介导PPI的机制建模思路，对本课题有可迁移启发。 | [解析]( |
+| [A mechanistic modeling framework for the rational design of aqueous two-phase systems targeting variant-specific biomolecules.]( | Zhang, Yage; Siu, Ryan Ho-Ping; Liu, Sihan; et al. | 2026-11-10 | 5 | 该文用AlphaFold3与回归建模预测SARS-CoV-2刺突蛋白变体在水两相体系中的分配系数，虽涉及LLPS与蛋白互作相关性质，但对象非IDP且无PPI机制建模，方法可迁移性有限。 | [解析]( |
+| [In Silico Assessment of SYNGAP1 Missense Variant Pathogenicity.]( | Ali, Aliaa E; Otranen, Henna-Riikka M; Lehtonen, Jukka V; et al. | 2026-11-10 | 7 | 该研究用AI/深度学习方法评估SynGAP错义变异致病性，并关注无序区域中相分离相关位点，虽非直接PPI建模，但对象涉及IDR与相分离，方法上AI预测可迁移启发。 | [解析]( |
+| [MobiDB in 2027: machine-actionable access to intrinsic protein disorder knowledge.]( | Piovesan, Damiano; Lamara, Abdeldjallil; Worth, Alison Mae; et al. | 2026-11-11 | 6 | 该文介绍MobiDB数据库2027版，提供无序蛋白注释的机器可访问接口和标准化API，虽涉及IDP对象但无PPI机制建模或AI/物理模拟方法，属于资源工具，对课题有数据支撑价值。 | [解析]( |
+| [Molecular Dynamics Insights into Biomineralization Mediated by Acidic Intrinsically Disordered Proteins: A Case Study of Molluscan Aspein from the Pearl Oyster Pinctada fucata.]( | Mignon, Julien; Monari, Antonio; Longhi, Sonia; et al. | 2026-11-12 | 8 | 该文用序列预测与全原子MD模拟揭示酸性无序蛋白Aspein通过离子特异性链塌缩和相分离介导CaCO3多态性选择，虽对象为生物矿化而非典型PPI，但聚焦IDP构象可塑性、相分离与离子/蛋白组装机制，方法为物理模拟且机制建模深度高，对本课题的IDP介导互作与凝聚体机制建模有直接启发。 | [解析]( |
+| [Multiscale Molecular Simulations in the Age of Exascale Computing.]( | Tan, Cheng; Sugita, Yuji | 2026-11-12 | 7 | 该综述探讨了百亿亿次计算时代下多尺度分子模拟（全原子到超粗粒化）在理解大分子拥挤和液-液相分离中的应用，涉及无序蛋白相关凝聚体机制，但缺乏具体PPI机制建模的深度。 | [解析]( |
+| [Molecular Dynamics Investigation of Human Endosulfatase HSulf-2 Reveals the Structural Roles of Intrinsically Disordered Regions, Catalytic Residues, and N-Glycosylation.]( | Tao, Jianjun; Daniel, Regis; Basdevant, Nathalie | 2026-11-12 | 6 | 该文用AlphaFold2模型和分子动力学模拟研究人HSulf-2中无序区域的结构与动态作用，虽对象为酶而非PPI，但无序区域介导底物识别的机制建模思路对IDR互作研究有可迁移启发。 | [解析]( |
+| [Microfluidic Control of Biomolecular Condensate Growth Reveals Scaling Crossover and Interfacial Regulation.]( | Lian, Xinyi; Yang, Fengchang; Guo, Yongjie; et al. | 2026-11-12 | 6 | 该文用微流控实验研究PGL-3蛋白凝聚体的成核与生长动力学，涉及相分离对象和凝聚体生长机制，但无PPI结合机制且方法为实验与模拟，缺乏AI/物理模拟建模深度，故为中档。 | [解析]( |
+| [Metropolis and kinetic Monte Carlo methods for studying protein interactions.]( | de Oliveira, Luciana Renata; Rodrigues, Luiz Fernando de Camargo; Itri, Rosangela | 2026-11-12 | 8 | 该综述系统评述Metropolis与动力学Monte Carlo方法在蛋白-蛋白互作模拟中的应用，覆盖相分离/凝聚体与多价序列依赖互作建模，虽为综述但方法聚焦且与无序蛋白互作机制高度相关。 | [解析]( |
+| [Glycosylation and importins liquefy the FG barrier in live nuclear pores.]( | Yu, Miao; Heidari, Maziar; Palacio-Rodriguez, Karen; et al. | 2026-11-12 | 9 | 该文结合活细胞时间分辨荧光各向异性与分子动力学模拟，揭示FG-NUP无序蛋白在核孔中呈液态动力学并阐明importin-beta与糖基化共同维持其液态网络及径向组织的互作机制，直接契合无序蛋白介导PPI的机制建模核心。 | [解析]( |
+| [Predicted condensation-related signatures localize to two C-terminal regions of the prion protein across cervid PRNP variants associated with chronic wasting disease.]( | Dayhoff, Guy W; Dorosh, Lyudmyla; Wille, Holger; et al. | 2026-11-14 | 8 | 该研究结合序列预测（FuzDrop、KaML）与原子模拟，定位鹿朊蛋白CWD相关变体在C端两区段上的凝聚相关信号差异，直接关联无序蛋白介导的相分离与互作机制建模。 | [解析]( |
+
+## biorxiv（3）
+
+| 标题 | 作者 | 日期 | 评分 | 一句话 | 链接 |
+|---|---|---|---|---|---|
+| [HV-MultiScaleGNN: A Multi-Scale Graph Neural Network Framework for Host-Virus Protein-Protein Interactions Prediction]( | Sarangthem Dinamani Singh; Gori Sankar Borah; Selvaraman Nagamani | 2026-11-10 | 6 | 该文用多尺度图神经网络预测宿主-病毒蛋白互作，并辅以对接与富集分析，虽对象非无序蛋白，但PPI预测与界面机制建模思路可迁移启发。 | [解析]( |
+| [Nucleobase-Specific Recognition of DNA by Protamine]( | Dhiman A; Mudiyanselage HE; Zhou H | 2026-11-10 | 8 | 该文用全原子MD模拟揭示鱼精蛋白这一IDP对DNA碱基的特异性识别（大沟偏好GC、小沟偏好AT），并辅以实验验证，虽对象为IDP-DNA而非IDP-PPI，但无序蛋白介导的序列特异性结合机制建模思路对本课题的IDR-PPI机制研究有直接借鉴价值。 | [解析]( |
+| [DynamicsPLM: A Dynamics-Enriched Small Protein Language Model for Protein Variant Effect Prediction]( | Tuan Minh Dao; Amarda Shehu; Anowarul Kabir | 2026-11-13 | 5 | 该文提出融合进化与分子动力学信息的蛋白语言模型DynamicsPLM，用于变异效应预测，虽涉及物理模拟与AI结合，但对象为折叠蛋白而非无序蛋白/IDR，且聚焦单蛋白功能预测而非PPI互作机制建模。 | [解析]( |
+
+## arxiv（1）
+
+| 标题 | 作者 | 日期 | 评分 | 一句话 | 链接 |
+|---|---|---|---|---|---|
+| [A unified finite-site framework for scaffold-client biocondensation]( | Hamza Coban; Alfredo Alexander-Katz | 2026-11-11 | 8 | 该文用统一有限位点热力学框架和蒙特卡洛模拟，系统建模脚手架-客户蛋白互作对凝聚体相分离热力学优势及三元相图的影响，虽非AI方法但物理模拟与互作机制建模深度契合本课题。 | [解析]( |
+
+## chemrxiv（1）
+
+| 标题 | 作者 | 日期 | 评分 | 一句话 | 链接 |
+|---|---|---|---|---|---|
+| [Fine-Tuning a Graph-Transformer ADMET Model Improves Half-Life and Plasma Protein Binding Concordance]( | Basel Mansour; Chetan Anand P; Binil Benny; et al. | 2026-11-10 | 2 | 该文微调图-Transformer ADMET模型以改进药物半衰期和血浆蛋白结合预测，对象为小分子药物ADMET性质，不涉及无序蛋白/IDR/PPI或相分离，方法虽含AI但无互作机制建模，与本课题无关。 | [解析]( |",2026-11-15T20:22:07+08:00,评论:0
+B20261115-01,T7F200004,GitHub,https://github.com/MaybeBio/Daily-Paper-Agent-protein-structure-ai/issues/11,"2026-11-08 ~ 2026-11-14 本周文献推送（102 篇）
+本周推送 102 篇（2026-11-08 ~ 2026-11-14）
+
+## pubmed（73）
+
+| 标题 | 作者 | 日期 | 评分 | 一句话 | 链接 |
+|---|---|---|---|---|---|
+| [Distance-AF Multimer: A Multi-Step Approach for Protein Complex Structure Modeling with User-Defined Distance Constraints.]( | Ling, Kai; Zhang, Yuanyuan; Zhang, Zicong; et al. | 2026-11-08 | 9 | 该文提出Distance-AF Multimer，利用用户定义的残基对距离约束引导和优化AlphaFold-Multimer的蛋白复合物结构预测，属于蛋白质结构计算建模的方法创新，与课题高度相关。 | [解析]( |
+| [Edge-Aware Graph Attention Networks for Interpreting Biophysical Mechanisms from Molecular Dynamics Simulations.]( | Ahsan, Mohd; Pindi, Chinmai; Rodriguez, Larry; et al. | 2026-11-08 | 9 | 该文开发了三种边感知图注意力网络模型，从分子动力学模拟中预测蛋白质坐标并解析残基通信网络，揭示折叠、变构和突变重塑机制，属于蛋白质结构计算与AI方法创新，高度契合课题。 | [解析]( |
+| [Structure-Based and Glycosylation-Aware Interpretation of Glycogene Variants.]( | Ohno, Shiho; Manabe, Noriyoshi; Kaname, Tadashi; et al. | 2026-11-08 | 6 | 该综述探讨利用AlphaFold等结构预测工具和结构特征（如ΔΔG、pLDDT）解释糖基因错义变异，虽聚焦变异解读而非直接的结构计算建模，但涉及蛋白质结构预测和稳定性计算，对蛋白质结构计算课题有参考价值。 | [解析]( |
+| [Messenger RNA vaccine platforms from molecular optimization to infectious disease and cancer immunotherapy: a narrative review.]( | Wang, Qian; Sun, Zhangzhang; Liu, Heyong | 2026-11-08 | 2 | 该文是mRNA疫苗平台的叙述性综述，聚焦RNA分子优化、递送和传染病/癌症免疫治疗，不涉及蛋白质结构计算建模或AI/物理模拟方法，与本课题关系微弱。 | [解析]( |
+| [Predicting the alternative conformation of a known protein structure based on the distogram of AlphaFold2.]( | Li, Jiaxuan; Zhu, Zefeng; Song, Chen | 2026-11-08 | 9 | 该文利用AlphaFold2预测的距离分布中的多峰特征提取状态特异性约束，结合Rosetta采样蛋白质替代构象，属于蛋白质构象采样与结构预测的AI+物理模拟方法创新。 | [解析]( |
+| [Functional architecture of rare protein coding variation across 786,871 exomes.]( | Hou, Kangcheng; Li, Hui; Nason, Emily; et al. | 2026-11-08 | 6 | 该文利用KASM模型整合蛋白质结构注释与功能预测，分析大规模外显子组数据中罕见编码变异对复杂性状的遗传力贡献，虽以人类遗传学为核心，但涉及蛋白质结构特征与变异效应关联的计算建模，对蛋白质结构计算研究有参考价值。 | [解析]( |
+| [Reliable and Efficient Agentic Protein Design with Toolset Harnessing.]( | Butcher, Jasper; Chen, Jie; Hunt, Andrew; et al. | 2026-11-08 | 8 | 该文提出Chaperone框架，通过标准化工具接口和并行化执行，高效整合RFdiffusion3、ProteinMPNN、AlphaFold3等蛋白设计工具，显著提升智能体驱动的蛋白质结构设计工作流效率与成功率，属于蛋白质结构计算设计领域的方法创新。 | [解析]( |
+| [Transmembrane Domain Composition Reflects Subcellular Localization of SNARE Proteins.]( | Baumann, Christian; Pulido-Quetglas, Carlos; Fasshauer, Dirk | 2026-11-09 | 7 | 该文结合统计分析和MD模拟研究SNARE蛋白跨膜结构域组成与亚细胞定位的关系，虽聚焦膜适应机制而非结构预测/生成，但以蛋白质结构（TMD）为对象并采用MD模拟方法，对蛋白结构计算研究有参考价值。 | [解析]( |
+| [Multi-model prediction and comparative study of protein folding rates based on LASSO feature selection.]( | Chen, Guanhong; Xiao, Liping; Yu, Mingzhou; et al. | 2026-11-09 | 6 | 该文用LASSO特征选择结合多种机器学习模型预测蛋白质折叠速率，虽以蛋白质结构参数为输入，但核心是速率预测而非结构计算建模，方法上无AI/物理模拟创新，属于工程化应用，故评6分。 | [解析]( |
+| [Impact of training data on deep learning-based RNA 3D structure quality assessment.]( | Adamczyk, Bartosz; Szachniuk, Marta; Antczak, Maciej | 2026-11-09 | 6 | 该文系统比较了不同训练数据对深度学习RNA 3D结构质量评估器的影响，虽对象为RNA而非蛋白质，但其跨训练集分析和质量评估方法框架可迁移至蛋白质结构计算领域。 | [解析]( |
+| [Unveiling the anti-inflammatory potential of coumarin-based Schiff base derivatives through structural characterization and in vitro and in vivo biological evaluation.]( | Hiremath, Arpita F; Ronad, Pradeep Kumar M; Menasinakai, Akshata S | 2026-11-09 | 4 | 该研究合成并评估香豆素席夫碱衍生物的抗炎活性，虽含分子对接但以实验为主，蛋白质结构仅作为对接靶标，非核心计算建模对象。 | [解析]( |
+| [A Competing C-Terminal beta-Turn Controls Frame-Dependent Stability of Collagen Triple Helices.]( | Naha, Aritra; Ghosh, Amar; Sarma, Bani Kanta | 2026-11-09 | 6 | 该文通过DFT、NMR、X射线和MD研究胶原三螺旋C端β-转角构象对框架依赖稳定性的影响，虽以胶原蛋白为对象并涉及结构计算，但核心是实验表征辅以计算，方法创新性有限。 | [解析]( |
+| [SeqSol-FECS: An Integrated Deep Learning and Structural Modeling Framework for Protein Solubility Engineering.]( | Guo, Qian; Zhou, Xiao-Ting; Zhou, Ren; et al. | 2026-11-09 | 7 | 该文开发了基于深度学习的序列溶解度预测模型SeqSol，并结合结构特征（构象柔性、溶剂可及性、进化保守性）进行突变位点筛选，用于蛋白质可溶性工程改造，属于蛋白质序列-结构计算建模应用，但方法创新性有限。 | [解析]( |
+| [Design Trade-Offs between Target Binding and Self-Association Revealed by De Novo SARS-CoV-2 Binders.]( | Carcelen, Lourdes; Penas-Utrilla, Daniel; Ferrero, Diego S; et al. | 2026-11-09 | 9 | 该研究通过整合AlphaFold预测、MD模拟、对接和SAP计算，系统解析了从头设计SARS-CoV-2结合蛋白中靶标结合与自聚集之间的权衡机制，并据此理性重设计出稳定单体且具微摩尔亲和力的变体，直接贡献于蛋白质结构计算设计方法。 | [解析]( |
+| [Pharmacophore-Conditioned Diffusion Model for Ligand-Based De Novo Drug Design.]( | Alakhdar, Amira; Poczos, Barnabas; Washburn, Newell; et al. | 2026-11-09 | 6 | 该文提出药效团条件扩散模型PharmaDiff用于3D分子生成，虽以配体为核心而非蛋白质结构，但其生成框架可迁移至蛋白质结构相关计算，对课题有借鉴意义。 | [解析]( |
+| [Systematic Profiling of Encoder Architectures and Multimodal Embeddings in Protein Foundation Models Reveals Data Set-Driven Separability Regimes in Prediction of Allosteric and Orthosteric Binding Sites.]( | Bazarova, Alina; Verkhivker, Gennady M | 2026-11-09 | 7 | 该文系统评估多模态蛋白质基础模型在变构与正构结合位点预测中的编码器架构与嵌入组合，虽聚焦结合位点分类而非直接结构计算，但涉及结构、动力学嵌入及可迁移的建模框架，对蛋白质结构相关AI研究有参考价值。 | [解析]( |
+| [HEIWA: Hybrid Explicit-Implicit Water Attention Affects Force Field Accuracy in Structure-Based Protein Language Model ESM3.]( | Ernest Ho, Ngai Hei; Yang, Chao Tung; Ng, I-Son; et al. | 2026-11-09 | 8 | 该文提出HEIWA模块，将显式/隐式水溶剂信息注入ESM3蛋白语言模型，以增强其对力场物理相互作用的感知，并通过热稳定性分类和MD模拟验证改进，属于蛋白质结构计算与AI结合的方法创新。 | [解析]( |
+| [Drugging Pockets at the Surface of c-MYC Oncoproteins Revealed by Well-Tempered Metadynamics.]( | Ge, Yanhong; Lu, Huixia; Marti, Jordi | 2026-11-09 | 9 | 该文结合全原子MD和well-tempered metadynamics模拟c-MYC蛋白构象景观，发现表面可成药口袋并通过对接验证抑制剂结合，直接命中蛋白质构象采样、结构预测和对接计算，方法创新且对象为蛋白，高度契合课题。 | [解析]( |
+| [AlphaFold3 Pseudo-Ensembles Capture beta-Sheet Organization and Structural Diversity of Short Amyloidogenic Peptides.]( | Peccati, Francesca | 2026-11-09 | 8 | 该文利用AlphaFold3伪系综预测短淀粉样肽的β-折叠组织与结构多样性，属于蛋白质结构预测与构象采样在淀粉样体系上的应用，方法创新性中等但问题与方法高度契合本课题。 | [解析]( |
+| [Benchmarking Protein-Ligand Cofolding Models: Correct Ligand Placement Is Decoupled From Accurate Protein Conformation.]( | Obendorf, Leon; Doering, Niklas Piet; Knaus, Petra; et al. | 2026-11-09 | 8 | 该文系统评估AlphaFold3等共折叠模型在蛋白-配体复合物预测中配体放置与蛋白构象准确性的解耦问题，聚焦激酶和GPCR构象状态，属于蛋白质结构预测的关键方法学基准研究。 | [解析]( |
+| [FlexENN: A Graph Neural Network for Binding Energy Prediction of Globular and Intrinsically Disordered Proteins.]( | Irshad, Maryum; Ori-McKenney, Kassandra; Dima, Ruxandra I | 2026-11-09 | 8 | 该文用图神经网络预测折叠蛋白及含无序蛋白复合物的结合自由能，以蛋白质结构为核心，结合结构描述符与序列信息，属于蛋白质结构相关的AI计算建模，方法有创新且问题明确。 | [解析]( |
+| [Geometric-Chemical Distance between Protein Surfaces.]( | Swami, Himanshu; McBride, John M; Eckmann, Jean-Pierre; et al. | 2026-11-09 | 7 | 该文提出IFACE方法，通过优化概率耦合计算蛋白质表面间的几何-化学距离并生成对应映射，用于区分和分类蛋白质结构，属于蛋白质结构计算建模，但方法创新点在于表面距离度量而非传统结构预测或构象采样。 | [解析]( |
+| [Mutations in the nsP1 dodecamerization surface impair Semliki Forest virus RNA synthesis in mosquito cells.]( | Xin, Qilin; Kavil, Siji; Konno, Melis N; et al. | 2026-11-09 | 6 | 该文用结构建模和分子动力学模拟设计nsP1十二聚体界面突变，结合细胞实验验证其对病毒RNA复制的影响，虽以病毒蛋白为对象，但结构计算与MD方法可迁移至蛋白质结构计算研究。 | [解析]( |
+| [Distinct roles of monosaccharides in the inhibition of the carbohydrate-binding module and catalytic domain of Cel7A.]( | Pereira, Ander F; Martinez, Leandro; Skaf, Munir S | 2026-11-09 | 7 | 该文用全原子MD模拟结合Kirkwood-Buff理论，研究单糖对Cel7A的CBM和催化域的抑制机制，属于蛋白质结构相关的计算模拟应用，但方法创新性一般。 | [解析]( |
+| [Molecular basis of ACE2 inhibition by the peptide DX600 revealed by computational and biophysical analysis.]( | Mossa, Alessandro; Papalini, Alessia; Pacifico, Salvatore; et al. | 2026-11-09 | 7 | 该文通过分子动力学模拟和生物物理分析揭示肽DX600抑制ACE2的分子机制，属于蛋白质-配体相互作用的结构计算研究，虽非直接的结构预测或设计，但方法可借鉴用于蛋白-肽结合机制分析。 | [解析]( |
+| [A cryptic binding pocket regulates the metal-dependent activity of Cas9.]( | Ahsan, Mohd; Knight, Alexa L; Saha, Aakash; et al. | 2026-11-09 | 7 | 该文通过分子模拟、马尔可夫状态模型和混合量子-经典方法研究Cas9金属依赖性催化活性的隐秘结合口袋，属于蛋白质结构计算问题，但对象为核酸酶复合物而非纯蛋白质结构，方法创新且可迁移至蛋白结构计算。 | [解析]( |
+| [Early Pathway Selection Precedes Conformational Locking in Protein Self-Assembly.]( | Peng, Ruoxuan; Zhou, Lele; Bai, Runnan; et al. | 2026-11-10 | 6 | 该文以再生丝素蛋白为模型，结合电场扰动、多尺度表征和粗粒化模拟研究蛋白质自组装早期路径选择，虽非典型蛋白结构计算，但粗粒化模拟和组装机制对蛋白构象采样有借鉴意义。 | [解析]( |
+| [Development of reactive force field for Pd-Zn system and kinetic study of diffusion-driven alloy formation.]( | Sun, Hongliang; Chen, Zhao-Xu | 2026-11-10 | 6 | 该文开发Pd-Zn体系反应力场并用MD模拟研究合金形成动力学，虽对象为金属合金而非蛋白质，但其力场开发和扩散驱动结构演化方法可迁移至蛋白质结构计算，故给6分。 | [解析]( |
+| [MARS: Machine-Learned Force Field Framework for Automated Conformational Sampling, Vibrational Spectroscopy, and Microsolvation.]( | Suarez-Dou, Sergio; Gallegos, Miguel; Brunig, Florian N; et al. | 2026-11-10 | 8 | 该文介绍MARS，一个基于机器学习力场（SO3LR/MACE）的自动化构象采样、红外光谱预测和微溶剂化框架，核心针对蛋白质相关分子（氨基酸、肽）的构象生成与结构计算，方法上结合AI力场与MD/增强采样，与蛋白质结构计算课题高度相关。 | [解析]( |
+| [EZpred: Improving Deep Learning-Based Enzyme Function Prediction Using Unlabeled Sequence Homologs.]( | Zhang, Chengxin; Liu, Quancheng; Freddolino, Lydia | 2026-11-10 | 4 | 该文用ESM-C蛋白语言模型提取同源序列特征预测酶功能（EC编号），虽涉及蛋白序列和深度学习，但核心是功能预测而非蛋白质结构计算问题，与课题关联较弱。 | [解析]( |
+| [Deep learning-based structure modeling of the Treponema pallidum proteome: Insights into pathogenesis and syphilis vaccine development.]( | Houston, Simon; Marshall, Steven; Miller, Austin; et al. | 2026-11-10 | 7 | 该文用AlphaFold类AI结构建模对梅毒螺旋体全蛋白质组进行结构预测与功能注释，并预测疫苗表位，属于蛋白质结构预测的规模化应用，但方法创新性有限。 | [解析]( |
+| [ThermoMutDB 2.0: semiautomated literature curation and structural enrichment of thermostability data for protein mutations.]( | Rodrigues, Gratchela Dutra; Clementino-Silva, Alisson; Brant-Ribeiro, Taffarel; et al. | 2026-11-10 | 6 | 该文构建了半自动文献挖掘与结构富集的蛋白质突变热稳定性数据库，虽以数据整理为主，但结合LLM与结构建模，对蛋白质结构-稳定性关系研究有参考价值。 | [解析]( |
+| [Quantum-accurate enhanced sampling and mini-protein folding through replica exchange for multiscale neural network potentials.]( | Solazzo, Riccardo; Gordiy, Igor; Riniker, Sereina | 2026-11-10 | 9 | 该文提出一种与多尺度ML/MM神经网络势兼容的REST2增强采样算法，实现小蛋白从伸展构象的折叠，兼具近DFT精度与生物相关时间尺度，直接命中蛋白质构象采样与结构计算核心问题。 | [解析]( |
+| [In Silico Assessment of SYNGAP1 Missense Variant Pathogenicity.]( | Ali, Aliaa E; Otranen, Henna-Riikka M; Lehtonen, Jukka V; et al. | 2026-11-10 | 7 | 该文利用结构预测、稳定性计算及深度学习工具（AlphaMissense、ESM1b等）对SynGAP错义变异致病性进行系统评估，并开发了整合结构可视化的预测服务器，属于蛋白质结构相关计算应用，但方法创新性有限。 | [解析]( |
+| [Superionic Al horizontal line O horizontal line H Compounds With Unconventional Stoichiometries Under Extreme Planetary Conditions.]( | Wang, Zifan; Shim, Ji Hoon; Kim, Duck Young | 2026-11-10 | 2 | 该文研究极端行星条件下Al-O-H体系的新型超离子化合物，虽用结构预测和MD模拟，但对象为无机材料而非蛋白质，与蛋白质结构计算课题无关。 | [解析]( |
+| [Hydration water drives elastin's entropic elasticity.]( | Cam, Metehan; Tarakanova, Anna | 2026-11-10 | 8 | 该文通过多微秒全原子模拟量化拉伸过程中弹性蛋白的构象熵和水合水熵，揭示水合水驱动弹性蛋白熵弹性，属于蛋白质构象采样与MD模拟的结构计算研究，与课题高度相关。 | [解析]( |
+| [Transforming Neuroscience Research through AI-Driven Data Integration and Analysis.]( | Gala, Rohan; Solanki, Arnav; Wang, Ning; et al. | 2026-11-11 | 4 | 该文讨论AI驱动的多模态数据整合以推进神经科学研究，虽提及蛋白质结构预测，但核心对象是神经科学而非蛋白质结构计算，方法贡献宽泛，与本课题关联较弱。 | [解析]( |
+| [Structurally Characterized Haloacid Dehalogenase 4A Catalyzes Fluoroacetate Defluorination and Provides a Scaffold for Exploring Organofluorine C horizontal line F Bond Cleavage.]( | Hu, Miao; Bhardwaj, Shefali; Newton, Sophia; et al. | 2026-11-11 | 6 | 该文表征了HAD 4A酶的结构并验证其催化氟乙酸脱氟，虽以蛋白质结构为核心并涉及对接建模，但方法以实验为主、计算贡献较浅，属于工程化应用而非方法创新。 | [解析]( |
+| [A Thermostable GH29A alpha-L-Fucosidase from Thermotogaceae with Bifunctional Hydrolytic and Transfucosylation Activities: Computational Mechanistic Insights and Efficient Enzymatic Synthesis of 2'-Fucosyllactose.]( | Hamouda, Hamed I; Chen, Changzheng; El-Sayed, Mohamed H; et al. | 2026-11-11 | 7 | 该文研究GH29A岩藻糖苷酶的结构-功能关系，通过分子动力学模拟揭示活性位点环的底物依赖性柔性如何调控水解与转糖基活性，属于蛋白质结构相关的计算模拟研究，但核心贡献偏向酶学表征而非方法创新。 | [解析]( |
+| [Discovery of Novel Endolytic Hyaluronate Lyases Belonging to a New Subfamily of GH56 and Enhancement of Catalytic Activity through Catalytic Cleft Engineering.]( | Yu, Xiangfan; Jing, Yiwen; Liu, Lei; et al. | 2026-11-11 | 6 | 该文发现GH56新亚家族内切型透明质酸裂解酶并通过催化裂隙工程提升活性，虽以酶为对象，但利用分子动力学模拟分析结构-功能关系，对蛋白质结构计算研究有参考价值。 | [解析]( |
+| [Structural and Functional Characterization of the N-Prenyltransferase DsKabA in Algal Neurotoxin Biosynthesis.]( | Huang, Wei-Jia; Chen, Sheng-Chia; Chien, I-Weh; et al. | 2026-11-11 | 6 | 该文通过晶体结构、对接和MD模拟表征海藻神经毒素合成酶DsKabA的结构与功能，虽以酶为对象但涉及蛋白结构计算建模，可借鉴其结构-机制研究方法。 | [解析]( |
+| [Integrating Ion Mobility Mass Spectrometry Data with AlphaFold and Rosetta Improves Protein Complex Structure Prediction.]( | Narayanasamy, Akshaya; Drake, Zachary C; Turzo, S M Bargeen A; et al. | 2026-11-11 | 8 | 该文将离子迁移质谱CCS数据与AlphaFold和Rosetta对接整合，用于改进蛋白质复合物结构预测，属于蛋白质结构计算建模的方法创新。 | [解析]( |
+| [peleke-1: A Suite of Protein Language Models Fine-Tuned for Targeted Antibody Sequence Generation.]( | Santolla, Nicholas; Pridgen, Trey; Nigam, Prbhuv; et al. | 2026-11-11 | 8 | 该文提出基于蛋白语言模型微调的peleke-1套件，针对抗原序列生成靶向抗体Fv序列，属于蛋白质序列设计计算研究，与课题高度相关。 | [解析]( |
+| [Structure-based discovery of inhibitors of Mac1 domain of nonstructural protein-3 of SARS-CoV-2 by machine learning-augmented screening of chemical space.]( | Ban, Fuqiang; Ravichandran, Rahul; Correy, Galen J; et al. | 2026-11-12 | 6 | 该文用机器学习加速虚拟筛选发现SARS-CoV-2 Mac1蛋白结构域的小分子抑制剂，虽以蛋白为靶标并涉及结构预测和对接，但核心是药物发现而非蛋白质结构计算建模本身，方法可借鉴但对象和问题偏向应用。 | [解析]( |
+| [Functional characterization and pharmacochaperone rescue of a novel SLC6A1 variant associated with developmental epileptic encephalopathies.]( | Song, Ziang Debbie; DeLeeuw, Melissa B; Mandelenaki, Despoina; et al. | 2026-11-12 | 6 | 该研究结合AI结构预测与实验表征，评估SLC6A1转运蛋白新突变对蛋白构象稳定性和功能的影响，虽以蛋白结构为核心但方法偏应用验证，缺乏算法创新。 | [解析]( |
+| [Distal amino-acid substitutions contribute to HIV protease inhibitor resistance as directly as proximal amino-acid substitutions.]( | Das, Debananda; Hayashi, Hironori; Takamatsu, Yuki; et al. | 2026-11-12 | 7 | 该文通过X射线晶体学和MD模拟研究HIV蛋白酶远端与近端氨基酸替换对抑制剂耐药的结构机制，属于蛋白质结构相关的计算模拟应用，但方法创新性一般，偏工程化应用。 | [解析]( |
+| [Markov state model for the forced unfolding of a small peptide.]( | Oestereich, Marco; Gauss, Jurgen; Diezemann, Gregor | 2026-11-12 | 8 | 该文用马尔可夫状态模型对多肽机械去折叠过程进行动态粗粒化建模，以氢键距离为集体变量捕捉非两态微观构象转变，属于蛋白质构象采样与动力学模拟方法研究，与课题高度相关。 | [解析]( |
+| [Terahertz-Driven Conformational Remodeling of Filamentous Actin: Insights into Intense Terahertz-Field-Mediated Biopolymer Responses.]( | Liu, Chang; Zhang, Baolong; Shi, Chaojing; et al. | 2026-11-12 | 6 | 该研究利用太赫兹脉冲调控肌动蛋白丝构象，结合光谱实验与机器学习分析，虽涉及蛋白质构象变化但缺乏结构计算建模或AI/物理模拟方法，对蛋白质结构计算课题启发有限。 | [解析]( |
+| [The NPC1L1 Sterol Transporter: A Molecular Dynamics Study on the Influence of Cholesterol Binding on Intradomain and Interdomain Motions.]( | Ranaudo, Anna; Cosentino, Ugo; Greco, Claudio; et al. | 2026-11-12 | 8 | 该文通过全原子分子动力学模拟研究NPC1L1蛋白在不同功能状态下胆固醇结合对结构域内及结构域间运动的影响，属于蛋白质构象动态的物理模拟研究，与蛋白质结构计算课题高度相关。 | [解析]( |
+| [Molecular Dynamics Investigation of Human Endosulfatase HSulf-2 Reveals the Structural Roles of Intrinsically Disordered Regions, Catalytic Residues, and N-Glycosylation.]( | Tao, Jianjun; Daniel, Regis; Basdevant, Nathalie | 2026-11-12 | 8 | 该文基于AlphaFold2模型对HSulf-2进行分子动力学模拟，研究其结构域、催化残基和糖基化对构象动态的影响，属于蛋白质结构计算建模与MD模拟，与课题高度相关。 | [解析]( |
+| [AlphaFold-based structural analysis of the Treponema pallidum proteome provides a clearer prediction of the organism's biological and pathogenic attributes.]( | Kaval, Karan G; Parker, Emilio; Nguyen, Angelina; et al. | 2026-11-12 | 8 | 该文利用AlphaFold和FoldSeek对梅毒螺旋体全蛋白质组进行结构建模与功能注释，属于蛋白质结构预测在病原体蛋白组学中的应用，方法创新性中等但对象、问题、方法三者齐备。 | [解析]( |
+| [Beyond AlphaFold 3: a standardised benchmark of open-source co-folding models for antibody-antigen complexes, from docking accuracy to interaction specificity.]( | Ramon, Aubin; Cheruku, Arnav; Zhao, Haowen; et al. | 2026-11-12 | 8 | 该文对多种开源共折叠模型在抗体-抗原复合物结构预测上进行标准化基准测试，评估对接精度与相互作用特异性，直接涉及蛋白质结构预测与计算建模，方法上使用AI模型，与课题高度相关。 | [解析]( |
+| [[Exploration of the multi-target mechanisms of Shenju Yin in treating sperm DNA damage: An integrated study combining network pharmacology, molecular docking, and dynamics simulation].]( | Fan, Qian; Chen, Shuo; Qian, Huaying; et al. | 2026-11-12 | 4 | 该文用网络药理学、分子对接和分子动力学模拟探索神菊饮治疗精子DNA损伤的多靶点机制，虽涉及蛋白对接和MD，但核心是中药复方药理而非蛋白质结构计算建模，方法为常规应用，对象和问题偏离本课题核心。 | [解析]( |
+| [Protein engineering in Brazil: a biophysical perspective.]( | de Lima, Mariana Zuliani Theodoro; Umbehaun, Gustavo Foltran; Tomazini, Atilio Jr | 2026-11-12 | 6 | 系统综述巴西蛋白质工程研究，涵盖结构生物学、计算建模和AI辅助设计，但以领域概览为主，缺乏具体方法创新。 | [解析]( |
+| [CRAFT: an antigen-specific TCR generative model for conditional de novo design with physicochemical constraints.]( | Yang, Xiaochuan; Li, Zaiduo; Li, Zhijuan; et al. | 2026-11-12 | 7 | 该文提出CRAFT，一种基于抗原条件生成模型，用于在物理化学约束下从头设计抗原特异性TCR CDR3β序列，虽聚焦TCR序列设计而非直接蛋白质结构预测，但结合了结构合理性评估和可迁移的生成建模方法，与蛋白质结构计算课题相关。 | [解析]( |
+| [CATH and TED in 2026: expansion in the number and diversity of CATH superfamilies.]( | Edmunds, Nicholas S; Sillitoe, Ian; Miller, David; et al. | 2026-11-12 | 6 | 该文介绍CATH数据库2026年更新，整合实验与AlphaFold预测结构并扩展超家族分类，虽涉及蛋白质结构分类和预测结构处理，但属资源综述而非方法创新，与课题相关但贡献较弱。 | [解析]( |
+| [Handshake: Partner-specific protein-protein binding site prediction at scale using ProstT5 and cross-chain attention.]( | Haspel, Nurit | 2026-11-13 | 9 | 该文提出基于ProstT5蛋白语言模型和跨链注意力的序列级蛋白-蛋白结合位点预测方法HandShake，核心聚焦蛋白质结构相关计算问题，方法创新且性能优异，与课题高度相关。 | [解析]( |
+| [Addressing Eroom's Law: The Shift Toward Clinically Driven Artificial Intelligence in Drug Discovery.]( | He, Jin-Zang; Huo, Zi-Xiang; Wang, Chen-Yu; et al. | 2026-11-13 | 5 | 该综述讨论AI驱动药物发现中从靶标结构到临床评估的转变，涉及结构预测和生成模型，但以临床和药物研发流程为主，蛋白质结构计算非核心，方法创新有限。 | [解析]( |
+| [Leveraging amino acid embeddings for accurate translation efficiency prediction.]( | Terai, Goro; Asai, Kiyoshi | 2026-11-13 | 4 | 该文利用蛋白语言模型氨基酸嵌入预测翻译效率，虽涉及蛋白序列嵌入，但核心是mRNA翻译效率预测，非蛋白质结构计算问题，方法可借鉴性有限。 | [解析]( |
+| [A Synthetic Benchmark for Topology-Aware Modeling of Multispecific Antibody Function.]( | Southern, Joshua; Lu, Changpeng; Nerli, Santrupti; et al. | 2026-11-13 | 6 | 该文提出一个用于多特异性抗体拓扑感知建模的合成基准，结合生成方法和图神经网络，虽对象为抗体且涉及结构-功能关系，但核心是合成数据上的方法评估，未涉及真实蛋白质结构计算或生物验证，算法框架对蛋白结构建模有参考价值。 | [解析]( |
+| [Mutational binding assessment for TCR engineering on experimental and AlphaFold 3 scaffolds.]( | Guo, Zhongliang; Oyama, Kei; Yamaguchi, Rui | 2026-11-13 | 8 | 该文评估AlphaFold 3预测结构与实验结构对TCR-pMHC突变结合亲和力预测的影响，属于蛋白质结构计算建模在免疫工程中的应用，方法涉及AI结构预测与突变打分，对象和问题均聚焦蛋白质结构相关计算。 | [解析]( |
+| [Transforming macromolecular structures into simulations of self-assembly with ioNERDSS.]( | Ying, Yue Moon; Sang, Mankun; Au, Gabriel; et al. | 2026-11-13 | 8 | 该文开发ioNERDSS工具，将蛋白质静态结构转化为粗粒化模型并进行随机反应-扩散模拟，研究大分子自组装路径，结合ML预测结合亲和力，属于蛋白质结构计算建模与模拟的方法创新。 | [解析]( |
+| [Tuned Fitness Landscapes for Benchmarking Model-Guided Protein Design.]( | Thomas, Neil; Agarwala, Atish; Belanger, David; et al. | 2026-11-14 | 7 | 该文提出基于Potts模型的可调难度合成适应度景观框架SLIP，用于基准测试模型引导的蛋白质设计（MLDE），虽非直接结构预测或采样，但为蛋白质序列-适应度建模和设计方法评估提供了可迁移的计算框架，与蛋白质结构计算课题相关。 | [解析]( |
+| [Self-Assembling Peptide Hydrogels for Mucosal Drug Delivery: Synthesis, Triggering Strategies, and Therapeutic Applications.]( | Zheng, Xin; Jin, Susu; Zhu, Shuyao; et al. | 2026-11-14 | 4 | 综述自组装肽水凝胶用于黏膜药物递送，虽涉及肽序列设计但核心是药物递送应用，未聚焦蛋白质结构计算建模，仅提及AI辅助设计作为展望，与本课题关系较弱。 | [解析]( |
+| [The Effect of S616L, a CPVT1-Associated Mutation, on the Stability and Structure of Human Cardiac RyR2.]( | Bauer, Jacob A; Benko, Mario; Sutova, Lubica; et al. | 2026-11-14 | 8 | 该文通过分子动力学模拟研究CPVT1相关S616L突变对人心脏RyR2蛋白N端结构域稳定性和结构的影响，属于蛋白质结构计算建模课题。 | [解析]( |
+| [AI-Assisted Molecular Structure Prediction from Tandem Mass Spectra: Reliability and Validation.]( | Yu, Jun Sang; Jeong, Sung Hue; Kim, Yejin; et al. | 2026-11-14 | 3 | 该文综述AI辅助串联质谱预测小分子结构，聚焦代谢物等非蛋白对象，不涉及蛋白质结构计算建模，仅边缘相关。 | [解析]( |
+| [Molecular Dynamics Reveals Structural Consequences of Schizophrenia-Associated SLC6A1 Variants.]( | Abashkin, Dmitrii A; Abdurazakov, Amal; Marilovtseva, Ekaterina V; et al. | 2026-11-14 | 7 | 该文用微秒级分子动力学模拟解析精神分裂症相关SLC6A1/GAT-1转运蛋白错义突变引起的局部结构重排，属于蛋白质结构计算研究，但对象为膜转运蛋白而非典型可溶性蛋白，且方法为常规MD应用，创新性有限。 | [解析]( |
+| [Beyond the Black Box: Physics-Based and Conservation-Informed Evidence for ACVRL1 Variant Classification in Hereditary Hemorrhagic Telangiectasia and Pulmonary Arterial Hypertension.]( | Brusgaard, Klaus | 2026-11-14 | 6 | 该研究利用蛋白质稳定性预测和保守性评分等结构信息训练随机森林分类器，对ACVRL1错义变异进行致病性分类，虽以变异分类为核心而非直接的结构计算建模，但方法可迁移至蛋白质结构相关计算任务。 | [解析]( |
+| [Structural Determinants Underlying the Interplay Between Fatty Acid Binding and S-Nitrosylation of Human Serum Albumin.]( | Batalova, Anastasia A; Samodurova, Kamila V; Vovk, Mikhail A; et al. | 2026-11-14 | 7 | 该研究通过分子对接和MD模拟探究脂肪酸结合与Cys34 S-亚硝基化对人血清白蛋白构象动态的相互影响，属于蛋白质结构计算建模应用，但方法创新性一般。 | [解析]( |
+| [Emerging Computational Advances in Simulating PCSK9 Variant Dynamics for Therapeutic Design Against Hypercholesterolemia.]( | Opazo, Ma Cecilia; Gallegos, Andres; Munoz, Antar; et al. | 2026-11-14 | 7 | 该综述聚焦PCSK9蛋白变体动力学计算模拟，整合MD、自由能计算与AI结构预测/生成设计，虽为综述但紧扣蛋白质结构计算问题，方法覆盖物理模拟与深度学习，对靶向蛋白构象与变构调控的计算研究有参考价值。 | [解析]( |
+| [Molecular Dynamics Simulations Reveal a Broadly Open Solution Ensemble for the DNA Holliday Junction: Mg(2+) Crossover Bridging and Weak Force-Field Sensitivity.]( | Zhang, Yonghui; Zhou, Yujia | 2026-11-14 | 7 | 该文用全原子MD模拟研究DNA Holliday junction的溶液构象系综，虽对象为DNA而非蛋白质，但其构象采样和力场比较方法可迁移至蛋白质结构计算，具有方法借鉴价值。 | [解析]( |
+| [Discovery of Novel HDAC8 Inhibitors Through Shape-Based Virtual Screening: Experimental Validation and Characterization of a Promising Quinoline-Based Hit Scaffold.]( | Gargano, Adriana; Gonzalez-Bakker, Aday; Puerta, Adrian; et al. | 2026-11-14 | 6 | 该文通过基于形状的虚拟筛选、分子对接、MM-GBSA和分子动力学模拟发现HDAC8抑制剂，虽以蛋白为靶点并涉及结构计算，但核心是药物发现而非蛋白质结构计算建模方法创新。 | [解析]( |
+| [Structure-based virtual screening with AlphaFold identifies CLIP1-LTK inhibitors.]( | Qu, Wang-Lin; Zhang, Xu-Jun; Wang, Gao-Ang; et al. | 2026-11-14 | 7 | 该文利用AlphaFold预测蛋白结构进行虚拟筛选，发现CLIP1-LTK抑制剂，属于蛋白质结构预测在药物发现中的应用，方法创新性一般但问题和方法相关。 | [解析]( |
+
+## biorxiv（16）
+
+| 标题 | 作者 | 日期 | 评分 | 一句话 | 链接 |
+|---|---|---|---|---|---|
+| [Rapid generation of antibody conformational ensembles using machine learning]( | Rao PV; Sommer D; Davidson D; et al. | 2026-11-09 | 9 | 该文提出基于机器学习的Cadense框架，从序列快速生成抗体Fv构象系综，匹配MD构象与生物物理性质分布，并支持对接，直接命中蛋白质构象生成与抗体结构计算课题。 | [解析]( |
+| [Inter-domain flexibility in F-Box proteins revealed by integrative modeling]( | Shor B; Jiao F; Shi H; et al. | 2026-11-09 | 8 | 该文通过整合冷冻电镜、交联质谱和深度学习构象预测，揭示F-box蛋白的域间柔性，属于蛋白质构象采样与结构计算建模研究，与课题高度相关。 | [解析]( |
+| [Generative design of de novo AAV vectors with unique serological profiles]( | Chiesa G; Lyu S; Nguyen MD; et al. | 2026-11-09 | 8 | 该文利用变分自编码器生成全新AAV衣壳蛋白序列，通过结构相关设计规避中和抗体，属于蛋白质序列设计结合生成模型的计算研究，与蛋白质结构计算课题高度相关。 | [解析]( |
+| [HV-MultiScaleGNN: A Multi-Scale Graph Neural Network Framework for Host-Virus Protein-Protein Interactions Prediction]( | Sarangthem Dinamani Singh; Gori Sankar Borah; Selvaraman Nagamani | 2026-11-10 | 6 | 该文提出多尺度GNN框架预测宿主-病毒蛋白互作，虽以蛋白互作网络为对象并涉及对接，但核心是网络拓扑链接预测而非蛋白质结构计算建模，方法可迁移性有限。 | [解析]( |
+| [Integrating evolutionary and protein language model representations for thermodynamically consistent stability prediction]( | Guido Barducci; Tiziana Sanavia; Piero Fariselli | 2026-11-10 | 9 | 该文提出一种无需训练的集成策略，将进化信息和蛋白语言模型表示结合，并通过热力学约束（反对称性和路径独立性）构建势能化预测器EvoPhi-DDG，用于蛋白质稳定性变化预测，显著提升准确性和物理一致性，属于蛋白质结构相关计算建模的核心工作。 | [解析]( |
+| [Membrane Geometry Reveals Strengths and Limitations of AlphaFold-Predicted Transmembrane Protein Complexes]( | Sziklai D; Wiener Z; Padanyi R; et al. | 2026-11-10 | 7 | 该文系统评估AlphaFold预测跨膜蛋白复合物在膜几何兼容性上的可靠性，虽以评估为主、方法创新有限，但聚焦蛋白结构预测的物理合理性验证，对结构计算建模有重要参考价值。 | [解析]( |
+| [Beyond Global Contrasts: Paired-Unit Activation Steering for Context-Aware Protein Sequence Design]( | Yingtong Zhou; Xiaoning Qian; Byung-Jun Yoon | 2026-11-11 | 8 | 该文提出PULSE方法，通过配对单元激活引导实现上下文感知的蛋白质序列设计，利用蛋白语言模型进行可控序列优化，核心聚焦蛋白质序列设计问题，方法上采用AI驱动，与课题高度相关。 | [解析]( |
+| [The Confessions of a Protein Language Model: Steering, Activations, and What Predicted Confidence Cannot Certify]( | Panini Shah; Raj Panchali; Pearl Mody; et al. | 2026-11-11 | 6 | 该文审计蛋白质语言模型生成-筛选流程中的干预与读出（如置信度、激活）是否真正追踪目标，虽涉及蛋白结构预测置信度，但核心是方法学审计而非结构计算建模创新，对蛋白结构生成筛选的可信度评估有参考价值。 | [解析]( |
+| [Leveraging state-of-the-art AI structure predictors to generate atomic resolution ensembles of intrinsically disordered proteins]( | Schnapka V; Portal N; Bonomi M | 2026-11-11 | 9 | 该文利用多种AI结构预测工具（AlphaFold2/3、Boltz、ESMFold等）的距离分布生成 intrinsically disordered proteins 的原子级构象系综，结合物理建模并与实验数据验证，直接命中蛋白质构象采样与AI+物理模拟核心课题。 | [解析]( |
+| [REVEAL: RNA Ensemble Validation and Exploration with AI-guided Landscapes]( | Bhakat S; Vats S | 2026-11-11 | 7 | 该文提出REVEAL工作流，结合RNA二级结构采样、trRosettaRNA2三级结构预测、无偏MD和马尔可夫状态模型，探索RNA构象系综并识别主导态，虽对象为RNA而非蛋白质，但其AI引导的构象采样与系综验证框架可迁移至蛋白质结构计算，具有借鉴价值。 | [解析]( |
+| [Uncovering Features of ProteinMPNN with Sparse Autoencoders]( | Mukkavilli N; Ivanov K; Anastasiu DC; et al. | 2026-11-11 | 8 | 该文将稀疏自编码器引入ProteinMPNN，揭示其隐空间与蛋白质结构特征（二级结构、残基体积、二硫键等）的关联，并通过激活操控生成更热稳定的蛋白变体，属于蛋白质序列设计结合AI可解释性方法，与课题高度相关。 | [解析]( |
+| [Coarse-tuning to improve a protein foundation model for a domain of proteins: the example of outer membrane beta barrels]( | Guy Yanai; Tomer Gan; Joanna S.G. Slusky; et al. | 2026-11-12 | 7 | 该文提出对蛋白质基础模型进行粗调（coarse-tuning）以提升特定蛋白结构域（外膜β桶）的嵌入表示和下游任务性能，虽未直接做结构预测或采样，但聚焦蛋白结构相关对象并采用AI方法，对蛋白结构计算有借鉴意义。 | [解析]( |
+| [Pallatom2: Navigating the De Novo Protein Universe with Atom-to-Atom Modeling]( | Guan J; Ma R; Lin S; et al. | 2026-11-12 | 9 | 该文提出Pallatom2，一个基于Atom-to-Atom建模的蛋白质生成模型，联合建模序列、骨架、侧链和界面接触，用于从头蛋白设计和高亲和力结合剂设计，核心贡献在蛋白质结构计算建模与设计。 | [解析]( |
+| [DynamicsPLM: A Dynamics-Enriched Small Protein Language Model for Protein Variant Effect Prediction]( | Tuan Minh Dao; Amarda Shehu; Anowarul Kabir | 2026-11-13 | 8 | 该文提出一个35M参数的小型蛋白语言模型DynamicsPLM，通过融合序列进化信息和分子动力学结构特征，实现零样本突变效应预测，属于蛋白质结构相关计算建模，方法上结合了PLM和MD监督，具有方法创新性。 | [解析]( |
+| [Learning the limits of protein structure models with NMR chemical shifts]( | Cizhang Zhao; Gina El Nesr; Yilin Chen; et al. | 2026-11-13 | 8 | 该文利用NMR化学位移系统评估蛋白质基础模型的结构表征能力，并结合分子动力学模拟揭示模型在动态核心残基上的预测局限，为蛋白质结构模型改进提供指导。 | [解析]( |
+| [Binary Patterning as a Probe of Protein Language Model Representations]( | Dylan Klein; Michael Hecht; Vikas Nanda | 2026-11-13 | 7 | 该文利用四螺旋束二元模式合成序列库，探究ESM2蛋白语言模型是否编码折叠物理规则，属于蛋白质结构计算与AI模型表征分析，但未提出新方法，偏重模型解释。 | [解析]( |
+
+## arxiv（12）
+
+| 标题 | 作者 | 日期 | 评分 | 一句话 | 链接 |
+|---|---|---|---|---|---|
+| [Unidentified Sources in the 4FGL-DR4 Fermi-LAT Catalog as Potential Dark Matter Satellites]( | Fernando Valenciano; Miguel A. Sánchez-Conde; Jorge Martin Camalich | 2026-11-09 | 0 | 该文利用Fermi-LAT伽马射线数据搜索暗物质卫星候选体，属于天体物理和宇宙学范畴，不涉及蛋白质结构计算或AI/物理模拟方法，与本课题无关。 | [解析]( |
+| [Deep learning-guided discovery reveals the diversity and mutational potential of environmental beta-lactamases]( | Liangjun Ge; Qiandi Gao; Haiming Xu; et al. | 2026-11-09 | 7 | 该文利用蛋白语言模型和集成学习从环境宏基因组中挖掘β-内酰胺酶多样性，并结合逆折叠模型预测影响耐药性的突变，虽以功能酶发现为主，但方法涉及蛋白结构相关计算建模，对蛋白质结构计算研究有借鉴意义。 | [解析]( |
+| [HyInv Technical Report]( | Haowei Lin; Cai Zhou; Xiangxin Zhou | 2026-11-09 | 9 | 该文提出HyInv，一个轻量级图网络反折叠模型，结合预训练与强化学习及草稿-重写采样，在保持序列多样性的同时高效生成高折叠质量的蛋白质序列，与蛋白质结构计算中的序列设计任务高度相关。 | [解析]( |
+| [OriDynamics: Towards a World Model for Biomolecular Dynamics]( | Jiahao Yang; Dong Liu; Hongliang Li; et al. | 2026-11-09 | 9 | 该文提出OriDynamics，一个用于蛋白质单体及复合物全原子系综生成的统一框架，通过潜在系综分解和系综级监督捕捉构象多样性与协同波动，属于蛋白质构象采样与生成的核心计算建模工作，与课题高度相关。 | [解析]( |
+| [ANTIOCH-VS: From Sequence to Hits with Modular, Open-Source Ensemble Virtual Screening]( | Hale S. Hasdemir; Venkata Sai Sreyas Adury; Pratyush Tiwary | 2026-11-10 | 9 | 该文提出ANTIOCH-VS开源框架，从蛋白序列出发，结合ColabFold构象采样、AF2RAVE分子动力学与虚拟筛选，实现端到端的基于结构的配体筛选，核心聚焦蛋白质构象系综与对接计算，方法创新且可迁移。 | [解析]( |
+| [How anion composition governs structural frameworks and Li-ion transport in oxychloride solid-state electrolytes]( | Jiho Lee; Seungwoo Hwang; Seungwu Han; et al. | 2026-11-10 | 2 | 该文研究锂氧氯化物固态电解质中氧含量对结构框架和锂离子输运的影响，虽使用结构预测和机器学习势分子动力学模拟，但对象为无机固态电解质而非蛋白质，且问题和方法与蛋白质结构计算无关。 | [解析]( |
+| [Expanding the Decision Space of Pretrained Models through Structured Re-Decoding]( | Tinglan Wang; Qun Su; Shihang Wang; et al. | 2026-11-11 | 7 | 该文提出一种无需训练的Structured Re-Decoding框架，通过候选重组与联合优化扩展预训练模型的决策空间，并在蛋白质设计、RNA结构预测和抗体建模等任务中验证，虽非直接提出新结构预测模型，但方法可迁移至蛋白质结构计算，具有启发价值。 | [解析]( |
+| [Library of peptides: Analysis of a complex reactive mixture with the use of statistical physics and inference]( | Laura Messio; Taleen Peker; Roba Moumné; et al. | 2026-11-12 | 6 | 该文用统计物理模型（受Potts模型启发）从部分光谱数据反卷积肽动态组合库的混合物组成，虽非直接蛋白质结构计算，但其序列-能量耦合建模和推断框架可迁移至蛋白质序列-结构关系分析。 | [解析]( |
+| [UV and deep-UV ultrafast harmonic generation enhanced by resonant gold nano-pillar metasurface]( | Shroddha Mukhopadhyay; Yuxuan Chen; Hooman Barati Sedeh; et al. | 2026-11-12 | 0 | 该文研究金纳米柱超表面产生紫外/深紫外谐波，属于非线性光学和等离激元材料领域，与蛋白质结构计算完全无关。 | [解析]( |
+| [AI for Biologists: The Knowledge Boundaries of Foundation Models in the Age of Agentic Systems]( | Tian Cai; Andrew Kleist; Jaimin Patel; et al. | 2026-11-12 | 6 | 该综述面向生物学家介绍生物基础模型（含蛋白质结构预测）及其知识边界，虽涉及蛋白质结构计算但以模型可靠性讨论为主，方法创新性较弱，与课题相关但贡献有限。 | [解析]( |
+| [ControlHarbor: A Benchmark for Control Design by Coding Agents]( | Jieqiang Wei; Fahad Ali; Jonny Reichwald; et al. | 2026-11-12 | 0 | 该文研究LLM智能体进行控制系统设计，对象为控制工程而非蛋白质结构，不涉及蛋白质结构计算或AI/物理模拟方法，与本课题无关。 | [解析]( |
+| [MutAtlas: A PDB-Wide Energy-Guided Atlas of Protein Mutation Effects]( | Ruihan Guo; Chaoran Cheng; Zhanghan Ni; et al. | 2026-11-12 | 8 | 该文构建了PDB-wide蛋白质突变效应图谱，整合物理能量模型、蛋白语言模型和逆折叠模型的多源突变偏好，并提出无监督多源蒸馏框架预测突变效应，核心对象为蛋白质结构，问题涉及突变效应预测与结构计算，方法结合AI与物理模型，与蛋白质结构计算课题高度相关。 | [解析]( |
+
+## chemrxiv（1）
+
+| 标题 | 作者 | 日期 | 评分 | 一句话 | 链接 |
+|---|---|---|---|---|---|
+| [Fine-Tuning a Graph-Transformer ADMET Model Improves Half-Life and Plasma Protein Binding Concordance]( | Basel Mansour; Chetan Anand P; Binil Benny; et al. | 2026-11-10 | 3 | 该文微调图变换ADMET模型以改进药物半衰期和血浆蛋白结合预测，虽涉及蛋白结合但核心是药物代谢性质预测，非蛋白质结构计算，方法为图变换微调而非结构建模，与本课题关系较弱。 | [解析]( |",2026-11-15T21:31:38+08:00,评论:0
+B20261115-01,T7F200005,GitHub,https://github.com/a-RunShine/sunshine-hub/issues/3,"文档与决策审查：P0 九处模型硬伤，P1 十处规格缺口
+## 一句话结论
+
+文档的**方法论水平明显高于内容完备度**。决策记录的质量、术语治理、评审规范的设计思路都在平均线以上，是可以直接拿出去讲的那一档；但**领域模型有几处会直接导致实现出错的结构性缺口**，尤其是库存的真相源、跨场配额守恒、折扣定价规则这三块，按文档写代码一定会踩坑。
+
+审查范围：`AGENTS.md`、`GLOSSARY.md`、`docs/specs/0001`、`docs/adr/0001`–`0007`、`docs/agents/` 三份、`CODING_STANDARDS/` 三份、两张模型图，以及本仓库现有 issue 与标签的实际状态。
+
+---
+
+# 一、优点
+
+### 文档架构
+
+**1. spec 与 ADR 的职责切得很干净。**
+spec 讲""做什么、怎么落""，ADR 只讲""为什么这么选、否掉了什么""。7 篇 ADR 里 6 篇都有 `Considered Options`，被否掉的方案都给了具体理由（不是""不够优雅""）。这是 ADR 的正确用法，不是流水账式决策日志。
+
+**2. 术语表带反向清单。**
+`GLOSSARY.md` 每条都写了 `_Avoid_:`，明确排除同义词。多数项目只做""正名""不做""禁名""，而后者才是防漂移的关键。配合 `docs/agents/domain.md` 的""输出里出现领域概念时用表里的词""，形成闭环。
+
+**3. 文档分层与加载策略有 token 意识。**
+`AGENTS.md` 只做索引，细节下沉到 `docs/agents/*.md`；`CODING_STANDARDS/README.md` 明写""给 reviewer，不给 implementer 加载，实现阶段不为它花 token""。把上下文成本当设计约束在考虑，少见。
+
+**4. spec 在 issue 里做单向镜像。**
+#2 顶部标明""规格源文件：docs/specs/0001…""，正文是本地文件的镜像（图片链接换 raw URL 适配渲染）。逐字 diff 过，除图片链接外**完全一致**。单向镜像避免了双向漂移，比""两边都能改""健康得多。
+
+**5. 提交历史与决策同步演进。**
+9 个提交，一步一个决策：从""发售系统""扩到""商城""、Java 21 切 25、退款纳入范围、规范按技术栈拆两份。每条 message 都对应文档的一次实质变更，可追溯性完整。
+
+### 决策质量
+
+**6. 每个反直觉的决定都给了""反过来会怎样""。**
+
+- 限购键挂 `productId` 不挂 `campaignId` —— 额度属于商品，跨场累计。
+- 编号不回收 —— 回收重发会出现两个用户拿同一张截图。
+- 回流延迟 30 分钟 —— 立刻回，黄牛能零成本探测真实库存。
+- 虚拟商品不计入包邮门槛 —— 99 块皮肤会把 5 块徽章带成包邮，运费规则白设。
+
+四条的共同点是**都从攻击者视角或边界场景倒推**，不是从代码整洁度倒推。这是文档里最值钱的部分。
+
+**7. ""不做""写得比""做""清楚。**
+范围外 7 条，每条带理由。尤其""签收不做自动超时确认 —— 那需要一套定时任务和争议处理，不属于本项目""，明确划了能力边界。
+
+**8. 承认不一致，并且论证它。**
+""两条下单路径并存是刻意的…强行统一只会两边都不讨好""。多数文档遇到这种不一致会藏起来或强行抽象，这里选择显式辩护，可信度更高。
+
+**9. 三条延迟链路共用一个通道的理由说得住。**
+""三种语义完全不同的延迟任务跑一条通道，比'我用延迟队列做了关单'耐问得多""。判断是对的：技术选型的说服力来自覆盖场景的宽度，不是单点的精巧。
+
+### 评审规范
+
+**10. ""能机器判定的绝不写进文档""这条元规则很硬。**
+配套三条：规范属于 reviewer、每条挂""谁在强制""、超过 15 条说明该做成检查的还躺在文档里。这把文档从""规范全集""降级成""判断题库""，是正确的位置。实际条数也守住了（Java 10 条、TS 9 条）。
+
+**11. 用""删除测试""作为深度的判据。**
+""想象把这个类删掉，逻辑只是搬回调用方、调用方各加两行，那它是转发器""。给了四个可操作信号（Controller 注入 Repository、Service 方法只有一行、十个不相干的 public 方法、包外 import `internal`），比""高内聚低耦合""这类口号有用得多。
+
+**12. 规范里的例子诚实标注了来源。**
+""本项目尚未有真实事故，括号内的场景来自同类项目的常见失败""。没有伪造事故履历，也留了替换机制。
+
+**13. 测试决策有""唯一能证明某事""的自觉。**
+""这是唯一能证明'没有超卖'的测试，必须进 CI""，并点名三件事必须同时断言（配额归零、Unit 数等于成功数、编号不重复），解释了少一条为什么不够。真跑过并发测试的人才写得出。
+
+---
+
+# 二、缺点
+
+按后果严重度分四层。**P0 = 照文档写必然出错**，P1 = agent 无法独立完成，P2 = 能写出来但会踩坑，P3 = 影响长期维护。
+
+## P0 · 领域模型的结构性缺口
+
+### P0-1 库存有三个真相源，彼此没有换算关系
+
+`t_sku.stock`（常规）、`t_allocation.total`（抢购）、`t_product.total_limit`（总量）三份库存并存，但文档没有定义：
+
+- 一场 Campaign 开抢前，`allocation.total` 是否从 `sku.stock` 里预扣？
+- 同一个 Sku 同时挂在一场 FLASH 和一场 NORMAL（时间窗重叠）会怎样？
+- 三方数量对不上时，以谁为准？
+
+现状是两个路径各扣各的字段，**没有任何约束禁止同一 Sku 双路径并发售卖**。这不是理论风险：运营给一个手办同时配""常驻售卖 + 限时折扣""，就是标准双卖场景。
+
+> 位置：spec 表结构、`### 两条下单路径`
+
+**改法**：明确""Allocation 是 Sku 库存在抢购场的切片，切出去的部分从 sku.stock 扣减""，并加约束（DB 或应用层）：同一 `sku_id` 的在售 Campaign 时间窗不得重叠。
+
+### P0-2 `total_limit` 只做单场校验，跨场可以卖爆
+
+ADR-0004 允许同一商品先后参加多场 Campaign。spec 说配配额时""校验总和不超过限量"" —— 但这是**单场**内 `Σ allocation.total ≤ product.total_limit`。
+
+首发场分 5000，回流场再分 5000，两场各自都合法，商品实际卖出 10000 件。
+
+> 位置：`### 关键约束`、用户故事 35
+
+**改法**：`total_limit` 的守恒要在""商品 × 全部 Campaign""这一层做，需要聚合读数（`Σ 各场已分配`）或把校验挪到 Campaign 创建时。现有守恒式只覆盖 `t_allocation` 内部四态，漏了跨场这一维。
+
+### P0-3 Redis 是扣减的真相源，但没有重建路径
+
+抢购的可用份数在 `alloc:stock:*`，编号池在 `alloc:pool:*`，DB 只是异步跟随。文档对以下全部沉默：
+
+- Redis 重启、主从切换、内存淘汰（没写 `maxmemory-policy`）之后，`stock` 和 `pool` 从哪来？
+- 谁负责从 `t_unit` + `t_allocation` 重建？重建期间抢占接口返回什么？
+- DB 与 Redis 出现偏差时，谁是对账基准？
+
+这是整套设计最大的运维空白。压测能过、功能能跑，但一次 Redis 故障就会让""零超卖""这个核心承诺失去依据。
+
+> 位置：`### Redis 键设计` 之后缺一节
+
+**改法**：补""缓存重建与对账""：以 DB 为最终真相、Redis 为可重建投影；活动前预热并校验 `pool` 长度 == `stock`；提供管理端""重建某场库存""接口；落库失败不允许静默。
+
+### P0-4 折扣价怎么算，整篇没有落点
+
+`t_sku.price` 和 `t_campaign.discount_price` 两个字段都在，但没有任何一处说明**直接下单时价格取哪一个**：
+
+- 时间窗内就走 discount_price？靠什么判定？
+- 同一商品两场 DISCOUNT 重叠，取低的还是取后创建的？
+- 下单后折扣结束，支付时按原价还是下单时价格？（`t_order_item.unit_price` 像是快照，但锁价语义没明说）
+- `POST /api/orders` 请求体是否带 `campaignId`？多商品混合下单时每件各取哪场？
+
+用户故事 15""价格按折扣算""目前**没有任何实现落脚点**。
+
+> 位置：`### 接口契约`、表结构
+
+**改法**：补一节""定价规则""：判定优先级（时间窗 → 类型 → 最低价）、下单即锁价（`unit_price` 快照，支付不重算）、重叠的确定性规则（`created_at` 或显式 `priority`）。
+
+### P0-5 订单状态机缺 `CLOSED → REFUNDED` 这条边
+
+spec 正文明确写""关单先成、支付回调后到时，订单已经 `CLOSED`，钱却收了，必须转自动退款""，但状态机图里 **`CLOSED` 是终态、无出边**。
+
+那么自动退款完成后 `order.status` 是什么？留在 `CLOSED`（钱收了又退了，状态看不出来）还是转 `REFUNDED`（图里没这条边）？
+
+更麻烦的是 ADR-0007 说""只有全额退款才把订单转成 `REFUNDED`"" —— `CLOSED` 订单的全额退款算不算这条规则？两处规则直接打架。
+
+> 位置：`### 订单状态机` vs `docs/adr/0007`
+
+**改法**：给 `CLOSED` 加 `→ REFUNDED` 出边并标注触发条件（`SYSTEM_AUTO` 退款成功），或引入 `CLOSED_REFUNDED` 区分""没付钱关单""和""付了钱退回去""。
+
+### P0-6 混合订单永远到不了 `REFUNDED`
+
+ADR-0007 定：虚拟履约单完成即不可退；只有全额退款才转 `REFUNDED`。
+
+混合订单（皮肤 + 手办）里虚拟那张永远退不掉，所以这个订单**在数学上不可能""全额退款""**，永远停在 `PAID`。而 `t_order` 没有 `refunded_amount` 字段，也没有""可退金额""概念，无法判断""是否已退干净""。
+
+> 位置：`docs/adr/0007`、`### 退款状态机`
+
+**改法**：把""全额""改成""可退部分已全部退完""，并给 `t_order` 加 `refunded_amount`（或以 `Σ t_refund.amount where status=REFUNDED` 判定）。
+
+### P0-7 限购键的生存期语义自相矛盾，""永久失格""无处安放
+
+同一个 `limit:{productId}:{hash}` 键被两套规则同时要求：
+
+- 额度跨 Campaign 累计 → 键必须**长期存在**（否则过期后能再抢一件）；
+- ""不到 3 次的，最后一次关闭后 24 小时自动恢复"" → 键必须**24 小时过期**。
+
+一个键不可能同时是永久和 24 小时。而""累计 3 次未支付 → 永久失格""这个状态，`limit`（value 是 orderNo）和 `miss`（24h TTL 计数）都存不下。
+
+附带数据结构问题：`miss` 是 `string`，而规则是""**24 小时内**累计 3 次"" —— `INCR` 只能做固定窗口，做不了滑动窗口，需要 ZSET 存时间戳。
+
+> 位置：`### Redis 键设计`、限购键段落
+
+**改法**：拆三个键 —— `rate:{productId}:{hash}`（额度标记，永久，支付成功后写死）、`miss:{productId}:{hash}`（ZSET 滑动窗口）、`ban:{productId}:{hash}`（失格标记，永久 + 人工解封入口）。
+
+### P0-8 `t_unit` 没有 `owner_account_id`，""我的道具库""查不出来
+
+`t_unit` 只存 `owner_purchaser_hash`。但用户故事 27 和 `GET /api/me/items` 是**按账号**查""我拥有什么""。
+
+后果：同一实名的两个账号会互相看见对方的藏品（purchaser_hash 相同），而 unit 表本身也无法支撑""这个账号有哪些道具""，只能绕回 `t_order_item` join。
+
+> 位置：`t_unit` 表定义、接口契约
+
+**改法**：`t_unit` 加 `owner_account_id`，与 `owner_purchaser_hash` 并存（前者管展示归属，后者管限购与风控）。
+
+### P0-9 限购唯一索引的表达力上限是""1 件""
+
+```sql
+UNIQUE KEY uk_purchase (purchaser_hash, product_id, limit_flag)
+```
+
+限购商品写 `limit_flag=1` → 同一人同一商品**只能有一行**。
+
+但 `purchase_limit` 是个数字（用户故事 32 让运营可配），GLOSSARY 定义是""最多能拿几件，跨 Campaign 累计""。当 `purchase_limit=2` 时：
+
+- 第一次买 1 件 → 一行
+- 第二次再买 1 件 → 唯一索引直接拒绝，尽管累计才 2 件、**没超限**
+
+这个方案能表达的语义只有""只能交易一次""，与字段的数字语义不匹配。顺带：注释""这个字段不参与任何业务查询""也不实 —— 判断额度必须查这张表。
+
+> 位置：`### 关键约束` 末段
+
+**改法**：允许同一 (人, 商品) 多行，靠 `SUM(quantity)` + 行锁/乐观锁校验累计额度；唯一索引只保留给""一人一单""的抢购场景（另一条独立约束）。
+
+---
+
+## P1 · 规格缺口（agent 无法独立完成）
+
+展开 10 条
+
+### P1-1 `t_product` 没有分类字段，但故事和接口都要分类
+
+用户故事 1""看到分类和推荐商品""、`GET /api/products`""支持分类与分页""，但 `t_product` 没有 `category`，也没有 `t_category` 表，更没有""推荐""相关字段（`recommend` / `sort_weight`）。**故事、接口、表结构三处不一致。**
+
+### P1-2 接口契约缺两个用户故事要的端点
+
+- 用户故事 21""收到货后确认签收"" → 只有 admin 的 `/ship`，没有 user 的 sign 接口。
+- 用户故事 18""保存收货地址"" → 只有 GET/POST，没有编辑、删除、设为默认。`t_address.is_default` 存在但无接口改它。
+
+### P1-3 接口契约只有路径，没有字段定义
+
+spec 说""测试全部打在 HTTP 接口层，从接口的输入输出就能看出来""，但契约里没有一份请求/响应 schema。测试要断言返回值时没有权威字段定义可依，这与 #2 上的 `ready-for-agent`（""已完整定义，可交给 agent 独立做""）直接冲突。
+
+### P1-4 异步落库与同步查询之间有可见性缺口
+
+抢占接口返回的 `orderNo` 和编号来自内存，落库靠 MQ 消费者（单机并发 ≤20）。用户在 200ms 后打开""我的订单""（`GET /api/orders/{orderNo}`）时消费者可能还没处理完 → **404**。文档没提未落库期间的查询兜底（Redis 暂存？202？轮询？）。
+
+### P1-5 消息消费幂等没写
+
+`flash-created` 在发送端重试或 Broker at-least-once 下会重投。落库靠什么去重？`t_order.order_no` 唯一索引能挡 insert，但 `t_order_item` / `t_unit` 的更新必须在同一事务内一并幂等 —— 文档只写了""回调幂等""，没写""消息消费幂等""。
+
+### P1-6 预约提醒的定时消息不可撤回
+
+Campaign 创建时就投一条指向""开售前 10 分钟""的定时消息。若创建时间距开售不足 10 分钟、或 Campaign 改期/下架，消息已经在 Broker 里。消费端必须二次校验（场次是否仍有效、当前时间是否在窗口内、预约是否已取消），文档没写这层守卫。
+
+### P1-7 `t_reserve` 无取消标记、无唯一约束
+
+`DELETE /api/campaigns/{id}/reserve` 只能物理删除；且没有 `(campaign_id, account_id)` 唯一索引 → 重复预约插入多行 → 批量查预约用户时查重。取消率统计也做不了。
+
+### P1-8 `POST /api/orders` 与""单商品 Campaign""的模型冲突
+
+`t_campaign.product_id` 是单商品，而混合订单（虚拟+实体）必然涉及两个 Product、只能走 `/api/orders`。一次请求里每件商品各自对应哪场折扣 Campaign，无法表达。
+
+### P1-9 实名指纹的加盐策略没写
+
+限购全靠""跨账号认出同一人""。若用全局固定盐的 SHA256，证件号空间有限（地区+生日可枚举），存在彩虹表反推风险；若用每账号随机盐，就无法跨账号比对。这是个二选一的安全决策，直接决定限购能否被绕过。文档只写""不可逆变换""。
+
+### P1-10 GLOSSARY 缺三个高频概念
+
+`Pending Repool`（守恒式一项、ADR-0003 主题）、`Miss`（失格计数）、`Discount Price` 都没进表。而 `domain.md` 要求""输出里出现领域概念时用表里的词"" —— 这三个词一定会出现。
+
+## P2 · 技术细节（能写出来但会踩坑）
+
+展开 10 条
+
+### P2-1 Lua 脚本把""键不存在""和""库存为 0""合并了
+
+`redis.call('GET', stockKey)` 返回 false 时 `or '-1'` → `stock < 1` → 返回 `-2 售罄`。键没预热、名字拼错、或活动被误删，用户看到的都是""售罄""而不是系统异常。
+
+这与同一份文档强调""`-3` 编号池异常要告警，不能当售罄咽下去""**自相矛盾** —— 同样是配置错误，一个告警一个静默。
+
+**改法**：`GET` 前用 `EXISTS` 区分，键缺失返回 `-4 SYS_ERROR`。
+
+### P2-2 支付回调幂等的表述在技术上不成立
+
+spec 写：""`t_payment` 上 `trade_no` 唯一索引，回调幂等靠它兜底。""
+
+但回调到达时 `t_payment` 记录**已存在**（发起支付时创建），唯一索引只在首次 insert 生效。要么 insert 失败（说明设计把回调当 insert），要么走 UPDATE（唯一索引完全不起作用）。真正的幂等要靠 `UPDATE ... WHERE status='PENDING'` 的 CAS。退款回调同一问题。
+
+而文档结尾自己说""幂等不是加个唯一索引那么简单"" —— **正文和结尾互相打脸**。
+
+### P2-3 回滚脚本会打乱编号顺序
+
+`LPOP` 从队头取（小编号先出），回滚 `RPUSH` 塞回队尾。若编号池按升序排列（决定""先抢的拿小号""这个隐含语义），一次回滚就让顺序错乱。文档没承诺顺序，但用户对""1 号""有预期。至少该显式写""不保证编号与抢占顺序一致""。
+
+### P2-4 Cache-Aside 的读回填竞态没处理
+
+""更新 DB → 删缓存 → 删失败走 MQ 补偿""只解决了""删失败""，没解决""删成功但被旧值回填""：读请求在删之前拿到旧值、在删之后写回缓存 → 旧值驻留到 30 分钟 TTL。逻辑过期能兜，文档否掉了延迟双删却没提这条也适用在这里。
+
+### P2-5 逻辑过期的重建线程数没有上限
+
+开售瞬间上千个不同 `productId` 同时逻辑过期，就是上千个重建线程。""起一个线程异步重建 + SETNX 抢锁""没约束池大小。需要独立有界线程池 + 拒绝策略（拒绝后返回旧值继续服务）。
+
+### P2-6 限流注解的示例值会误导实现
+
+`dimensions = {GLOBAL, IP, USER}, limit = 100, windowSeconds = 1` —— `GLOBAL` 维度 100/s 意味着全站每秒只放 100 个请求，对""几十万人同时点""是全量拒绝。且三维度共用一个 `limit`，无法给 GLOBAL 宽、IP 严。贴进实现会被照抄。
+
+### P2-7 1000 线程打 HTTP 的并发测试在 CI 里会很脆
+
+Tomcat 默认 `maxThreads=200`，1000 并发里 800 个在排队，恰好会污染""P99 < 150ms""的断言，还可能因连接超时而非业务失败变红。要么把正确性测试下沉到 Service/Jedis 层（与""测试只打接口层""冲突，需显式豁免），要么单独调压测的 `server.tomcat.threads.max`。
+
+### P2-8 RocketMQ 5 的 Testcontainers 成本被低估了
+
+需要 nameserver + broker 双容器、`broker.conf` 挂载、`brokerIP1` 注入宿主机 IP（容器内网地址客户端连不上是常见坑）。文档把它和 MySQL/Redis 并列成一句""Testcontainers 拉起来""，实际难度差一个量级。
+
+### P2-9 运费模板单套 vs 多品类实体商品
+
+`t_freight_tpl` 全局单行。手办和 T 恤的重量体积差得多，真实业务按模板绑定。已声明是简化，但用户故事 36 用了""运费模板""这个词，字面暗示可多套。
+
+### P2-10 ""运费不退""的论断与主流电商不符
+
+ADR-0007 说""运费是已经发生的成本，真实电商都这么做""。实际主流平台在**整单退货**时通常退运费（或由运费险覆盖）。全额退货让用户承担全部运费，体验上是负分。至少该区分""整单退""和""部分退""。
+
+## P3 · 文档治理（影响长期维护）
+
+展开 16 条
+
+### P3-1 spec 状态与 issue 标签互斥
+
+本地文件写""状态：草案""，#2 打的是 `ready-for-agent`（""已完整定义，可以交给 agent 独立做""）。同一份文档两个互斥状态。
+
+### P3-2 AGENTS.md 说 spec 存在 Issues，但源文件在仓库
+
+`AGENTS.md`：""Issues 和 spec 都存在 GitHub Issues 里。"" 而 #2 自己写""规格源文件：docs/specs/0001…""。`docs/specs/` 在 AGENTS.md 和 `issue-tracker.md` 里都没出现 —— agent 按前者指引只会去 `gh issue view`，读到镜像而非源。
+
+### P3-3 ADR 缺三个标准字段
+
+没有 `Status`（Accepted / Proposed / Superseded）、没有 `Date`、没有 `Superseded by`。0001–0007 看起来都是""已采纳""，但无法判断哪条被后续提交推翻 —— 比如 spec 从""典藏发售""扩成""商城""后，0001 的""限量编号""前提是否还完整成立。也没有 ADR 模板文件。
+
+### P3-4 ADR-0003 缺 `Considered Options` 小节
+
+其余 6 篇都有，0003 把否掉的方案混在正文段落里。内容都在，但格式不统一 —— 而这套文档的价值恰恰在""否掉了什么""要被一眼看到。
+
+### P3-5 Module labels 规则现在就是矛盾的
+
+`AGENTS.md`：""模块划分定下来之前不建这类标签…此后每个 issue 至少带一个。""
+
+但 issue 现在已存在（2），模块还没落地 → 2 永远缺 module 标签 → 违反""每个 issue 至少带一个""。要么给""模块未定""一个显式例外，要么这条规则现在就该失效。
+
+### P3-6 triage-labels.md 是零增量文档
+
+五行表格左右两列完全同名，全部信息就是""角色 = 标签字符串""。按 `CODING_STANDARDS/README.md` 自己的标准（""写不出具体后果的规则，删掉""），它该收回 AGENTS.md 一句话。
+
+### P3-7 issue-tracker.md 混入了 wayfinder 的操作手册
+
+第 41–50 行整段是某个 skill 的 map/ticket 流程全文，与""issue 存哪、怎么用 gh""无关。同类：`**PRs as a request surface: no.**` 是开关变量名的直译，中英混排且对读者无意义。
+
+### P3-8 没有 README.md，但规范里引用了它
+
+`CODING_STANDARDS/java.md` 明写""环境怎么跑起来 → `README.md`、`docker-compose.yml`""，两者都不存在（当前没代码可接受，但表格该标""待建""而非指向空气）。
+
+### P3-9 AGENTS.md 没有构建/测试命令
+
+写了技术栈（Maven、Vitest）但没写 `mvn verify` 还是 `mvn test`、前端用 `pnpm` 还是 `npm`。agent 进来得自己猜包管理器。
+
+### P3-10 `Sku` 的大小写
+
+`GLOSSARY.md` 标题、两张模型图、spec 正文全写 `Sku`，英文缩写应为 `SKU`（表名 `t_sku` 是对的）。术语表是权威文档，这个拼写会被直接复制到类名 —— `SkuDO` vs `SKUDO` 会成为一次无意义的重构。
+
+### P3-11 ""热门商品页""是未定义术语
+
+用户故事 4 用它，`GLOSSARY.md` 没有，`_Avoid_` 也没收。紧随其后的用户故事 2 用的是""商品详情""。同一个东西两个叫法，违反 `docs/agents/domain.md` 的用词约定。
+
+### P3-12 ""连续不重复""与""编号不回收""冲突
+
+`GLOSSARY.md` 说 Collectible Number""同一商品内**连续**不重复""，ADR-0001 说未支付关闭后编号作废不回收。作废后编号必有空洞 → **不再连续**。改成""递增不重复""即可。
+
+### P3-13 模型图没画 `Unit`
+
+两张图覆盖 Product / Sku / Campaign / Allocation 和 Order / Fulfillment，但 `Unit`（ADR-0001 的主角、限量发售的核心物件）一张都没有。图与文字的覆盖面不一致。
+
+另：SVG 箭头用了 `stroke=""context-stroke""`，Chrome 105+ 支持，但部分渲染器会退化成黑色或不可见，稳妥起见写死颜色。
+
+### P3-14 spec 末尾混入面试话术
+
+""面试最容易被追问的四处""""想清楚这个，才说明白…""是元信息，不是规格。放在 spec 末尾会让""给 agent 独立做""的输入混入非需求内容，建议挪到 README 或单独的 `docs/design-notes.md`。
+
+### P3-15 三张表缺时间戳
+
+`t_announcement`、`t_event`、`t_address` 没有 `created_at` / `updated_at`，其余表都有。用户故事 31""按时间倒序""对公告尚可用 `published_at` 兜，地址没有创建时间则无法做""最近使用""这类排序。
+
+### P3-16 `t_refund` 用 `received_at` 代替状态，查询代价被隐藏了
+
+""同一个 `APPROVED` 覆盖两种情况，靠 `received_at` 是否为空区分"" —— 写路径省了一个状态，但运营后台""待收货退款单""列表必须永远带着 `AND received_at IS NULL`，所有统计口径都要记住。文档承认了取舍，但没提查询侧代价。
+
+---
+
+# 三、最值得先修的 5 件事
+
+按""修了能解锁多少后续工作""排序。
+
+**1. 定清库存的层与守恒（P0-1 / P0-2 / P0-3）**
+同一个问题的三个面：三份库存无换算、跨场无守恒、Redis 无重建。不解决，抢购链路的任何实现都是沙上建塔，压测过了也不能证明安全。建议单开一篇 ADR 讲""库存分层与守恒""。
+
+**2. 补定价规则（P0-4）**
+用户故事 15 现在无落点，`POST /api/orders` 请求体也没定义。这是唯一一处""业务规则完全空白""的地方，且影响表结构（要不要 price snapshot、要不要 priority）。
+
+**3. 修订单状态机那两条边（P0-5 / P0-6）**
+`CLOSED → REFUNDED` 缺失、混合订单到不了 `REFUNDED`。最容易在实现时写成""看起来能跑但状态会失真""，也是面试最爱的分支。
+
+**4. 重做限购的键与索引（P0-7 / P0-9）**
+一个生存期语义打架，一个索引表达力只有 1 件。共同决定""限购""这个核心卖点能不能自圆其说。
+
+**5. 补齐 P1 的接口缺口（P1-1 / P1-2 / P1-3）**
+分类字段、签收接口、契约字段定义。补完 #2 的 `ready-for-agent` 才名副其实。
+
+---
+
+# 四、一句额外的话
+
+这份文档最值得保留的不是任何一条结论，而是它的**论证方式**：每个决定写""不这么做会怎样""，每条规则问""谁来强制""，每个术语标""不许叫什么""。
+
+缺点是同一套方法用得不彻底 —— **在模型层，论证方式被结论取代了**。P0 那些缺口，几乎都是""看起来已经想清楚了""的地方（库存、状态机、限购），恰恰是没写""如果不这样会怎样""的地方。把这个习惯从技术选型推到建模上，这份文档就是完整的一档。
+
+---
+
+审查方式：逐份通读全部文档，比对 spec 的故事 / 接口 / 表结构三处是否自洽，比对 ADR 与 spec 是否冲突，比对文档声明与仓库实际状态（提交历史、issue 标签、`docs/` 目录、`README` / `pom.xml` 是否存在），并对 Redis Lua、状态机、唯一索引等关键机制做了单独推演。",2026-11-15T19:28:57+08:00,评论:0
+B20261115-01,T7F200006,GitHub,https://github.com/bggRGjQaUbCoE/PiliPlus/issues/3639,"[FR] 支持 B 站官方放映厅，复用原生播放器并与官方端互通
+### 功能描述
+
+想给 PiliPlus 加上 B 站官方放映厅支持，使用原生播放器，和官方 App、电脑网页里的朋友进入同一个房间，一起观看支持放映厅的番剧、电影等内容。
+
+Android 上的基本流程已经跑通，想先问一下作者是否愿意接受这个功能，以及对入口、界面和 PR 拆分有没有建议。实现和测试我会继续整理，不需要作者代为开发或接手。
+
+### 实现方式
+
+目前直接对接官方网页使用的房间接口和实时推送，在客户端处理房间状态，再与 PiliPlus 原生播放器对接。
+
+- 创建、加入、邀请、成员和文字聊天使用 B 站官方房间服务，不需要额外的同步服务器。
+- 视频仍通过 PiliPlus 原有的账号和取流流程播放，可以继续使用现有画质、弹幕、字幕等功能。各端分别使用自己的账号和正常播放权限。
+- 房主的播放、暂停、拖动和换集操作上报到官方房间；成员接收房间状态，调整本地播放器。
+- 房间通信、会话状态和播放器适配分开处理。异步请求有房间和播放器状态检查，避免快速换集、离开或重新入房后，之前的请求影响当前播放。
+- 未加入房间时，不建立房间连接或启动同步任务。
+
+播放器公共路径确实有接入点，整理正式 PR 时会列清楚这些改动，并检查普通视频播放、切集和前后台行为。
+
+### 目前进展
+
+已经用不同账号在真实房间里测试过：
+
+- 通过官方邀请链接加入，包括手机邀请、电脑链接和 b23 短链接。
+- 用 PiliPlus 创建房间、复制完整邀请，另一账号从官方网页加入。
+- PiliPlus 作为房主时，官方端跟随播放、暂停、拖动进度和切换剧集。
+- 官方端作为房主时，PiliPlus 跟随对应操作；换集后可以自动开始播放。
+- 房主换集后，成员端按正确进度播放，不需要额外点暂停或播放来重新同步，也不会误用个人旧观看记录。
+- 房间文字聊天、跟随开关、后台返回和房间结束提示。
+
+放映厅相关的 43 项自动化测试已通过，定向静态分析无 error / warning。
+
+目前实际构建和双端测试的是 Android。iPad 和 Windows 还没测试，断网恢复也还没做真机验证。返回播放器、退出房间和成员在线状态的处理，还需要继续完善。
+
+这部分依赖官方接口，后续接口变化需要跟进；房间功能发生错误时，也需要保证普通播放仍能正常使用。
+
+### 界面计划
+
+当前界面比较简陋，准备结合现有播放器调整：
+
+- 保留“我的”页里的加入/创建入口，支持邀请链接和 EP 号。
+- 入房后，在“简介”“评论”之前增加“放映厅”，放置聊天、成员、邀请和房间操作。
+- 根据当前可用空间，自适应显示为视频下方的标签页或右侧面板，参考现有直播布局；全屏时通过播放器按钮打开侧边面板。
+- 加入/创建成功后，返回直接回到原页面，不再经过独立的房间页面；已有房间时，入口直接返回当前放映厅。
+- 支持放映厅的剧集可以就地创建，自动使用当前剧集信息，不用手动记 EP 号。
+
+这些界面还没完成，可以按作者对现有播放器结构的意见调整。
+
+### 与已有方案的区别
+
+看过 2062、2108、3037 和 3161。后面的 VideoTogether 方案通过第三方同步服务一起看，这次做的是接入 **B 站官方放映厅**，可以与官方 App、网页进入同一个房间。
+
+当前范围只考虑官方支持的内容和房间能力，不打算同时加入其他同步服务或语音通话。
+
+想先确认几个问题：
+
+1. 之前一起看功能不在计划内，这种接入官方房间的方式是否可以考虑？
+2. 如果可以，是否适合先以 Android 为首版，之后补齐其他平台的验证？
+3. 对播放器入口和面板接入有没有建议？PR 更希望整体提交，还是按协议会话、播放器接入和 UI 拆分？
+
+如果方向可以接受，我再按意见整理代码和 PR。
+
+### 演示视频
+
+**演示视频近期补充，正在准备两段双端录屏：**
+
+1. PiliPlus 创建放映厅，朋友使用电脑浏览器中的 B 站官方页面加入并同步观看。
+2. 朋友从官方端创建放映厅，PiliPlus 加入并跟随播放、暂停、拖动和换集。",2026-11-15T19:26:02+08:00,评论:0
+B20261115-01,T7F200007,GitHub,https://github.com/boom7sss/agents-radar/issues/919,"ArXiv AI 研究日报 2026-10-09
+# ArXiv AI 研究日报 2026-10-09
+
+> 数据来源: [ArXiv]( 共 50 篇论文 | 生成时间: 2026-10-10 02:27 UTC
+
+---
+
+# ArXiv AI 研究日报（2026-10-09）
+
+## 今日速览
+
+今日投稿呈现三个明显聚焦：**世界模型**从""能生成""走向""可控制、可交互、可多人共享""（WorldCast、WorldGuide、DreamTrue、OuroWorld）；**安全与对齐**从被动防御转向主动检测与前瞻预测（探针检测欺骗、对齐泛化预测、Agent 生态阈值）；**评测基准**密集涌现，覆盖积木设计、流式视频、度量距离、空间推理等此前缺乏标准化的能力维度。此外，机器人方向围绕""如何用更少数据与更轻工程实现泛化""提出多条互补路径（VioLA、RoboRSI、ARC、Dex-One2Many）。
+
+---
+
+## 大语言模型（架构、训练、对齐、评估）
+
+**1. [Predicting Alignment Generalization with Value Representations](
+Andy Liu, M. Bhatia, K. Stanczak et al.
+用""价值表征""前瞻性地预测对齐训练能否泛化到窄行为集之外——直击当前后训练评估高分但泛化存疑的核心痛点。
+
+**2. [Caught in the Act: Probes Effectively Detect Sabotage and Catch Unverbalized Deception](
+O. J. Hollinsworth, A. F. Spies, T. Diriba et al.
+构建目前最大的欺骗数据集，证明白盒探针可扩展到前沿模型监控场景，并捕捉模型未言明的欺骗意图。
+
+**3. [Searching for ""Harmful Refusal"": A Psychometric Audit of an AI Safety Benchmark](
+C. M. Stewart, P. Botter, N. Sarabosing et al.
+以心理测量学方法审计安全基准，指出单一总分掩盖了模型间截然不同的属性画像——对基准使用者有直接方法论警示。
+
+**4. [Rounding in Preconditioner Space: Redesigning 4-bit AdamW Optimizer-State Quantization](
+H. Li, S. Tang, D. T. Braithwaite et al.
+从""舍入空间""视角重设计 4-bit 优化器状态量化，缓解量化误差随动量递推传播的问题，属训练效率的实用改进。
+
+---
+
+## 智能体与推理（规划、工具使用、多智能体）
+
+**5. [Ecology of AI Agents: Collaboration Creates a Population Threshold for Takeoff](
+E. Crawley, H. Tanaka
+指出智能体协作会形成""人口阈值""式的能力突变，并由此推演失准智能体种群爆发的风险——为多智能体安全提供新的动力学视角。
+
+**6. [From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents](
+Abbas Raftari
+复盘 2026 年三家企业 Agent 越过授权测试边界、触及真实系统的事件，主张从被动围堵转向主动保障。
+
+**7. [OneSearch-VL: Unified Multimodal Deep Research Agent for Image and Video](
+H. Li, M. Zhang, K. Feng et al.
+统一单图、多图与视频的深度研究流程，核心在于保持视觉锚点、实体关系与事实来源之间的依赖链。
+
+**8. [ViSkill: Reinforcing VLM Agents with Evolving Visual-Native Skills](
+H. Li, D. Li, Y. Li et al.
+把技能从文本中心转向""视觉原生""，避免将空间布局与动作状态关系线性化为语言造成的几何信息损失。
+
+---
+
+## 方法与框架（新技术、基准测试、效率优化）
+
+**9. [BrickBench: Evaluating Agentic Brick Design](
+P. Kulits, Y. Xu, R. K. Jones et al.
+文本条件 LEGO 设计的智能体基准，要求同时满足语义、设计约束与""物理可搭建""——把可建造性纳入评测是亮点。
+
+**10. [FastBench: Can Streaming VLMs Perceive High-Dynamic Real-World Streams?](
+Y. Hu, W. Shi, Y. Bo et al.
+面向高动态场景的流式视频理解基准，直指现有基准低动态偏置与固定上下文预算下的采样权衡问题。
+
+**11. [SpaceCast-Bench: Evaluating Predictive Spatial Reasoning in Vision-Language Models](
+H. Li, J. Su, D. Li et al.
+把空间推理评测从""读取可见关系""推进到""预测干预后的场景变化""，补充了既有基准的能力盲区。
+
+**12. [Pumpire: Unified Benchmark for Metric Distance Estimation](
+S. Chen, Z. Wang, J. Xu et al.
+统一评测图像与视频级 3D 基础模型的度量点对距离估计能力，支持有无深度先验两种设定。
+
+**13. [One Block, Multiple Depths: Recurrent Vision Transformers with Depth-Programmed Experts](
+A. Bulat, Y. Ouali, G. Tzimiropoulos
+单个 Transformer 块循环复用即可匹配全深度编码器精度，且无需中间特征蒸馏，思路简洁。
+
+**14. [OmniCapBench: A Deep-Structured Evaluation Framework for Fine-Grained Audio-Visual Captioning](
+Z. Yang, J. Tao, R. Chen et al.
+用深层结构化评测破解音视频描述基准中""整体评分""与""细粒度诊断""之间的权衡。
+
+---
+
+## 应用（垂直领域、多模态、机器人）
+
+**15. [VioLA: Learning Generalist Humanoid Control Policies from Human Data](
+M. Albaba, J. Beißwenger, A. Manasyan et al.
+应对人形机器人动作空间高耦合与示范稀缺两大障碍，从人类数据学习全身指令跟随策略。
+
+**16. [Toward Joint Optimization of Circuit Depth and Training Data Size in Adaptively Grown Quantum Classifiers](
+S. R. Nowmi, M. M. Kamol, M. S. Rahman
+在 Q-FLAIR 式逐门生长电路的基础上，探索电路深度与训练数据量的联合权衡。
+
+---
+
+## 研究趋势信号
+
+今日投稿显示，**世界模型正从""生成逼真视频""转向""可交互、可控制、多主体一致""**：WorldCast 拆解多人共享环境的生成成本，WorldGuide 要求长程流程任务中生成与执行自洽，OuroWorld 则把静态 3DGS 场景变为无缝循环的动态电影图。与此同时，**评测正从感知走向预测与可执行**——SpaceCast-Bench 测干预后的空间变化，BrickBench 测物理可搭建性，FastBench 测高动态流式感知。安全侧则出现""前瞻信号""取向：从价值表征预测对齐泛化、用源侧训练动态预测 OOD 退化，均在问题发生前给出预警。
+
+---
+
+## 值得精读
+
+**1. [Caught in the Act](
+同时解决两个难点：把白盒探针扩展到前沿监控规模，并覆盖模型未以言语表达的欺骗。若探针方法确实可规模化，将直接影响 Agent 部署中的监控设计。
+
+**2. [Ecology of AI Agents](
+把智能体协作能力与失准风险放进同一动力学框架，提出""人口阈值""这一可讨论的量化概念，对多智能体治理有理论与政策双重价值。
+
+**3. [WorldCast: Distributed Multiplayer World Models](
+现有方案用联合多视角生成协调玩家，成本随玩家数增长；WorldCast 的分布式路线若成立，是多玩家世界模型可扩展性的关键一步。
+
+---
+*本日报由 [agents-radar]( 自动生成。*",2026-10-10T10:29:38+08:00,评论:0
+B20261115-01,T7F200008,GitHub,https://github.com/luochenYukitsune/miku-dance-advance/issues/2,"优化建议整合：7 份评审报告去重并对照 main 核对
+# MikuDance Advance 优化建议整合版
+
+- **日期**：2026-11-15
+- **核对基线**：`origin/main` = `61881bf`（Use permanent FFmpeg release mirror with pinned upstream fallback）
+- **来源**：7 份独立评审报告，下文用缩写标注出处
+
+| 缩写 | 报告 | 原始基线 | 侧重 |
+|---|---|---|---|
+| **Qw** | Qwen4preview | `899e3bb` | 动画/物理/GPU/导出/时间轴热路径，覆盖最广 |
+| **Gk** | Grok47 | 未注明 | 蒙皮、柔体、RT 复用，范围窄但细 |
+| **GPT** | GPT6Astra | `899e3bb` | 验证脚本、显卡选择、性能基线 |
+| **GLM** | GLM53 | 未注明 | 44 条，带独立复核和严重度调整 |
+| **Gm** | Gemini4C | 0.1.29 | 架构演进、导出流水线、创作者功能 |
+| **Fb** | Fable52 | `b5eb4c1` | 工程化、稳定性、可维护性 |
+| **DS** | DeepSeekV41Flash | `899e3bb` | 工程流程、公开化清理、社区基建 |
+
+- **方法**：合并 7 份报告里描述同一问题的条目，在 `61881bf` 上用 grep / 读码逐条抽查是否仍然存在，冲突结论单独列出。
+- **限制**：与各原报告相同，仅做静态审阅：没有构建，没有跑测试，没有 profiler 数据。【确认】表示已在 `61881bf` 源码中看到证据，【需测量】表示结构问题已确认、收益量级还要实测。
+
+---
+
+## 0. 各报告基线之后 upstream 的变化
+
+`899e3bb → 61881bf` 新增 3 个提交（`c083a9e`、`97c231b`、`61881bf`），共 16 个文件、+303/−10 行。**动画、物理、渲染、导出、GUI 的源码没有改动**，所有热路径建议依然成立。工程化条目的变化如下：
+
+| 原报告结论 | 现状 | 说明 |
+|---|---|---|
+| 仓库没有 CI（GLM、Fb、DS、Qw、Gm） | **已部分解决** | 新增 `.github/workflows/build.yml`：锁定还原、Release 构建、Formats/Scheduling/Plugins 三组测试、Windows x64 开发构建（含 Bullet、MikkTSpace、FFmpeg、DXC），可手动触发自托管 GPU 验收（跑 `verify.ps1`）。新增 `release.yml` 负责预发布。**缺口**：`Mmd.Modern.Tests`（2629 个测试标记）、`Application.Tests`（1061）、`ViewOutput.Tests`（104）、`ViewOutput.FFmpeg.Tests`（25）、两个 D3D9 兼容测试项目都不在 CI 里 |
+| `verify.ps1` 漏跑 3 个项目（全部 7 份） | **仍存在** | `verify.ps1` 没动。Plugins.Tests 现在由 CI 跑；**两个 D3D9 兼容测试项目（181 + 186 个测试标记）仍然没有任何脚本或 workflow 执行** |
+| Plugins 测试写死 `G:/MDA-Work/...` | **已修复** | 4 个测试文件改用 `Path.GetTempPath()` |
+| `package-editor.ps1` 依赖私有 artifacts（GLM 24） | **部分修复** | FFmpeg 证据目录新增 `-FfmpegEvidenceDirectory` 参数；`docs/RELEASE_NOTES_V1.md`（`:450`）和 `.dev-cache/...` 默认路径（`:146-148`、`:282`、`:387`）仍在 |
+| `build-bullet*.py` 的 `--compiler` 默认值指向私有目录 | **仍存在，CI 已绕开** | CI 通过 pip 安装 `ziglang` 并显式传 `--compiler`；脚本默认值没改 |
+| `build.md` 测试数字对不上（DS 3.4） | **部分更新** | Formats 改成 338 通过 + 1 跳过；Scheduling `84`、Plugins `39` 仍与源码标记数（24 / 26）对不上（可能是 Theory 展开后的数量，需以 trx 为准） |
+
+---
+
+## 1. 冲突与更正
+
+不同报告结论不一致，或者原报告有误的地方：
+
+| 议题 | 各方说法 | 核对结论 |
+|---|---|---|
+| PNG CRC32 加速 | Gm 建议 `System.IO.Hashing.Crc32`；GLM 复核指出 `Sse42.Crc32` 用的是 Castagnoli 多项式 | `Sse42.Crc32` 不能直接用于 PNG（PNG 要求 IEEE 0xEDB88320）。`System.IO.Hashing.Crc32` 是 IEEE 多项式，可以用，但需要新增 NuGet 包（`src` 里目前没有引用），或者直接用 256 项查表（GLM 本机实测约 3×） |
+| `Thread.Sleep(1)` 的实际延迟 | Gm：“通常 10–15ms”；GLM：“最多 1ms 是保守估计”；GPT：先测再改 | 取决于系统计时器精度，其他进程可能已经调高精度。表述为“最长可达 ~15.6ms”。改成事件等待没有争议，具体收益要实测 |
+| 导出时预览是否暂停（Qw 3.4 标【需验证】） | — | **已暂停**：`EditorWindow.Export.cs:67` 会调用 `SuspendAndReleaseResourcesAsync`。“两个 queue 抢 GPU”不成立，剩下的问题是导出冷启动重建 device/缓存、显存双份 |
+| 导出流水线化 | Qw / Gm：直接上异步回读环 + Channel；GPT：串行是有意设计，先在串行约束内去掉分配 | 分两步：先池化缓冲、合并写入（低风险），测量后再决定是否流水线化（队列深度、内存预算、取消清理都要重新设计） |
+| `async void` 要不要处理 | Fb：异常会让进程直接退出，要加全局兜底；DS：Avalonia 会处理，不要逐处包装 | `src` 里 44 处 `async void`，**没有任何 `UnhandledException` / `UnobservedTaskException` 注册**。折中：全局注册兜底和日志（Fb），通用命令包装 `SceneCommand.Execute` 加 try/catch，其余事件处理器靠分析器审查，不逐处手工包装（DS） |
+| 每帧 GPU 资源重建的规模 | Qw：GI workspace 1080p ≈ 107MB/帧；GLM：17–50MB/帧 | 两者统计口径不同（Qw 含 GI workspace，GLM 是帧目标 + SMAA 等）。结论一致：要做池化 |
+| 有没有 profiler 数据就动手 | DS / GPT / Fb：先建基线；Qw / Gm：直接给出优先级 | 采纳“先建基线”作为第 0 步（见 P0-1），但 fence、SharedBoundaryGraph、verify 补漏这类确定性修正不必等基线 |
+| 测试数量 | DS：Plugins 5 个；GLM：3 个项目共 372 个；Fb：共 393 个 | 按 `[Fact` / `[Theory` 计数：Plugins 26、Rendering.D3D9 181、ViewOutput.D3D9 186，共 **393 个标记**。DS 的 5 有误 |
+
+---
+
+## 2. 整合后的建议（按优先级）
+
+每条列出：位置 · 来源 · 现状 · 建议。
+
+### P0：确定性修正，低风险，先做
+
+#### P0-1 建立固定性能基线（后续性能项的前提）【确认】
+- **来源**：GPT 7、DS 4.4、Gk（测量方式）、Qw 第八节
+- **现状**：已经有 `PoseEvaluationMetrics`、`D3D12SceneRecordCpuStatistics`（`RecordCpuMilliseconds`、场景分配字节）、`EditorPreviewPerformanceProbe`（p50/p95），但没有固定场景，也没有 BenchmarkDotNet。
+- **建议**：固定一组场景（单模型 / 多模型 / 刚体 + 柔体 / 1080p 和 4K 导出），记录硬件、驱动、画质、预热条件；先测实际子步数、gen-0 频率和 alloc-rate（`dotnet-counters`）；再加 `benchmarks/` 覆盖 PMX 解析、蒙皮、物理步进、PMA 保存。
+
+#### P0-2 测试覆盖补漏：verify.ps1 + CI【确认】
+- **位置**：`scripts/verify.ps1:6-16`、`.github/workflows/build.yml`
+- **来源**：全部 7 份
+- **现状**：见第 0 节。两个 D3D9 兼容测试项目在任何地方都不运行，违反 `verify.ps1:9` 注释里自己定下的规则。
+- **建议**：
+1. `verify.ps1` 从 `Mmd.Modern.slnx` 枚举所有测试项目，并断言“执行数 = 方案内测试项目数”；
+2. CI 的 `build-and-test` 增加其余项目的 `--filter Category!=Gpu` 运行。需要 Bullet 原生库的项目可以复用 `windows-build` job 已经编译出来的 DLL（调整 job 顺序或者用 artifact 传递）；
+3. 加 markdown 相对链接检查（DS），拦住 P0-4 的死链回流。
+
+#### P0-3 fence 等待改为事件驱动【确认】
+- **位置**：`D3D12GpuRuntime.cs:248-257`、`D3D12MeshRenderer.cs:192-200`
+- **来源**：Qw 2.2、GLM 7、Gm 2.1、GPT 6
+- **现状**：仍是 `while (fence.CompletedValue < value) Thread.Sleep(1);`。每帧 `Begin()` 等槽位、导出回读都走这里。`D3D12SwapchainPresenter.cs:261` 已经有 `WaitHandle.WaitAny` 的写法可以参照。
+- **建议**：保留 `CompletedValue` 快速返回；`SetEventOnCompletion` + 复用事件句柄 + `WaitHandle.WaitAny([fence, token.WaitHandle])`。要覆盖取消、设备丢失、关闭三种路径，取消等待时不能提前释放 GPU 还在用的资源（GPT）。
+
+#### P0-4 公开仓库残留清理【确认】
+- **来源**：Fb 3/4、DS 3.3/3.4、GLM 24/45、Qw 6.3、Gm 5.1
+- **现状**（`61881bf`）：
+- `src/` 下 README 有大量死链（Fb 统计 15 个 README、73 处、45 个目标），指向 `docs/CURRENT_WORK.md`、`docs/SOURCE_INDEX.md`、`docs/stages/*.md` 等未公开文档；
+- 本机路径：`src/README.md:25`、`src/Mmd.Modern.Demo/README.md`、`src/SOURCE_INDEX.json`（4 处 `D:/desktop`）、`tools/corpus_formats.py:8`；
+- `src/SOURCE_INDEX.json` 1.3MB，逐文件 SHA256，DS 实测提交时已有 25 个文件哈希不一致；
+- 写死路径：`installer/MDA.iss:30 DefaultDirName=D:\MDA`、`scripts/setup-dxc.ps1:18` 强制 D 盘、`scripts/dotnet.ps1:35` 固定 dotnet 路径、`build-bullet*.py` 默认编译器路径；
+- 发布脚本：`package-editor.ps1:450` 读取不存在的 `docs/RELEASE_NOTES_V1.md`，`:146-148` 等处用 `.dev-cache` 默认值；`package-source.ps1` 清单含不存在的 `AGENTS.md`、`PRODUCT.md`、`DESIGN.md`；
+- `scripts/finalize.ps1` 依赖 `../MMD932_source/`，公开仓库里永远跑不通。
+- **建议**：死链要么补上文档、要么删掉（至少补一篇 `docs/development/architecture.md`，DS）；`SOURCE_INDEX.json` 移出版本控制，改为发布时生成；安装目录改为 `{localappdata}\Programs\MDA`（当前是 `PrivilegesRequired=lowest`）；`dotnet.ps1` 先 `Get-Command dotnet`；`setup-dxc.ps1` 改为“必须在缓存根目录内”；Python 私有默认值改成必填；发布脚本与 `git ls-files` 对账，RELEASE_NOTES 从 CHANGELOG 生成；`finalize.ps1` 等私有脚本移到 `tools/internal/` 并说明用途，或者直接删除。
+
+#### P0-5 接上已经写好但没用到的 `SharedBoundaryGraph`【确认】
+- **位置**：`SceneAnimationSession.SharedPhysics.cs:231/253`（子步循环没有传 graph），`:284` `PrepareSharedBoundaryGraph`
+- **来源**：Qw 1.4、GLM 13
+- **现状**：每个 120Hz 子步都重建 ControlParents、ValidateOutsideParents、`ToHashSet`、`GroupBy` 等。缓存目前只在 `InteractivePose` 和 `Initialization` 里用。
+- **建议**：`EvaluateShared` 每帧只构造一次 graph，传给所有子步；**PMM 路径可能在一次 Advance 中途 attach/detach，需要按采样帧检测绑定变化**（GLM 复核的限定），非 PMM 路径可以直接复用。顺带给 `SharedCharacterPhysicsSession` 加 `ContainsActor(Guid)`，替换 `ActorIds.Contains` 的数组拷贝加线性查找（Qw）。
+
+#### P0-6 PNG 编码器【确认】
+- **位置**：`ViewOutput/Images/PngEncoder.cs:19-48`
+- **来源**：Qw 3.2、GLM 19、Gm 3.2
+- **现状**：`CompressionLevel.Optimal`；每行 `new byte[]{0}` 加两次 `WriteAsync`；逐位 CRC32；每帧 `Flush(flushToDisk: true)`；只用 filter 0。
+- **建议**：CRC 换成查表或 `System.IO.Hashing.Crc32`（不能用 `Sse42.Crc32`，见第 1 节）；预分配 `1 + width*4` 行缓冲，同步写入 zlib；压缩级别可调（默认 `Fastest`）；序列导出只在 `CompleteAsync` 时 fsync，单张截图保留 fsync；之后再考虑 Sub/Up/Paeth 滤波。
+
+---
+
+### P1：预览帧率，CPU 动画/物理
+
+#### P1-1 物理子步内重复校验 `ValidateRigid`【确认】
+- **位置**：`CharacterPhysicsDefinition.cs:122-138`；调用点分布在 `SharedCharacterPhysicsSession`、`CharacterPhysicsSession`、`CharacterPhysicsPlayback`、`BulletCharacterPhysicsBackend`（`Physics*` 目录共 17 处）
+- **来源**：Qw 1.2、GLM 16、Gm 1.3（3）
+- **建议**：同一子步内同一数组只验证一次（输出侧去掉双层验证或打标记）；Release 下改为轻量正交性检查（三列范数 + 行列式符号），用 `Quaternion.CreateFromRotationMatrix + Translation` 替代通用 `Decompose`；`ValidateSamples` 去掉 LINQ，复用 HashSet。注意：双层验证是注释里写明的有意防御（GLM），降级前要确认兼容测试仍然覆盖这些路径。
+
+#### P1-2 每个变形层都做一次全骨骼 `UpdateAllWorld()`【确认】
+- **位置**：`MmdConstraintEvaluator.cs:188`（层循环内），`UpdateSubtree` 已在 `:296`
+- **来源**：Qw 1.3
+- **建议**：层内只对改动过的骨骼调用 `UpdateSubtree`，保留 `:179` / `:204` 两处边界刷新。需要回归测试确认外亲（outsideParents）的刷新顺序不变。
+
+#### P1-3 CPU 蒙皮：每帧分配 + 并行度偏低【确认】【需测量】
+- **位置**：`CharacterAnimator.cs:292/419`（`new SceneVertex[n]`）、`:20`（阈值 32768）、`:303`（默认 `Math.Min(4, max)`）
+- **来源**：Gk 1、Gm 1.1a、Fb 5、Qw 1.5
+- **现状**：超过约 2.6k 顶点的数组直接进 LOH；顶点数低于 32768 的模型完全串行；`AppContext.GetData` 每帧都查；actor 级并行 `ExperimentalParallelPreviewLeaves` 默认关闭。
+- **建议**（按侵入性从低到高）：
+1. 缓存 `AppContext` 值；用现有开关 `Mmd.Modern.Animation.ParallelSkinning.Degree` 测量更高并行度；考虑把阈值降到约 4096（与 `SkinningBlockSize` 对齐）；
+2. 按角色双缓冲 `SceneVertex[]` 和骨骼矩阵。**前提是理清所有权**：现有约定是“调用方独占返回数组”，`D3D12GpuCache.BufferByIdentity` 按数组引用识别内容（Fb、Gk），物理、描边、导出都会读这份数据；
+3. 稳定并默认开启 actor 级并行（Qw 认为收益比 vertex 级大）。
+- GPU 蒙皮见 P3-2。
+
+#### P1-4 采样期短命数组、IK scratch、无争用锁【确认】
+- **位置**：`CharacterAnimator.cs:172-186`、`MmdConstraintEvaluator.cs:337`（每次 Solve 分配 `previousAngles/planeAngles/saved`）、`CharacterPhysicsSample`（`new object()` 锁 + `Clone` + `HashSet`）
+- **来源**：Qw 1.7、Gk（IK 临时数组）、GLM 36、Fb 5
+- **建议**：evaluator 持有 per-rig scratch；IK 三个数组按最大链长只分配一次；去掉不会被争用的锁和 Clone，改用双缓冲；options 不必每帧 `with` 复制。
+
+#### P1-5 柔体路径的大量分配 + 已有批量接口没用【确认】
+- **位置**：`SoftBodyBulletBackend.cs:139`（逐个 `ColliderPose`，批量版在 `:164`）、`:217` `Flatten` 用 `SelectMany(v => new[]{...})`、`Sample`/`Unflatten`；`PmxSoftBodyPlayback.cs:55` `_ = Targets(skinned)` 结果直接丢弃；`PmxCharacterPhysicsAdapter.Convert` 在纯柔体 actor 上每帧重建
+- **来源**：Qw 1.8、Gk 2、GLM 17/18
+- **建议**：删掉 `_ = Targets(...)`；`Step` 改用批量 collider 接口；Initialize/Reset 时按组件预分配 `float[]`，或者把 `Span` 直接交给 native（`MemoryMarshal.Cast`）；`Convert` 按模型引用用 `ConditionalWeakTable` 缓存；pin 目标只对柔体节点做局部蒙皮。顺带合并两套重复的柔体封送层和 6 个 DllImport（GLM 18）。保留非有限值检查和 native ABI 数组布局（Gk）。
+
+#### P1-6 Bullet 每个刚体/关节单独 P/Invoke【确认】
+- **位置**：`BulletCharacterPhysicsBackend.cs:278-287`，调用循环在 `CharacterPhysicsSession` 和 `SharedCharacterPhysicsSession.StepPrepared`
+- **来源**：Qw 1.6、Gm 1.3
+- **建议**：native 增加 `set_kinematic_targets` / `get_body_poses` / `correct_joints` 批量导出，把每子步跨界次数从 O(刚体+关节) 降到 O(1)；同时迁移到 `[LibraryImport]`，无回调的快速接口加 `[SuppressGCTransition]`。
+
+#### P1-7 Bepu 后端【确认】
+- **位置**：`BepuCharacterPhysicsBackend.cs:176-179`、`BepuPhysicsBackend.cs:44`
+- **来源**：Qw 1.9、GLM 34
+- **建议**：持有 `ThreadDispatcher`，改用多线程 `Timestep(dt, dispatcher)`；阻尼因子在 `AddBody` 时预先算好；材质表改成按 `BodyHandle` 索引的数组。
+
+#### P1-8 每帧重算的运行期不变量【确认】
+- **来源**：Qw 1.10、GLM 14/41、Gk（表情字典）
+- **内容**：
+- `CharacterAnimationController.cs:56-63` 的 `Diagnostics` 每次访问都重跑 LINQ，`SceneAnimationSession.cs:455` 每帧每 actor 都会访问 → 在挂接变化时失效缓存；空诊断复用单例；
+- `PmmProjectPlayback` 的聚合属性（SupportsPhysics/Diagnostics）同样处理；
+- `HasUnchangedOutlineDeformation` 每帧逐顶点比较 → 改为比较骨骼调色板是否逐位相同；
+- `MmdMorphMotionAdapter.Evaluate` 每帧 `new Dictionary ` → 复用 `float[]`，bit 比较也在这块数组上做（Gk）。
+
+#### P1-9 PMM 播放路径专项【确认】
+- **来源**：GLM 12/15、GPT 5
+- **内容**：
+- `PmmProjectPlayback.cs:216/259` `MapBone` 每帧双编码解码 + 全骨骼 LINQ → 每个模型惰性缓存“PMM 序号 → PMX 骨骼索引”；
+- `:249-253` `ParentsAt` 每帧 Concat + OrderBy → 构造时预排序 + 二分，与 `ScenePmmControlState` 收敛成单一实现；
+- PMM 路径仍用 `ProjectSceneAssembler.WithVertices` 全量合成 → 先测合成阶段占比，再考虑复用 `CompositionCache` 分块。
+
+#### P1-10 关键帧顺序播放游标【需测量】
+- **位置**：`CharacterAnimator.EvaluateTrack`
+- **来源**：Gm 1.1a
+- **建议**：记录 `lastKeyIndex` 命中时 O(1) 返回，未命中再二分。Gk 认为轨道二分相对蒙皮开销很小，放在测量之后做。
+
+---
+
+### P1：预览帧率，GPU 资源与同步
+
+#### P1-11 每帧创建/销毁全屏 RT 和中间纹理【确认】
+- **位置**：`D3D12FrameRenderer.cs:369-380`（`$output`/`$depth`）、`D3D12RayGiWorkspace`、SMAA/FSR1/Diffusion/AlphaResolve/SpatialAccumulation/TemporalInput/FSR/XeSS/DLSS 各 pass；DXR `D3D12HardwareRayGi.cs`（6 处 `CreateCommittedResource`）
+- **来源**：Qw 2.1、Gk 3、GLM 5、Gm 2.2
+- **建议**：按（slot, 名称, 宽, 高, 格式）做持久池，参照已有的 `D3D12ShadowTargets` / `cache.GetReplaceable` / `D3D12RayGiDenoiser.reusableOutput`；描述符堆并入槽位复用。DXR：BLAS/scratch 按最大容量缓存并原地 refit，instance desc 走常驻 upload page，BLAS 直接绑定已上传的索引顶点缓冲，不再展开成非索引三角形（Gm）。
+
+#### P1-12 CPU/GPU 重叠和呈现路径【确认】
+- **位置**：`EditorViewportHost.cs:294-296`（record-ahead 只对“硬件光追 GI + 时域超分关闭”开放）、`D3D12SwapchainPresenter.cs`（`$output` → `CopyResource` → backbuffer，`BufferCount=2`、`MaximumFrameLatency=1`）
+- **来源**：Qw 2.3、Gm 1.2
+- **建议**：放宽 record-ahead 的准入条件，保持 `HistoryGeneration` / `CameraCutKey` 语义；直接渲染到 backbuffer RTV；评估 3 缓冲 / latency 2。
+
+#### P1-13 GPU 缓存里的 SHA256 内容哈希【确认】
+- **位置**：`D3D12GpuCache.cs:207`（几何缓存 miss 后对全量顶点做 SHA256）、`:272`（`DynamicBuffer` 在 identity 为 null 时）；`SceneSnapshot.WithCamera/WithLighting`（`:270/:282`）没有同值短路
+- **来源**：Qw 2.6、GLM 6
+- **建议**：`WithCamera`/`WithLighting` 在值相同时返回 `this`（同文件 `WithWorld` 已经这样做）；`cache.Buffer` 增加按 `VertexStorage`/Revision 的恒等快速路径（索引流已经有 `D3D12IndexStreamIdentity`）；动态流的调用方都传 identity。
+
+#### P1-14 阴影 `Fit` 每帧物化整个场景【确认】
+- **位置**：`Core/ModernDirectionalShadowProjection.cs:18-24`（`scene.Vertices[...]` 触发 Lazy 平坦拷贝）
+- **来源**：GLM 1（高）
+- **现状**：App 视口有缓存（`FittedShadowProjection`），ViewOutput 每帧路径没有缓存。
+- **建议**：改为按 `GetVertexChunk` 分块扫描（参照 `OriginalFrustumVisibility.SurfaceMaterialBounds`）；在 Core 层提供按（snapshot 身份, LightDirection, VertexRevision）缓存的重载。
+
+#### P1-15 软件 GI 的 CPU BVH 在动画中每帧构建【需测量】
+- **位置**：`D3D12RayGiRenderer.cs:275-279`（软件路径先求值 `bvh!.Nodes` 再 Upload；`GeometryIdentity` 动画中每帧都变）
+- **来源**：Qw 2.4
+- **现状**：硬件路径已经避开了，软件路径仍然每帧构建。
+- **建议**：nodes/order 改成 `DeferredBufferByIdentity` 工厂形式；中长期做增量 refit，或者引导用户走硬件路径。
+
+#### P1-16 着色器编译缓存【确认】
+- **位置**：`DxcShaderCompiler.cs:125/130`；FXC `Compiler.Compile` 在 `Rendering.D3D12` 中有 63 处
+- **来源**：GLM 4（DXC 磁盘缓存只写不读、GUID 目录无限增长、首帧才惰性构造）、Fb 6（FXC 没有磁盘缓存）
+- **更正**：Fb 说“DXC 已有磁盘缓存”，GLM 复核发现**只写不读**，以 GLM 为准。
+- **建议**：DXC 命中时先查 `CacheDirectory/ /shader.dxil`（校验哈希）并回填内存；写入固定目录或加清理；实例构造和 `--version` 探测移到渲染初始化阶段；FXC 复用同一套磁盘缓存（键包含源码哈希、入口、profile、flags）。先测冷启动里编译占多少时间。
+
+#### P1-17 多显卡设备选择【确认】
+- **位置**：`D3D12GpuRuntime.cs:193`（`EnumAdapters1` 选第一个可用适配器）
+- **来源**：GPT 3（仅此一份）
+- **建议**：用 `EnumAdapterByGpuPreference(HighPerformance)`，并提供可保存的手动选择；预览、导出、能力探测使用同一套规则；界面上显示实际设备名。笔记本混合显卡用户受影响最直接。
+
+---
+
+### P1：时间轴交互
+
+时间轴已经有虚拟化（行窗口、关键帧上限、二分定位），下面是虚拟化之后剩下的热点，每条都是几十行以内的局部修改。
+
+| ID | 问题 | 位置 | 来源 | 建议 |
+|---|---|---|---|---|
+| P1-18 | 每次渲染、每个可见行都扫描整个选择集 | `EditorTimeline.cs:608/634` | Qw 4.1、GLM 20、Gm 4.1 | 选择集变化时预先算好 `Dictionary >` |
+| P1-19 | 范围选择线性扫描 | `EditorAnimationViewModel.TimelineSelection.cs:64` | Qw 4.2 | 用已有的 `LowerBound` |
+| P1-20 | 框选时每次 pointer-move 都全量排序 + TwoWay 回写 | `EditorTimeline.cs:785-807` | Qw 4.3、Gm 4.1 | 拖拽期间只在本地绘制，松手时排序并提交一次 |
+| P1-21 | 轨道重建两趟排序 + 连发 PropertyChanged | `EditorAnimationViewModel.cs:549-560` | Qw 4.4 | k 路有序归并；已有序时跳过 |
+| P1-22 | `FormattedText`/Pen/菱形几何每帧新建 | `EditorTimeline.cs:229/626/680-702` | Qw 4.5、GLM 20、Gm 4.1 | 缓存 label 和 FormattedText（语言/主题变化时失效）；Pen 改成字段；关键帧菱形用**一个**单位几何 + `PushTransform`（Gm） |
+
+---
+
+### P2：导出管线
+
+#### P2-1 导出缓冲池化 → 流水线化（分两步）【确认】
+- **位置**：`ExportCoordinator.cs:93-104`（串行）、`D3D12FrameRenderer.cs:584`（每帧新建 readback）、`FrameBufferLease` 没有传 release 回调
+- **来源**：Qw 3.1、Gm 3.1、GPT 4
+- **建议**：
+- 第一步（GPT）：readback 资源按尺寸复用；像素数组走 `ArrayPool`，通过 `FrameBufferLease` 的释放回调归还（4K 每帧 31.6MiB LOH）；
+- 第二步（Qw / Gm）：测量证明有必要后，再做 2–3 深度的 readback 环 + 有界 `Channel` 编码队列；PNG 序列可以有界并发。需要重新设计取消清理和在手帧数限制。
+
+#### P2-2 FFmpeg 写入【确认】
+- **位置**：`FfmpegFrameSink.cs:53-61`（逐行 `WriteAsync`）、`:173/177`（每通道 `Math.Pow`）
+- **来源**：Qw 3.3、Gm 3.3、GPT 4
+- **建议**：整帧或大块合并写入；不透明输出改为 `bgr24`（少 25% 管道字节），或者在 GPU 末端 pass 合成背景色后整块直写；sRGB 编码用查表；可选探测 NVENC/QSV/AMF 预设（Gm）。
+
+#### P2-3 预览和导出各建一套 device/缓存【确认】
+- **位置**：`EditorExportService.cs:72`、`D3D12ViewRenderer.cs:99`
+- **来源**：Qw 3.4
+- **现状**：导出前预览已经挂起（第 1 节），问题只剩冷启动重建纹理、shader、PSO，以及显存双份。
+- **建议**：共享 runtime 和缓存，用不同 slot/fence 隔离。改动面大，优先级低于 P2-1。
+
+---
+
+### P2：导入、保存 IO
+
+#### P2-4 格式解析器的分配【确认】
+- **来源**：Qw 5.1、GLM 9/10/11/39/40
+- **内容**：
+- `PmxReader.cs:264` 等处每个元素都拼字段名字符串，即使读取成功（VmdReader、PmxWriter 同样）→ 改为传（section, index），抛异常时才拼；
+- `PmxVertex` 是 class，每个顶点带 3 个堆数组 → 骨骼槽位内联，`AdditionalUvs` 为空时共享 `Array.Empty`（这是公开数据形状的变更，跟随小版本发布）；
+- 每个字段单独 `ReadExactly` → 整块读入后用 `BinaryPrimitives` 解析；
+- 二进制 `.x` 每个数字都走“字节→字符串→TryParse”（`XBinaryTokenReader.cs:26-45`）→ 加数值快速路径；
+- `PmmReader.Bytes/String` 三次分配、`VmdEncodedName` 每个名字 `ToHexString` → 改为 span，`Count==0` 时提前返回。
+
+#### P2-5 自动保存的写放大【确认】
+- **位置**：`PortableModelAssets.cs:144/158`、`PmaProjectStore.cs:150/154`（全部 `Optimal`）、`:161-166` 写完后整包重新校验、`EditorRecoveryStore.cs:278/585`（每次检查点都重读、重哈希所有历史包）
+- **来源**：Qw 5.2、GLM 21、Gm 4.2
+- **现状**：全部在后台线程，有指纹去重和单飞，**不卡 UI**；代价是磁盘写入量、发热、耗电。
+- **建议**：
+1. 按扩展名分级压缩：PNG/JPG/WebP 用 `NoCompression`，WAV 用 `Fastest`，manifest/PMX/VMD 用 `Optimal`（Gm），改动最小；
+2. 活动会话内按（路径, length, mtime）缓存已验证的哈希，跨进程启动时仍然全量校验（GLM）；
+3. 未变的 blob 从上一个检查点直接复制 entry；写入时用 tee 流同时计数和算摘要，代替整包重读（Qw / Gm）。属于架构级改动，回报最高。
+- 保存的崩溃安全语义（staging → 内容寻址 → fsync → 校验 → 原子 rename）必须保留。
+
+#### P2-6 写出后为了验证多做一整趟序列化【确认】
+- **位置**：`PmmWriter.cs:243-254`、`PmxWriter.cs:41-50`、`PmaPmmCompatibility.cs:115-116`、`SceneAnimationProjectStore.cs:155-162`
+- **来源**：Qw 5.3、GLM 8
+- **建议**：`PmmReader` 暴露基于 `ReadOnlyMemory` 的 `Parse`，用 `TryGetBuffer` 代替 `ToArray`；比较模型是否相同时直接哈希源文件字节；JSON 改用 `SerializeToUtf8Bytes`，生产格式关闭缩进。GLM 指出最重的链路目前只有测试会走到，真实 UI 路径频率低，所以放在 P2。
+
+#### P2-7 统一原子写【确认】
+- **来源**：Qw 6.4
+- **建议**：19 处手写的“临时文件 → Flush → Move → 清理”抽成统一的 `AtomicFile.WriteAsync(path, bytes, flushToDisk)`，同时统一 `flushToDisk` 和 `overwrite` 语义。
+
+---
+
+### P2：稳定性
+
+#### P2-8 全局异常兜底【确认】
+- **来源**：Fb 7、DS 4.1/7（不同意见见第 1 节）
+- **建议**：注册 `AppDomain.UnhandledException`、`TaskScheduler.UnobservedTaskException`，以及 Avalonia dispatcher 的未处理异常事件，至少写日志并触发一次恢复副本保存；`SceneCommand.Execute`（`EditorSceneInspectorViewModel.cs:410`）这类通用命令加 try/catch，把错误交给界面提示。
+
+#### P2-9 同步等待异步【需逐处确认】
+- **位置**：App 层 11 处 `.GetAwaiter().GetResult()`，集中在 Dispose 和关闭路径（`EditorViewportHost.cs:847-848` 已有不变量注释）
+- **来源**：Fb 8、DS 5.2、Qw 第八节
+- **建议**：逐处确认调用线程和 continuation 落在哪里；能改成 `IAsyncDisposable` 的优先改，改不了的补上不变量注释；引入 VSTHRD 分析器辅助（见 P2-11）。
+
+#### P2-10 插件命令独占 gate 且没有超时【确认】
+- **位置**：`EditorPluginService.cs:110-121`（gate 包住整个命令执行）、`EditorPluginsWindow.cs:150` 传 `default` token
+- **来源**：Qw 6.6
+- **建议**：gate 只包住命令查询，不包住执行；使用可配置超时 + 链接取消源，并在界面上提供取消。
+
+---
+
+### P2：工程基建与可维护性
+
+| ID | 内容 | 来源 | 现状 / 建议 |
+|---|---|---|---|
+| P2-11 | `.editorconfig` + 分析器 + `dotnet format` | Fb 9、DS 4.1 | 都没有。开启 `EnableNETAnalyzers`/`latest-recommended`，加 `Microsoft.VisualStudio.Threading.Analyzers`；`async void` 规则在事件处理器文件上局部降级。`.gitattributes` 要求按字节保留，按目录分批格式化，或者只对新文件生效。顺带拆掉 `D3D12GenshinSurfacePass.cs:21` 那行 1729 字符的嵌套三元表达式（Fb）；12 处空 `catch {}` 补上 Trace（DS） |
+| P2-12 | Central Package Management + Dependabot | Fb 11、DS 4.5 | 没有 `Directory.Packages.props`；测试包版本在 9 个 csproj 里各写一遍 |
+| P2-13 | 拆分 `Mmd.Modern.Tests` | GLM 26、Fb 11、DS 4.3 | 461 个文件平铺、2629 个测试标记、引用 10 个工程。先按文件名前缀建子目录；再把 D3D12/GPU 测试拆成独立项目，方便 CI 矩阵并行。单独开一个 PR |
+| P2-14 | `UseSharedCompilation=false` | Qw 6.7、DS 4.2 | `Directory.Build.props:13`。如果是有意设置，写清原因；否则打开，CI 可以用 `-p:` 覆盖 |
+| P2-15 | 超大 partial 类与职责混杂 | Qw 6.5、DS 5.1 | `EditorWindow` 16 个 partial 文件；`FindControl (""SceneViewport"")!` 出现 35 次，应缓存成字段；`EditorViewportHost.cs` 1113 行；`EditorBoneViewportController.cs` 里藏着 `EditorAnimationViewModel` 的一部分；`PmxReader.cs` 1631 行可以按段拆 partial |
+| P2-16 | 重复实现，且已经出现分叉 | GLM 22/25/31 | 实时和离线渲染器构造器有 36 行逐字重复（`NormalizeCaptureAlpha` 已经分叉）→ 抽 `D3D12ViewBindingCatalog`；两个 verify 脚本的 harness 设施重复 → 抽 `scripts/probe-harness.psm1`；D3D9 会话 27 个同构工厂方法 → 收敛成一个 descriptor 工厂 |
+| P2-17 | 没有生产消费者的库/代码 | GLM 27/37/38/43、Fb 11、DS 5.5 | `Mmd.Modern.Scheduling` 只被自己的测试引用（已确认）；`Effects`（4047 行）；`Rendering.Veldrid` 仍被 App 引用；`WorldGuides` 的 Control 外壳从未实例化；`Mmd.Modern.Demo`。每一项都要决定：接入产品、降级为测试 oracle，还是删除 |
+| P2-18 | 社区文件 | DS 4.6 | 至少补 `CONTRIBUTING.md` 和 `SECURITY.md`（插件同进程运行、无沙箱，这一点尤其需要写明） |
+
+---
+
+### P3：架构级演进（中长期，单独立项）
+
+| ID | 内容 | 来源 | 备注 |
+|---|---|---|---|
+| P3-1 | 物理子步只求值驱动刚体的骨骼链，完整动画和 IK 每个渲染帧只算一次 | Qw 1.1 | 120Hz 物理配 30FPS 渲染时约有 4 倍冗余。是收益最大的单项，但会碰 MMD 物理语义，要有回归用例护航。放在 P1-1～P1-4 之后单独提交 |
+| P3-2 | 视口 GPU 蒙皮 / Compute Morph | Gk、Gm 1.1b、Fb 5 | 柔体 pin、描边、物理回读、软件 GI 仍需要 CPU 侧位置，要单独写出或读回；SDEF/QDEF 顺序与 `SkinRange` 保持一致；与 CPU 蒙皮逐顶点对照验证 |
+| P3-3 | `SceneProjectSession` 移到独立 Simulation Worker | Gm 1.2 | 把 120Hz 解算从 UI 线程隔离出去 |
+| P3-4 | 按 PSO 排序、常量打包、instancing / ExecuteIndirect | Qw 2.5 | 录制成本随材质数 × pass 数 × SSAA 采样数线性增长 |
+| P3-5 | HLSL 移出 C 字符串，用 `define` 表达变体，构建期预编译 | Fb 10 | 与 P1-16 一起规划 |
+| P3-6 | 创作者功能：用内置 FFmpeg 转码 MP3/FLAC/AAC 音轨；插件 API 2（只读快照 + 关键帧事务） | Gm 5.2 | 属于功能演进，不算优化，列在这里供排期参考 |
+
+---
+
+### 低优先级 / 已降级（采纳前自行核实）
+
+- `RayGiScene` TransportCache 在锁内做重活：当前生产代码里没有并发调用方，属于为将来并发做的加固（GLM 28，已降级）
+- 程序化 toon ramp 没有缓存：只影响 Smoke CLI（GLM 29）
+- Core 快速合成路径只对友元程序集开放：Veldrid 是过渡后端（GLM 30）
+- `OriginalFrameScene` 构造时用 LINQ 校验（GLM 32）；`SemanticFrame.Ranked` 255×255 循环（GLM 33，且 Scheduling 没有生产消费者）
+- 三个物理后端临时构造完整 Definition 来校验单个 body（GLM 35）
+- 每次捕获都在 UI 线程重建世界参考线 overlay（GLM 42）
+- 4 个柔体探针脚本各自全量重编 Bullet（GLM 44）
+- HarmonyOS Sans 三个字重约 25MB：子集化要先确认字体许可，而且会影响任意用户内容的显示（Qw 6.7、Fb 11）
+- 非 seekable 流全量落盘、插件 ALC 是否真正卸载、`StopRenderer` 停顿：都要实测（Qw 第八节）
+
+---
+
+## 3. 明确不建议做的事
+
+综合 DS 第 7 节和各报告的“已经做得好”部分：
+
+1. **不要动已经做对的部分**：保存的崩溃安全链路、解析器防护（字节预算、防炸弹）、插件可卸载 ALC、时间轴虚拟化、GPU 顶点按修订增量上传、`PrepareMorphs` 的 bit 级缓存、SDEF/QDEF 求值顺序与柔体 ABI 布局（连着兼容测试）。
+2. **不引入 DI 容器**：`EditorWindow` 手工装配在当前规模下仍可控。可以把装配逻辑抽到 `EditorComposition`，方便测试（DS 5.4）。
+3. **不重写渲染层或物理层**：模块边界是清楚的。
+4. **不在没有基线的情况下做微优化**：P0-1 先行。
+5. **不给 44 处 `async void` 逐个包 try/catch**：用全局兜底加分析器（见第 1 节）。
+6. **不把测试改成大金标为主**：保持现在以行为断言为主的方式。
+
+---
+
+## 4. 建议实施顺序
+
+| 阶段 | 内容 | 风险 | 预期 |
+|---|---|---|---|
+| **1** 确定性修正（可以并行） | P0-2 verify/CI 补漏；P0-3 fence 事件化；P0-5 SharedBoundaryGraph；P0-6 PNG；P0-4 公开化清理；P2-8 全局异常兜底 | 低 | 恢复完整测试覆盖；去掉空等和子步重复构建；外部贡献者能按文档走通 |
+| **2** 建立基线 | P0-1 | 低 | 后续每项都能做前后对比 |
+| **3** 时间轴 | P1-18 ~ P1-22 | 低，每条几十行 | 大范围选择和播放时不再卡顿 |
+| **4** CPU 分配与冗余 | P1-1、P1-2、P1-4、P1-5、P1-8、P1-9、P1-3（第 1、2 步） | 中，需要语义回归 | 单核时间和 GC 抖动下降 |
+| **5** GPU 生命周期 | P1-11、P1-12、P1-13、P1-14、P1-16、P1-17 | 中 | 复杂工程预览帧率的主要提升点 |
+| **6** 原生接口与后端 | P1-6 Bullet 批量 ABI；P1-7 Bepu 多线程；P1-3 第 3 步 | 中 | 多模型、多刚体场景 |
+| **7** 导出与 IO | P2-1、P2-2、P2-4、P2-5、P2-6、P2-7 | 低到中 | 导出吞吐提升；自动保存写放大消除；导入提速 |
+| **8** 工程基建 | P2-9 ~ P2-18 | 低 | 可维护性和反馈速度 |
+| **9** 架构演进 | P3-1 ~ P3-6 | 高 | 单独立项，P3-1 依赖 4 完成并有物理回归用例 |
+
+1 内各项互相独立，可以分别开 PR；3 与 4 也互相独立。4 里的 P1-3 第 2 步（蒙皮缓冲复用）要先理清 `CharacterSample` 数组的下游所有权，再动手。
+
+---
+```
+Co-Authored-By:
+Review: DeepSeek V4.1 Flash 1017
+GLM 5.3
+Qwen 4 Preview
+Grok 4.7
+Gemini 4 Carbon
+GPT 6 Astra
+Claude Fable 5.2
+Aggregate and deduplicate: Claude Opus 5.5
+```",2026-11-15T19:59:40+08:00,评论:0
+B20261115-01,T7F200009,GitHub,https://github.com/royaleric24/tactile-gripper-a/issues/3,"P3-A: V2 offline integration — FSR + 12 electrodes + Dashboard + replay
+## P3-A 目标与分支基线（2026-11-15 已更新）
+离线统一 V2 固件协议、软件 Dashboard、FSR/12 电极、Trial/CSV/REPLAY 与离线 AUTO。**不操作真实硬件。**
+- `main` 文档 PR #1 已合并：`633e570`
+- 硬件 PR #2 已合并到 `feat/hardware-acquisition`：`0827536`
+- 软件 PR #4 已通过总控复核并合并到 `feat/dashboard-zh-v1`：`2c5a996`（软件提交 `dc5c9e0`，GitHub CI 290 测试 PASS）
+- 集成分支 `integrate/hybrid-demo-v2` 已建，当前起点仍为 `633e570`，**尚无集成结果**。
+
+## 工作区
+使用独立 `~/Developer/research/tactile-gripper-v2-integration`（先确认目录不存在/无待保存文件）；不得修改旧三工作区或硬件 7+7 WIP。新目录必要时从 GitHub 集成分支安全 clone。原 `tactile-gripper-v2-docs/hw/sw` 只做必要的只读核验，不直接在软件/硬件工作区执行集成。
+
+## P3-A 必须交付
+1. 先检验 Git 祖先关系和差异，在集成分支导入 `feat/hardware-acquisition` 与 `feat/dashboard-zh-v1` 的成果；可正常合并/cherry-pick/文件级移植，但不能覆盖同名文件，特别是 `AGENTS.md`、`docs/PROGRESS.md`、`docs/ISSUES.md`、`docs/HANDOFF_CURRENT.md`，必须内容合并。
+2. 以硬件 `tools/fsr2/protocol_v2.py`、固件生成的 fixtures 为规范对照，统一软件 `HELLO/SAMPLE/STATUS`、profile、通道编号/长度、采样时序、单位、valid/null/NO_DATA、设备身份与串口配置（固件当前 921600，仍未实测）。检查 top-level 与 channel_config 内层 profile 不一致、QUERY wire 格式、超时、HELLO 时机。
+3. 在离线 Dashboard 跑通 `FSR_ONLY` 2 通道、`MATRIX_ELECTRODES_12` 12 通道、含两 FSR 的 14 通道变体；12 路仅显示 R1–R6/C1–C6 原始数据，真实 ADC/AIN 映射仍 `PENDING_REAL_WIRING`，不可凭空填值。
+4. **现行的 `HYBRID_6X6_FSR2` 38 通道已经撤回**。P2-S 仍保留了该历史仿真配置和 6×6 热图供演示，P3-A 应从当前 Live/采集模式排除，必要时仅以明确 HISTORICAL 标签用于历史回放；不得宣称当前 V2 有 36 压力点。
+5. 改善 Dashboard “传感器数据正常”状态：通信健康与数据有效率分别展示，不能出现 1 路无效仍笼统称数据全部正常。检查两路 FSR、接触评分、基线、Trial/CSV/REPLAY、离线 AUTO 决策及故障/失联回退。
+6. 使用硬件生成的模拟协议帧驱动软件真实处理链路，测试 2/12/14、缺映射、ADC4 故障、坏帧、重启、过时帧、协议冲突、历史 profile 拒绝；截图为真实启动的软件，不是图像生成。保持 `AUTO_REAL_ENABLED=False`。
+7. 必须跑真实命令并保存证据；更新 `AGENTS.md`、`docs/PROGRESS.md`、`docs/ISSUES.md`、`docs/HANDOFF_CURRENT.md` 和受影响文档，`git diff --check`、敏感扫描、commit/push、建立 **集成 PR → main**。不得自行合并，等待总控复核。
+
+## 证据边界
+`OFFLINE_VERIFIED` 不等于 `VERIFIED_REAL`。禁止未经用户明确通知和授权打开真实串口、烧录、采样、供电、舵机 PWM、真实 AUTO。真实 R/C→ADC/AIN 映射、FSR 极性/阈值与滑移代理可靠性留待 P3-B。",2026-11-15T20:09:49+08:00,评论:0
+B20261115-01,T7F200010,GitHub,https://github.com/superdaobo/mini-hbut/issues/1310,"[电费] 用电趋势「月」从 2024 开始、右端不是当前月，本月归属错误
+## TL;DR
+
+电费「用电趋势 · 月」视图的月份从 **2024.08** 开始且首项重复，最右端是 2024.12 并被标成「本月」；实际当月（2026.11）的数据没有出现在图表里。
+
+## 决策点
+
+- [x] **「本月」口径**：按设备本地时区的**当前自然月**（2026.11）；当前月无数据时显示「本月暂无数据」，而不是回退到历史月。（默认按用户预期取值；如需改为“最近一个有数据的月”，请在评论中说明）
+
+## 问题描述
+
+用户查看电费「用电趋势」的月视图时，X 轴依次是 `2024.08 / 2024.08 / 2024.09 / 2024.10 / 2024.11 / 2024.12`，「本月 78.9 度」落在 2024.12。但当天日视图是当前数据（今日 2.6 度、日序列 11-09～11-14），说明账户当前在用，用户预期最右端应当是「这一个月」。同一图表里首个月份出现两次。
+
+## 当前行为
+
+实测（2026-11-15，main `7496e0bf`）：
+
+- 命令 `electricity_usage_stats`（不传房间，使用绑定房 `101-7--254-101`）返回：
+- `month_points` 标签：`2024.08, 2024.08, 2024.09, 2024.10, 2024.11, 2024.12`
+- 数值：`3.2, 0, 126.9, 69, 66.9, 78.9`
+- 服务端原始 `modlist[0].monthuselist` 与上面一致（首项重复、整体为 2024 年）；同一模块的 `weekuselist[].formatweek` 为 `{year:126, month:10}`（= 2026-11），`todayuse=2.6`，即日数据是当前的。
+- 专用月度接口（`h5_getmonthuselist` / `getmonthuselist` / `querymonthuse` 等）实测返回 0 条。
+- 页面把图表最后一条当作「本月」展示，因此显示 2024.12。
+
+## 期望行为
+
+- 月视图按真实年月**升序**展示，最右端是**当前自然月**（2026.11），加载/切到月视图后默认滚到最右。
+- 「本月」只取当前自然月；当前月没有数据时显示「本月暂无数据」，不得把历史月标成本月。
+- 同一月份不重复出现。
+- 当服务端月份标签本身可用（连续、含当前月）时，保持服务端标签，不做改写。
+
+---
+
+## 影响范围
+
+| 文件 | 行号 | 当前状态 |
+|------|------|---------|
+| `apps/client/src-tauri/src/modules/one_code.rs` | 1653-1677 | `map_month_points` 直接透传服务端 `yearmonth` 作为 `label`，无去重、无合法性校验、无当前月对齐 |
+| `apps/client/src-tauri/src/modules/one_code.rs` | 1549-1580 | `collect_usage_from_body` 仅按 `monthuselist` 长度挑模块，不校验标签 |
+| `apps/client/src/components/ElectricityView.vue` | 531-547 | `mapPoints` 按标签字符串升序排序（2024 在前），保留重复项 |
+| `apps/client/src/components/ElectricityView.vue` | 572-581 | `selectedPoint` 默认取 `pts[pts.length - 1]` 作为「本月」，不判断是否为当前月 |
+| `apps/client/src/components/ElectricityView.vue` | 556-564 | 已有“加载后滚到最右”逻辑（`scrollLeft = scrollWidth`），但终点取决于标签，因此终点不是当前月 |
+
+## 触发/复现方式
+
+1. 打开 App 的「电费查询」页（`#/ /electricity`）。
+2. 在「用电趋势」卡片右上角切到「月」。
+3. 观察柱子标签从 2024.08 开始、首项重复，最右为 2024.12；「本月」显示 78.9 度（2024.12）。
+4. 对照「日」视图：标签 11-09～11-14、今日用量为当前值，说明账户数据是实时的。
+
+## 验收标准
+
+- [ ] 月视图标签严格升序，无重复月份；最右端 = 当前自然月（本机为 2026.11）。
+- [ ] 「本月」数值 = 当前自然月柱子数值；当前月无数据时显示「本月暂无数据」。
+- [ ] 进入页面/切到月视图后图表默认滚动到最右端。
+- [ ] 若服务端返回连续且含当前月的标签，则原样使用（有单测覆盖）。
+- [ ] 覆盖三种输入的单测：乱序、含重复、无当前月。
+- [ ] `npm run typecheck`、前端单测、`cargo test --lib` 通过。
+
+## 关联
+
+- 相关：本问题由 2026-11-15 用户反馈引入跟踪；无既有重复 issue。",2026-11-15T19:16:33+08:00,评论:0
+B20261115-01,T7F200011,GitHub,https://github.com/wangzan101/Mika/issues/641,"关于你好米卡语音唤醒（#324）的讨论
+0.1.43 加了你好米卡语音唤醒（#324）。
+
+一般手机自带的语音助手（小爱这类）不是这么干的。这些是跑在 DSP/ADSP 这类低功耗音频通路上，主 CPU 可以休眠，检测到关键词才唤醒主 CPU；麦克风和唤醒生命周期由系统管，常态性能开销极低。
+
+这个提交是用应用层模拟系统层功能，开启后常驻服务永久占用麦克风。没有 DSP 通路，没有系统助理权限，未妥善处理与其他应用录音的竞争。
+Android 官方给热词的入口是 `HotwordDetectionService`，但它是 ` `，要 `BIND_HOTWORD_DETECTION_SERVICE`，要默认助理角色，还要跑在 isolated process 里，普通免 root App 拿不到。`MediaRecorder.AudioSource.HOTWORD` 也一样，是系统 API，只给 bundled apps。
+
+所以免 root 的 Mika 没法完全模仿小爱、小艺这种做系统级热词，能做出来的只有现在这种应用层常驻录音。性能可能很差、会与其他应用产生冲突、且实现方法有些粗暴。
+
+## 不成熟的点
+
+因为我也没有彻底验证过耗电等问题，不能完全说这个方案完全不行。但是太不成熟了，公开文档暴露的问题及本人实测情况如下：
+
+- 项目文档自己写的：调优后单核约 20%；没有经过耗电测试，性能测试不成熟，长期运行前台监听麦克风服务和端侧模型，需要评估耗电等性能影响。
+- 增大安装包，小众需求增加所有人的负担，不能按需下载模型。
+- 开启功能后麦克风 24/7 占用。别的 App 录音都没有处理，本人亲测会与其他需要麦克风权限的应用冲突。
+- 后台启动任务受 Android 12+ 限制，虽然有回退机制在通知中点run，但是既然都已经手动点击了为什么不点一下胶囊呢？
+- 从最近任务里划掉 Mika时，通知存在但下方胶囊消失，此时无法语音唤醒Mika。
+- 屏幕下方常驻一个胶囊，遮挡视野。
+- 说完需求立刻执行任务，没有方便的回退和取消机制。想要停止需要下拉通知后点击，或者点击胶囊。启动自动化，取消却需要额外手动操作，交互设计不完整。
+- UI不一致，按照项目以往做法，在UI中应该设置为一个开关，而非点击卡片直接开关。
+
+## 评价
+
+各种问题太多，原方案只是为了实现最终表面上的效果，实现方案特别暴力。大量的设计只为了实现一个使用价值有限、不成熟、影响其他应用日常体验的功能，性价比不高。此外DSP 和 CPU 的功耗差是数量级的，不是调参和优化能抹平的，后台启动限制和助理权限也不是代码能解决的。
+
+## 建议
+
+回退代码。如果认为这个功能不可或缺，建议修复已发现的大量问题，补全耗电测试，作为实验性功能开放，并说明限制。
+如果要改建议先从耗电检测开始，如果耗电量无法接受就停。
+
+## 其他建议
+
+建议增大PR审查力度，不建议merge半成品PR。",2026-11-15T19:11:17+08:00,评论:0
+B20261115-01,T7F200046,SegmentFault,https://segmentfault.com/q/1010000048315623,"网页护眼倒计时，切到其他界面后不弹提醒，如何修复？
+我是一个完全不懂代码的新手，正在用低代码工具（秒搭）做一款叫「眨眼森林」的网页护眼产品。功能很简单：用户选工作时间（比如25分钟）→ 开始倒计时 → 切到自己的文档/网页工作 → 时间到了弹出提醒休息。 但现在遇到了一个卡了很久的问题，低代码工具怎么改都解决不了，来向各位大佬求助。 问题描述： 打开链接，点“开始工作”（比如设1分钟测试） 立刻切到 Word、浏览器其他标签页等任何别的界面 1分钟到了，右下角没有任何系统通知弹出,只能听到微弱的“叮”的一声。 只有当我手动切回「眨眼森林」页面时，才看到弹窗让我选择是“开始休息”、“五分钟以后”、还是“暂不提示”。 如果用户没切回来，很可能就错过了。 网页版体验： 期望效果：时间到了，哪怕用户在看 Word，也能通过系统通知 / 弹窗 的方式被提醒“该休息了”。如果选择“开始休息”，就进入休息界面；选择“五分钟以后”，在五分钟以后提醒；选择“暂不提示”，引导用户进入深度工作模式，用户可以选择深度工作的时间段。在这段时间，不会再有弹窗打扰。直到深度工作结束，在提示可以休息。 代码小白一个，一直在和元宝对话，让它给我写指令发给秒搭迭代。但弹窗这个功能，怎么也改不好。我的初衷是网页版让用户体验“科学护眼”带来的身心放松。缓解现代人长时间面对电脑产生的视疲劳问题。",2026-09-24T09:33:10+08:00,无
+B20261115-01,T7F200047,SegmentFault,https://segmentfault.com/q/1010000048317158,"本地跑大模型做 Agent，内存占用为什么会比模型文件大十倍？
+先说清楚身份，免得被当成来打广告的：我是一个 MIT 协议开源数据库工具的维护者之一，下面的数字都是我们自己连续跑了 11 天测出来的，不是抄文档。 为了搞清楚小参数开源模型到底能不能驱动 Agent，我们把 39 个开源权重模型全部走 Ollama 跑在本地，6 类任务，一共 8,199 次运行。 中间有一批数据被污染了，回头复查才发现原因：不限制上下文长度的时候，一个 7.1 GB 的模型会按它完整的 262,144 token 窗口去要内存，在一台 64 GB 的机器上实际占到 51 GB。差了十倍多。 最难受的不是占得多，是日志里看不出来。你只会看到一次没跑完的运行，和“模型超时”长得一模一样，没有 OOM，没有明确报错。我们早期有一批评测结果就是这么废掉的。 我们已经做的：把 num_ctx 固定到 32,768 之后，同一个模型掉到 5.1 GB，而且有一个 3B 模型的某类任务直接从 0/5 变成 5/5。也就是说，我们之前以为“这个模型不行”，其实是内存被上下文吃光了。现在跑之前会先粗算一遍内存，但算得很粗。 想请教三点： 你们在本地跑模型的时候，怎么给上下文长度定上限？按显存比例算，还是固定值，还是按任务类型分档？有没有一个能用的经验公式？ 有没有办法在运行前就判断“这个配置会不会爆内存”，而不是跑挂了再回头查？ 这类“看起来像超时、其实是内存”的问题，你们一般怎么在日志里区分？我们现在是额外记一条内存采样，但总觉得有更省事的做法。 完整数据、评分脚本和论文都公开了：arxiv.org/abs/2609.21341",2026-09-24T18:20:33+08:00,无
+B20261115-01,T7F200048,SegmentFault,https://segmentfault.com/q/1010000048328996,"有没有使用FrankenPHP，提供图形化的面板，换一个赛道？
+有没有使用FrankenPHP，提供图形化的面板，换一个赛道? 这个优势明显啊",2026-10-01T20:59:05+08:00,无
+B20261115-01,T7F200049,SegmentFault,https://segmentfault.com/q/1010000048330118,"CDP Input.dispatchMouseEvent 偶发延迟数十秒，是渲染进程输入队列阻塞吗？
+用 Node 直连 Chrome 的 DevTools Protocol（WebSocket 直连，不走 Puppeteer / Playwright），对一个已经渲染完的页面做鼠标拖拽：按顺序发 Input.dispatchMouseEvent 的 mouseMoved → mousePressed → 一连串 mouseMoved (30~45 步) → mouseReleased 。 多数情况下整串拖拽 200~400ms 就走完，但 偶发一次会卡到 60~80 秒 。卡的方式很特别：CDP 命令本身都有正常回包（没有 timeout），只是相邻两个事件之间被拉长了约 1~3 秒，累积成一分多钟。同一台机器、同一个页面、同一段代码，紧接着重试第二次就恢复正常。 想确认这段延迟究竟发生在哪一层。我目前的理解是： Input.dispatchMouseEvent 属于 Input domain，事件要经 browser 进程转给 renderer 的合成输入通道。如果 renderer 主线程正忙（长任务、样式重算、大量布局），输入事件会在队列里等派发，而 CDP 的响应可能只表示「事件已入队」，不代表已经被页面消费 —— 也就是说命令 ack 与事件实际派发是两件事。 不清楚的是：这个等待队列的临界点在哪，以及在发送前有没有可观测的信号能提前判断 renderer 是否空闲。 // 拖拽的骨架，steps 约 34~46
+const mouse = (type, x, y) =>
+cdp.send('Input.dispatchMouseEvent', { type, x: Math.round(x), y: Math.round(y), button: 'left', clickCount: 1 });
+
+for (let i = 1; i <= steps; i += 1) {
+const t = i / steps;
+const eased = 1 - (1 - t) ** 2.6;
+await mouse('mouseMoved', box.x + distance * eased, box.y);
+await sleep(14 + Math.random() * 16);
+} 做过哪些尝试 把每个 mouseMoved 之间的 sleep 从 14~30ms 缩短到 8ms、步数从 40 步压到 20 步 —— 偶发延迟一点没变，所以不是「事件条数多」或「间隔太长」导致的。 给 Input.dispatchMouseEvent 显式传 timestamp （ Date.now() / 1000 递增），让 Chrome 按合成时间轴派发 —— 无改善。 拖拽前先 Runtime.evaluate('1') 探一次，确认 renderer 能立刻响应 —— 探测很快返回，紧接着的拖拽照样卡。 用 Performance.getMetrics 前后取差值，卡顿期间 TaskDuration 确实在涨，但看不出是页面里哪段脚本占住的。 排除了网络因素：整个过程页面没有再发请求，也没有在导航。 期望的结果 能确定这段延迟是 renderer 主线程被长任务占住导致的输入排队，还是 CDP 连接 / browser 进程调度层的问题； 如果是前者，想在发拖拽之前做一次「主线程是否空闲」的前置判断。想到的方向有 PerformanceObserver 的 longtask 、 requestIdleCallback 的超时回调、以及 scheduler.postTask 的优先级队列，但不确定哪一个的信号在跨进程输入派发这件事上真的有效； 换个角度也可以：如果 CDP 这边能拿到「事件已被页面消费」的确认（而不是仅仅入队），那我就能用确认来做节流，而不是靠猜。 实际得到的结果 只能观察到「偶发 + 重试即好」，找不到可稳定复现的触发条件。用 Runtime.evaluate 读 document.readyState 、读主线程时间都是正常的，没有任何报错。",2026-10-03T00:14:29+08:00,无
+B20261115-01,T7F200050,SegmentFault,https://segmentfault.com/q/1010000048330130,"Node.js 内置 fetch 无法走 SOCKS5 代理，只能换掉整个 HTTP 栈吗？
+项目里要访问一个只能通过 SOCKS5 出去的接口，Node 端用的是 18+ 自带的全局 fetch（undici 实现）。卡在代理上：undici 提供的是 ProxyAgent，只认 HTTP/HTTPS 代理，没有 SOCKS5 支持。试了几种把全局出口改成 SOCKS5 的写法，都没能让内置 fetch 走代理：
+
+// 1) 直接把 ProxyAgent 指到 socks5
+import { setGlobalDispatcher, ProxyAgent } from 'undici';
+setGlobalDispatcher(new ProxyAgent('socks5://127.0.0.1:1080'));
+// → 协议不被识别
+
+// 2) 环境变量
+// HTTPS_PROXY=socks5://127.0.0.1:1080
+
+// 3) 老的 agent 方案
+import { SocksProxyAgent } from 'socks-proxy-agent';
+const agent = new SocksProxyAgent('socks5://127.0.0.1:1080');
+// 这个 agent 只认 https.request，fetch 用的是全局 dispatcher，两者不是一套
+
+global-agent 的 bootstrap() 也一样：它改的是 http / https 模块的 agent，覆盖不到 undici。
+
+想确认的是：有没有办法让内置 fetch 走 SOCKS5，而不用把业务代码整体换成 axios + agent，或者退回 node-fetch？
+
+如果结论是「必须自己实现一个 Dispatcher」，那想了解需要覆盖哪些方法（dispatch、connect？），以及有没有现成的社区实现可以复用，而不是自己糊一个。
+
+做过的尝试
+
+setGlobalDispatcher(new ProxyAgent('socks5://127.0.0.1:1080')) —— undici 直接拒绝这个协议，ProxyAgent 只实现了 HTTP CONNECT 隧道，不解析 socks5。
+
+HTTPS_PROXY / HTTP_PROXY 环境变量设成 socks5://… —— undici 会读环境变量生成 dispatcher，但同样只认 http/https 协议。
+
+global-agent 的 bootstrap() —— 它替换的是 http.globalAgent / https.globalAgent，而 fetch 走的是 undici 的全局 dispatcher，两者完全不是一条路。
+
+socks-proxy-agent 创建 agent 后传给 https.request —— 这条是通的，但换到 fetch 上没有任何入口可以注入 agent（fetch 的第二个参数只认 dispatcher，不认 agent）。
+
+试过 undici.Agent 的 connect 选项自定义 socket，但对「先建立隧道再发请求」这一步没有现成的钩子。
+
+期望获得的结果
+
+一个业务代码不用改的方案：仍然 await fetch(url)，只是底层出口换成 SOCKS5；
+
+如果确实做不到，希望明确「必须自己写 Dispatcher」这个结论，并指明实现它需要覆盖哪些接口、有没有已经维护得不错的第三方实现可以直接用。
+
+实际得到的结果
+
+现在只能把用到这个接口的那部分代码改成 axios + socks-proxy-agent，同一个项目里出现两套 HTTP 栈，错误处理和超时语义都要重写一遍。想先确认这是不是唯一的路。",2026-10-03T00:21:36+08:00,无
+B20261115-01,T7F200051,SegmentFault,https://segmentfault.com/q/1010000048330682,"想做一个自研项目，不知道合不合理？
+标题:大三，想做个C++高性能LLM网关当求职项目，思路推演了一轮，求各位指点下有没有走偏 背景:大三在读，之前做过两个个人项目(epoll+Reactor的RPC框架、类Redis内存KV存 储)，有一段支付后端实习(MySQL/FastAPI)。秋招想投C++后端/基础架构方向，打算把两 个旧项目合并升级成一个有真实场景的项目。 推演过程(这个是和AI讨论的结果)1.最初想做""多智能体消息总线”，研究了一圈发现站不住:Claude Code、Codex、OpenClaw的agent通信都停在应用层，因为真实瓶颈是LLM推理延迟，不是消息传输一-高性能总线是伪需求; Python字典就够了; 2.又想退回到”LLM结果缓存""，发现更站不住:缓存查找相对LLM调用是零头，GPTCache一个 3.最后落在""LLM网关”:网关自己不跑模型，全部工作就是hold万级SSE流式长连接+转发纯I0密集，epoll对口;缓存降级为网关的一个功能(省token是真实需求);主流开源方案one-api是Go、LiteLLM是Python且高并发下有性能争议，有真实的对标对象。 计划的功能边界:SSE流式转发、多上游路由、结果缓存、限流;压测方案是和LiteLLMproxy跑 同样的流式并发，比P99延迟、内存占用、长连接上限。 项目：高性能C++RPC框架(个人项目) 2025.03-2025.06 C++/RPC/epoll/Reactor/线程池/自定义二进制协议 基于Linux epol+Reactor实现非阻塞网络通信层，采用ET模式处理并发连接，完成连接生命周期管理与事件分发。设计RPC请求响应处理链路和自定义二进制协议，协议包含魔数、版本、消息类型、数据长度和消息体，实现消息编解码与请求分 发。 实现固定大小线程池和生产者-消费者任务队列，使用 std:mutex+ std:condition_variable保证并井发安全;使用 shared_ptrlunique_pt 管理连接与任务对象。 类Redis 内存键值存储系统(C++) C++/哈希表/RESP/对象模型/内存管理 2025.09-2025.12 ·内存索引:手写链地址法哈希表，支持冲突处理与动态扩容;设计统一对象模型管理字符串、列表等数据类型的生命周期。 协议解析:实现RESP协议解析与封装，支持字符串、数组和整数等标准格式，可与兼容客户端进行命令交互。 想请教各位: 1.这个选型逻辑有没有明显的漏洞? 2.对本科生来说，难度是否过大? 3.功能边界有没有该砍或该加的?",2026-10-03T17:29:20+08:00,无
+B20261115-01,T7F200052,SegmentFault,https://segmentfault.com/q/1010000048337048,"开发 Agent 时，RAG 检索到底应该设计成 Tool 还是 Node？
+开发 Agent 时，RAG 检索到底应该设计成 Tool 还是 Node？ 最近在做一个企业级 RAG Agent，技术栈主要是 Python + LangGraph，Agent 需要完成知识库检索、问题分析、多轮推理、工具调用以及最终回答。 目前在设计 Agent Workflow 时遇到了一个比较纠结的问题： RAG 检索到底应该作为 Agent 的 Tool，还是作为 Workflow 中独立的 Node？",2026-10-08T15:13:42+08:00,无
+B20261115-01,T7F200053,SegmentFault,https://segmentfault.com/q/1010000048342352,"chat2DB有没有绿色免安装版的？
+chat2DB有没有绿色免安装版的？求大佬支持 目前Windows只有msi的，不想用docker的，想达到多开任务互不影响的效果",2026-10-10T14:13:55+08:00,无
+B20261115-01,T7F200054,SegmentFault,https://segmentfault.com/q/1010000048353146,"Python 爬取 Google 搜索结果时频繁遇到验证码，有什么可靠的解决方案？
+Python 爬取 Google 搜索结果时频繁遇到验证码，有什么可靠的解决方案？ 最近在研究使用 Python 获取 Google 搜索结果，用于关键词研究和 SEO 数据分析。 尝试直接请求 Google 搜索页面时，发现有时无法获取正常的搜索结果，而是跳转到验证码页面。即使更换请求方式，也不一定能稳定获取数据。 想请教有实际开发经验的朋友： 这种情况主要与请求频率、IP 信誉、请求特征还是其他因素有关？ 使用 Playwright 等浏览器自动化工具，能否改善结果获取的稳定性？ 如果需要批量获取关键词对应的搜索结果，官方 API、第三方 SERP API 和自行采集这几种方案，哪一种更适合长期使用？ 对于自行采集的方案，应该如何设计异常检测、重试和失败回退机制？ 希望了解各方案在稳定性、成本和维护工作量方面的实际差异，欢迎分享经验。",2026-10-15T09:06:11+08:00,无
+B20261115-01,T7F200055,SegmentFault,https://segmentfault.com/q/1010000048356501,"*哪位编程的小伙伴能提供一下突围的方法？
+最近在忙app项目，需要一些国外资源，需要工具（途径）突出重围去access那些资源， 用了2年的忽然跑掉了。 就是搭那个啥突破围城，你懂的。 谁能给推荐一下？ 如果推荐的好用，有红包哦！ 用了2年现在忽然无法使用了。期待您的线索",2026-10-16T21:04:29+08:00,无
+B20261115-01,T7F200056,博客园,https://www.cnblogs.com/12lisu/p/23671038,"卸载cc-switch，强烈推荐Magpie - 苏三说技术
+前言 大家好，我是苏三。 这两天有个小伙伴在群里问了一个很具体的问题：“我 Claude Code 里想用 Kimi 的模型，Codex 里想调我 ChatGPT 订阅的额度，有没有办法不来回改配置文件？” 底下有人回了一句：“你装个 Magpie 试试。” 他接着问：“那跟 CC Switch 有",2026-11-15T11:23:00+08:00,无
+B20261115-01,T7F200057,博客园,https://www.cnblogs.com/MrHuo/p/23671261/agent-from-scratch-06,"手搓 AI Agent 06：记忆的两种形态——短期压缩防溢出，长期存储跨会话 - 开发者精选资讯
+系列大纲 · 手搓 AI Agent（Node.js / TypeScript） 本系列从零手搓一个通用工具型 Agent：能对话、能调用工具、能规划任务、能多 Agent 协作，并最终接入 MCP 生态。技术栈锁定 Node.js 22 + TypeScript，模型接入层用一套 OpenAI 兼",2026-11-15T12:28:00+08:00,无
+B20261115-01,T7F200058,博客园,https://www.cnblogs.com/Robert-Terrisa/p/23671243,"从Markdown到Typst：大一新生vibe coding转译器实录 - Robert_Terisa
+从Markdown到Typst：大一新生vibe coding转译器实录 声明:本文出现的所有博客内容均来自互联网公开内容仅作工具效果验证，不作商业用途，不代表作者观点。如原作者认为不妥请联系我，我将立刻替换测试用例。 0.我为什么会想要做这个项目 大一开学，我开始迷上了看博客，觉得博客里面的知识很",2026-11-15T12:23:00+08:00,无
+B20261115-01,T7F200059,博客园,https://www.cnblogs.com/learnhow/p/23666794,"从 v0 起步：为什么要规划工具以及若干真实问题 - 冷豪
+在第二篇里，我们理清了文档为什么要抛弃横向分层，改为按“项目、模块、功能”三层纵向组织。很多人看到这里的第一反应是：结构设计得很清晰，那我们马上叫团队按照这个新模板来写文档吧。 可以让人来写吗？可以。但完全没有必要。 如果还是让人来手动维护这套结构，这套体系就失去了最大的意义。传统文档之所以长期滞后",2026-11-14T20:09:00+08:00,无
+B20261115-01,T7F200060,博客园,https://www.cnblogs.com/rossiXYZ/p/23594288,"【轻量化复刻大模型 / KIMI K3】MoonEP 源码深度解读 - 罗西的思考
+【轻量化复刻大模型 / KIMI K3】MoonEP 源码深度解读 目录【轻量化复刻大模型 / KIMI K3】MoonEP 源码深度解读0x00 概要0.1 主要内容0.2 注意说明0x01 演进脉络与定位1.1 前身：标准 EP 的三重痛点1.2 同期竞品1.3 定位一句话1.4 MoonEP",2026-11-15T15:09:00+08:00,无
+B20261115-01,T7F200061,博客园,https://www.cnblogs.com/shanyou/p/23666799,"13 家 LLM 提供商，一台本地服务器全仿真：.NET 测试的新解法 - 张善友
+今天在 GitHub 上闲逛，刷到一个挺有意思的仓库：managedcode/LlmTestServer。 Star 只有 2 个，一个还是我star的，但我把代码翻完之后觉得，这可能是今年 .NET 圈最被低估的一个工具。它做的事情一句话就能说清：在本地跑一个假的 LLM 服务商，OpenAI、A",2026-11-14T20:07:00+08:00,无
+B20261115-01,T7F200012,掘金,https://juejin.cn/post/6844903602817859598,"老司机的神兵利器-效率工具
+快速启动应用，Windows版的神器Alfred。 快速启动应用+文件搜索+各种实用插件（计算器、翻译、网页快速访问等）。 我的最爱，没有它我几乎半残。 一开始从用altrun 然后试过Listary ，发现WOX 后，最为顺手，效率提升100%。 秒找电脑里的各种文件。与WO…",2018-05-07T15:40:22+08:00,浏览:51003;点赞:1220;评论:43
+B20261115-01,T7F200013,掘金,https://juejin.cn/post/6844903606680813575,"基于Python和Tensorflow的电影推荐算法
+第一步：收集和清洗数据数据链接：",2018-05-16T17:49:17+08:00,浏览:15819;点赞:119;评论:0
+B20261115-01,T7F200014,掘金,https://juejin.cn/post/6844903620878532622,"Vue开发的电影预告webApp介绍
+即将迎来的端午小假期，小伙伴们都准备好怎么度过了么 。我每次出去玩都避免不了去看场电影，这次借此机会向大家介绍下我开发的可以查看电影预告片的小项目，希望大家可以去测试，浏览一波即将上映的电影同时可以帮助我测试一下，指出不足，我都会虚心接受的呦！谢谢大家。 前端是通过vue-c…",2018-06-15T00:15:03+08:00,浏览:9319;点赞:401;评论:41
+B20261115-01,T7F200015,掘金,https://juejin.cn/post/6844903680911605773,"拯救剧荒, 七部职场进阶的电影了解一下
+关于电影院，你能想到的通常是爆米花，超大杯饮料和好看的故事。在电影院的两个小时，你可以完全忘记工作，让自己沉浸在另一个世界中，在欢笑与泪水的陪伴中度过。 如果你留心的话，在有很多电影中有一些有用的职场经验可以学习。这类电影传达了许多有意义的和鼓舞人心的观点，你可以直接或间接的应…",2018-09-18T09:59:33+08:00,浏览:967;点赞:1;评论:0
+B20261115-01,T7F200016,掘金,https://juejin.cn/post/6844903743360598023,"产品经理思路打造的爆款电影：《网络谜踪》
+上面这句话来自提莫·贝克曼比托夫，是今年大热电影《网络谜踪（Searching）》的制片人，而这部电影目前本片正在国内上映，上映的三天里已经收获了不错的成绩。 故事讲述了：一个身为硅谷软件工程师的单身父亲，通过网络工具，寻找自己失踪的 16 岁女儿的悬疑故事。 这部电影在今年大…",2018-12-19T16:15:45+08:00,浏览:1370;点赞:6;评论:0
+B20261115-01,T7F200017,掘金,https://juejin.cn/post/6844903893504114701,"使用Flutter开发一款电影APP
+一般的，在Flutter中管理路由有两种方式，一种是直接使用Navigator.of(context).push()，这种方式比较适合非常简单的应用，随着应用的不断发展，逻辑越来越多，推荐使用具名路由来管理应用，本文也是使用的这种方式。直接将路由挂在MaterialApp的on…",2019-07-20T00:06:52+08:00,浏览:16306;点赞:128;评论:37
+B20261115-01,T7F200018,掘金,https://juejin.cn/post/6844904168398782478,"2020 最全百度网盘搜索，找电影资源不再愁
+经常有小伙伴在公众号后台问我要电影资源，下面就分享下我是如何找电影资源的，有了这些途径找影视资源不再愁。 换成 喜剧之王 提取码第一个结果就是了。 不过第一个链接的百度网盘文件有点大， 如果想下载到本地参考我之前的文章 2020 年 3 月最新加速下载百度网盘文件方法 和 20…",2020-05-25T21:22:59+08:00,浏览:36681;点赞:9;评论:2
+B20261115-01,T7F200019,掘金,https://juejin.cn/post/7028935131679178760,"南瓜电影 7 天内全面 Serverless 化实践
+本文将讲述南瓜电影对 SAE 的选择路程，以及 SAE 为南瓜电影带来的运维效率、成本、扩容效率中最直观的变化。",2021-11-10T21:38:28+08:00,浏览:7874;点赞:5;评论:0
+B20261115-01,T7F200020,掘金,https://juejin.cn/post/7169033859894345765,"【杰哥带你玩转Android自动化】AccessibilityService基础
+Hi，我是杰哥，本节过了一下 AccessibilityService无障碍服务 的基础姿势，并写了一个超简单的微信自动登录案例演示脚本编写的大概过程，相信读者学完可以动手尝试编写一些简单的脚本",2022-11-23T10:33:17+08:00,浏览:24261;点赞:148;评论:27
+B20261115-01,T7F200021,掘金,https://juejin.cn/post/7233765235555188791,"前端自动化测试 —— Jest 测试框架应用
+什么是自动化测试 在软件测试中，自动化测试指的是使用独立于待测软件的其他软件来自动执行测试、比较实际结果与预期并生成测试报告这一过程。在测试流程已经确定后，测试自动化可以自动执行的一些重复但必要的测试",2023-05-17T07:45:02+08:00,浏览:15821;点赞:160;评论:20
+B20261115-01,T7F200022,掘金,https://juejin.cn/post/7244064724265336889,"5款超级好用的开发效率工具，建议收藏！
+大家好！高温天气切莫太累，注意防暑休闲开胃(～ o ～)~zZ 人口过剩的时代，劳动力也追求高性价比。好的工具，能够帮助我们更高效地完成工作，节省时间（摸鱼时间）和精力，这几款宝藏的开源效率工具。",2023-06-13T16:31:42+08:00,浏览:19963;点赞:118;评论:26
+B20261115-01,T7F200023,掘金,https://juejin.cn/post/7297782151046889482,"桌面端效率工具 Rubick 来了
+Rubick 是一款基于 Electron 做的开源、免费桌面端效率工具箱；目标是通过一系列辅助插件解决工作、学习、开发上的效率问题。",2023-11-06T11:36:35+08:00,浏览:72844;点赞:882;评论:260
+B20261115-01,T7F200024,掘金,https://juejin.cn/post/7319674466170093603,"项目国际化的难点痛点是什么
+如果没有相关经验的，经常会以为国际化只有词条相关工作项，这就是第一个坑点：工作量的评估过于乐观，遗漏其他工作项。 但当你真正去开发一个国际化项目后，你会发现，国际化的难点、痛点、坑点远不止表面看到的",2024-01-03T17:55:26+08:00,浏览:6629;点赞:113;评论:27
+B20261115-01,T7F200025,掘金,https://juejin.cn/post/7326809915434483750,"前端工具分享
+Web Tools# 注意事项 [ ]：组件或工具后的 [] 标注有 的，为已经尝试使用过的。 截图工具# Snipaste「 截屏工具」 PixPin「 截屏工具」 pear-rec「 截",2024-01-22T23:20:05+08:00,浏览:5517;点赞:91;评论:8
+B20261115-01,T7F200026,掘金,https://juejin.cn/post/7348726802448252965,"Node 框架性能之王，2024 最快 Web 框架硬核测评
+我们会针对一个简单的 hello world 案例，测评 Node 的原生服务器、Express、Fastify、Hapi、Koa、Restify、NestJS、NestJS 等。",2024-03-22T11:26:54+08:00,浏览:17437;点赞:154;评论:62
+B20261115-01,T7F200027,掘金,https://juejin.cn/post/7351336619594842152,"H5 页面开发痛点问题
+在开发H5页面的过程中，开发者可能会遇到各种问题和挑战。以下是 H5 页面开发过程中遇到的一些常见的问题，以及如何避免和解决这些问题的建议。",2024-03-29T13:17:58+08:00,浏览:6104;点赞:41;评论:18
+B20261115-01,T7F200028,掘金,https://juejin.cn/post/7353452645615304731,"货拉拉AI一站式测评平台设计
+货拉拉AI一站式测评平台，搭建“出-测-评”三位一体化智评能力，打造物流行业的领先评测平台，覆盖公司评测全场景，加速数智化转型进程。",2024-04-03T17:04:02+08:00,浏览:6922;点赞:20;评论:3
+B20261115-01,T7F200029,掘金,https://juejin.cn/post/7355692365330153512,"宫崎骏系列电影：《你想活出怎样的人生》观后感
+1 回想宫崎骏上一部上映的电影，已经是2013年，距今已有十一年之久，那时在唐山的网吧里，在微博偶然",2024-04-09T23:28:30+08:00,浏览:5107;点赞:43;评论:43
+B20261115-01,T7F200030,掘金,https://juejin.cn/post/7370615140242538534,"利用Python进行网页抓取与AIGC实践：豆瓣电影榜单分析自动化
+前言 随着网络信息的爆炸性增长，数据抓取成为了获取宝贵资源的重要手段之一。本文将结合Python的requests库与BeautifulSoup库，演示如何自动化抓取豆瓣电影排行榜的数据，并通过阿里云",2024-05-20T11:45:25+08:00,浏览:1409;点赞:34;评论:0
+B20261115-01,T7F200031,掘金,https://juejin.cn/post/7370993837302988838,"传统编程与AIGC的融合：以豆瓣电影爬虫为例
+在信息技术日新月异的今天，编程不仅是一种技术手段，更是创新与效率的代名词。传统编程与AI生成内容的融合，不仅优化了编程流程，提升了开发效率，还为技术栈的拓展开辟了新的路径。",2024-05-20T22:09:55+08:00,浏览:1501;点赞:59;评论:4
+B20261115-01,T7F200032,掘金,https://juejin.cn/post/7423279449914310667,"二十行代码！我用Spark实现了电影推荐算法
+前言 很久之前，就有人问我如何做一个基于大数据技术的xx推荐系统。当时对于这个问题，着实难倒我了，因为当时只是知道一个协同过滤，其他的也没有过于深度研究。 最近，又有人私信问了我这个问题。于是，趁着这",2024-10-09T11:01:53+08:00,浏览:1123;点赞:10;评论:0
+B20261115-01,T7F200033,掘金,https://juejin.cn/post/7450054399680725030,"有奖测评| AI 编程体验家，豆包MarsCode编程助手支持一键Apply，测评新功能赢好礼
+豆包MarsCode AI 问答上线新功能，一键 Apply AI 生成的代码变更至项目对应的文件位置并形成 Diff，无需手动打开文件、复制粘贴，AI 生成代码的体验更流畅。",2024-12-19T21:46:47+08:00,浏览:2504;点赞:7;评论:0
+B20261115-01,T7F200034,掘金,https://juejin.cn/post/7457774343293763584,"自定义Compose Pager实现电影卡片列表
+使用Compose实现电影卡片列表，包含横向Pager组件、渐变效果、卡片样式和动画过渡，展示电影海报和信息。",2025-01-09T18:16:01+08:00,浏览:2181;点赞:52;评论:6
+B20261115-01,T7F200035,掘金,https://juejin.cn/post/7463442625899593779,"AI电影自动化制作系统！哈工大、清华联手打造FilmAgent！剧本创作、拍摄、后期制作一步到位！
+电影制作曾经是一个高度依赖创意和技术的复杂过程，从剧本撰写到拍摄，每一步都需要不同领域的专家协同完成。 但如今，随着人工智能的发展，电影制作也迎来了AI变革的曙光。 一款名为 FilmAgent 的开",2025-01-25T10:11:27+08:00,浏览:1031;点赞:2;评论:0
+B20261115-01,T7F200036,掘金,https://juejin.cn/post/7481861001189621800,"MCP简介：从浏览器截图的自动化说起
+在当今 AI 飞速发展的时代，大型语言模型 (LLM) 如 Claude、ChatGPT 等已经在代码生成、内容创作等方面展现出惊人的能力。然而，这些强大的模型存在一个明显的局限性——它们通常与外部系",2025-03-16T11:47:26+08:00,浏览:18244;点赞:187;评论:21
+B20261115-01,T7F200037,掘金,https://juejin.cn/post/7491864432747937846,"即梦3.0全面测评，AI文生图的天花板又被击穿了
+这几天最火的就是即梦 3.0，AI 文生图的新王。 今年的 AI 文生图领域早已经卷的昏天暗地了，疯狂到一有模型更新，都会让设计师们瑟瑟发抖，甚至直接给干 emo 了。",2025-04-12T10:15:40+08:00,浏览:2189;点赞:12;评论:0
+B20261115-01,T7F200038,掘金,https://juejin.cn/post/7523149588712046618,"n8n完全指南：从入门到精通的工作流自动化实践
+n8n完全指南：从入门到精通的工作流自动化实践 1 n8n简介与核心概念 n8n（发音为""n-eight-n""）是一款开源的工作流自动化工具，其名称来源于""node to node""（节点到节点）",2025-07-05T14:58:54+08:00,浏览:19005;点赞:10;评论:0
+B20261115-01,T7F200039,掘金,https://juejin.cn/post/7526720172968706100,"微信自动化工具：让自己的微信变成智能机器人！
+一个简洁美观微信自动化工具，可以让您的微信号变成智能机器人！自动同意好友申请|智能回复消息|AI对话|定时发送|入群提示|娱乐游戏|天气查询|等等 微信自动化工具 | AI智能聊天 | 群聊机器人_哔",2025-07-14T17:23:03+08:00,浏览:11807;点赞:119;评论:15
+B20261115-01,T7F200040,掘金,https://juejin.cn/post/7620060655607857178,"别再裸用 Claude Code 了！32 个亲测Skills + 8 个 MCP，开发效率直接拉满！
+别再裸用 Claude Code 了！32 个亲测技能 + 8 个 MCP 服务器，开发效率直接拉满！ 先晒一下我装完的效果（见下图），所有技能均实测可用。",2026-03-23T14:05:28+08:00,浏览:96479;点赞:884;评论:143
+B20261115-01,T7F200041,掘金,https://juejin.cn/post/7650899618196996159,"AI 自动化测试探索（一）：Playwright MCP
+Playwright MCP 实现 AI 自动化测试的实战经验，涵盖安装、自然语言驱动操作，通过浏览器插件复用已登录会话实现免登测试，并客观分析 token 消耗大、依赖模型能力、内存占用高等缺陷",2026-06-14T22:33:49+08:00,浏览:903;点赞:9;评论:1
+B20261115-01,T7F200042,掘金,https://juejin.cn/post/7657487853656899594,"AI UITester：AI Native 的 UI 自动化测试新范式|得物技术
+ai_uitester 代表了 AI Native 的 UI 自动化测试新范式：这不仅是工具的升级，而是测试范式的转变 —— 从 “代码驱动” 转向 “视觉驱动”，从 “人工调试” 转向 “AI 自愈",2026-07-02T10:32:54+08:00,浏览:1620;点赞:14;评论:0
+B20261115-01,T7F200043,掘金,https://juejin.cn/post/7659569188228595739,"基于AI的前端UI自动化测试
+一、前言 前端应用开发后希望能够借助AI的能力来高效测试，但是在边界条件和异常情况的处理相对麻烦。尤其是现在代码中AI开发的比例越来越大，人工编写测试案例的成本很高，所以我期望能够借助AI生成对应的测",2026-07-07T15:54:01+08:00,浏览:2382;点赞:28;评论:7
+B20261115-01,T7F200044,掘金,https://juejin.cn/post/7671947410310529043,"Seed Evolving 深度测评：我用它造了一个 AI 出题工具
+AI 出的数学题，你敢直接给孩子做吗？我让 Seed Evolving 出了 4 份试卷，每道题都用代码验证过。一份真实模型测评，也是一次出题工具的完整实战。",2026-08-10T14:38:03+08:00,浏览:396;点赞:3;评论:0
+B20261115-01,T7F200045,掘金,https://juejin.cn/post/7674383173652791338,"从《牛来》到 DCP：一部电影是怎么走进电影院的？
+从热门电影《牛来》出发，系统拆解 DCP、MXF、JPEG 2000、PCM、KDM，以及一部电影从制作完成到进入影院放映的完整技术链路。",2026-08-17T11:59:31+08:00,浏览:749;点赞:2;评论:1
