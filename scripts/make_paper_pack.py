@@ -81,6 +81,8 @@ def main() -> int:
     raw_total = sum(r.get("raw", 0) for r in audit_clean) or len(judged)
     n_all = len(judged)
     n_opp = sum(1 for r in judged if r.get("is_opportunity") == 1)
+    n_rec = n_all                      # 入表记录数（供 6c 等段落引用，避免写死）
+    n_cl = len(r4) or len(r3)          # 主题簇数
     batch = r4[0]["采集批次号"] if r4 else "—"
 
     # 分来源
@@ -220,26 +222,20 @@ def main() -> int:
     A(f"| 排除类型分布 | " + "；".join(f"{k} {v}" for k, v in
                                  sorted(excl.items(), key=lambda x: -x[1])) + " |")
     A("")
-    A("### 消融对比（同一 621 条语料）")
+    # 消融数据一律从 reports/消融实验.md 读，避免脚本里写死第二套数字
+    A("### 消融对比（同一语料、同一阈值）")
     A("")
-    A("| 方法 | 机会数 | 与 LLM 重合 | Precision | Recall | F1 |")
-    A("|---|---|---|---|---|---|")
-    base = ROOT / "reports" / "baseline_rule_788" / "result2.csv"
-    if base.exists():
-        rule = {r["记录编号"]: r["是否构成机会"] for r in csv_rows(base)}
-        llm = {r["记录编号"]: r["是否构成机会"] for r in csv_rows(out / "result2.csv")}
-        ids = set(rule) & set(llm)
-        ro = {i for i in ids if rule[i] == "1"}
-        lo = {i for i in ids if llm[i] == "1"}
-        tp = len(ro & lo)
-        p = tp / len(ro) if ro else 0
-        rr = tp / len(lo) if lo else 0
-        f1 = 2 * p * rr / (p + rr) if p + rr else 0
-        A(f"| 仅规则特征 | {len(ro)} | {tp} | {p:.2f} | {rr:.2f} | {f1:.2f} |")
-        A(f"| 规则+大模型（本文） | {len(lo)} | {tp} | 1.00 | 1.00 | 1.00 |")
+    ab = ROOT / "reports" / "消融实验.md"
+    if ab.exists():
+        for line in ab.read_text(encoding="utf-8").splitlines():
+            if line.startswith("> 语料") or line.startswith("|") or line.startswith("## "):
+                A(line)
+            elif line.startswith("1.") or line.startswith("2."):
+                A(line)
         A("")
-        A("> 以本文方法为参照计算规则基线的 P/R。规则版精确率偏低，"
-          "原因是教程类文章命中了「推荐/自动/知识库」等关键词。")
+        A("> 完整说明（含口径与限定条件）见 `reports/消融实验.md`。")
+    else:
+        A("（缺 `reports/消融实验.md`，先运行 `python scripts/ablation.py`）")
     A("")
 
     # ---------------- 3b 标注一致性 ----------------
@@ -271,20 +267,16 @@ def main() -> int:
     if (ROOT / "reports" / "阈值稳健性.md").exists():
         A("见 `reports/阈值稳健性.md`。核心结论：")
         A("")
-        A("| τ | 机会记录 | 主题簇 | Top-3 记录重合 |")
-        A("|---|---|---|---|")
-        A("| 0.15 | 128 | 13 | 60% |")
-        A("| 0.20 | 90 | 11 | 75% |")
-        A("| **0.24（本文）** | **75** | **11** | **100%** |")
-        A("| 0.30 | 60 | 10 | 75% |")
-        A("| 0.35 | 53 | 13 | 36% |")
-        A("| 0.40 | 45 | 11 | 38% |")
+        for line in (ROOT / "reports" / "阈值稳健性.md").read_text(encoding="utf-8").splitlines():
+            if line.startswith("|") or line.startswith("1.") or line.startswith("2."):
+                A(line)
         A("")
-        A("> τ ∈ [0.20, 0.30] 为稳定区间，本文取 0.24 位于其中部；阈值大幅偏离时排序才显著变化。")
     A("")
     A("### 替代证据二：消融实验（第 4.5 节）")
     A("")
-    A("见本文档第 3 节「消融对比」：仅规则 F1=0.37，规则+大模型 F1=0.94。")
+    A("见第 3 节「消融对比」与 `reports/消融实验.md`："
+      "在可对齐的人工标注上，仅规则 F1 明显低于本文方法；"
+      "全量语料上规则单用产出的机会集合与本文方法重合度很低。")
     A("")
     A("### 替代证据三：全链路可溯源")
     A("")
@@ -359,7 +351,8 @@ def main() -> int:
       f"`judge.use_llm` = {cfg['judge'].get('use_llm')}，"
       f"`judge.threshold` = {cfg['judge']['threshold']}")
     A("- 预置缓存：`data/cache/llm_calls.jsonl`（随源码包发布，约 680 KB）")
-    A("- 实测：移除 .env 后重跑，输出与有 Key 时**完全一致**（735 条入表 / 75 条机会 / 11 个主题簇）")
+    A(f"- 实测：移除 .env 后重跑，输出与有 Key 时**完全一致**"
+      f"（{n_rec} 条入表 / {n_opp} 条机会 / {n_cl} 个主题簇）")
     A("")
     A("> 论文写法建议：这体现的是「可复现性设计」——把模型调用结果当作可归档的中间产物，"
       "而不是每次重跑的随机因素。")
@@ -560,7 +553,7 @@ def main() -> int:
     A("| 表 4-3 | 消融对比（规则 vs 规则+LLM） | 4.5 对比实验 | 本文档第 3 节 |")
     A("| 表 5-1 | 聚类评估指标（分赛道） | 5.3 聚类评估 | 本文档第 4 节 |")
     A("| 表 6-1 | 熵权/AHP 组合权重 | 6.2 权重确定 | 本文档第 5 节 |")
-    A("| 表 6-2 | 主题簇排序结果（11 个簇） | 6.4 排序结果 | 本文档第 6 节 |")
+    A(f"| 表 6-2 | 主题簇排序结果（{n_cl} 个簇） | 6.4 排序结果 | 本文档第 6 节 |")
     A("| 表 6-3 | 权重敏感性分析 | 6.5 稳健性检验 | 本文档第 5 节 |")
     A("")
     A("### 图（论文里按出现顺序编号）")

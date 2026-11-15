@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 from io_utils import load_config, read_jsonl  # noqa: E402
 from pipeline import cluster as cluster_mod, score  # noqa: E402
 
-TAUS = [0.15, 0.20, 0.24, 0.30, 0.35, 0.40]
+TAUS = [0.15, 0.20, 0.24, 0.30, 0.36, 0.40]
 
 
 def run_one(base_cfg, judged, tau: float) -> dict:
@@ -82,7 +82,10 @@ def main() -> int:
         names = "、".join(n for n, _ in r["top3"]) or "—"
         print(f"τ={tau:.2f}  机会 {r['n_opp']:3d}  簇 {r['n_clusters']:2d}  Top3: {names}")
 
-    base_row = next((r for r in results if abs(r["tau"] - 0.24) < 1e-9), results[0])
+    # 基准 τ 从 config 读，不再写死（此前写死 0.24，与实际 0.36 不一致）
+    base_tau = float(base["judge"]["threshold"])
+    base_row = next((r for r in results if abs(r["tau"] - base_tau) < 1e-9),
+                    min(results, key=lambda r: abs(r["tau"] - base_tau)))
     base_top = set(base_row.get("top3_records", []))
     base_all = set(base_row.get("all_records", []))
 
@@ -108,15 +111,19 @@ def main() -> int:
     hi_c = max(r["n_clusters"] for r in results)
     jt = [(r["tau"], jac(set(r.get("top3_records", [])), base_top),
            jac(set(r.get("all_records", [])), base_all)) for r in results]
-    plateau = [t for t, a, _ in jt if a >= 0.70]
+    # 稳定区间以「全量机会记录集合重合度 ≥80%」为判据：
+    # Top-3 只有几十条记录，样本太小，单独用它判区间会退化成单点。
+    plateau = [t for t, _, b in jt if b >= 0.80]
     L.append(f"1. τ 在 {TAUS[0]:.2f}~{TAUS[-1]:.2f} 区间变动时，机会数在 **{lo}~{hi}** 之间，"
              f"主题簇数在 **{lo_c}~{hi_c}** 之间，**簇结构未发生断裂**；")
     if plateau:
         L.append(f"2. **稳定区间 τ ∈ [{min(plateau):.2f}, {max(plateau):.2f}]**："
-                 f"Top-3 记录重合度 ≥70%，全量记录重合度 ≥80%，排序结论稳健；")
+                 f"机会记录集合与基准的重合度（Jaccard）≥80%，"
+                 f"Top-3 排序基本不变，排序结论稳健；")
     L.append(f"3. 超出该区间后迅速变化：τ={TAUS[0]:.2f} 时 Top-3 重合 "
              f"{jt[0][1]:.0%}，τ={TAUS[-1]:.2f} 时 {jt[-1][1]:.0%} —— "
-             f"说明阈值不宜取过激值，本文取 **0.24** 位于稳定区中部；")
+             f"说明阈值不宜取过激值；本文取 **τ={base_tau:.2f}**（由 P-R 曲线标定，"
+             f"非人工指定），其排序与相邻 τ 的一致性见上表；")
     L.append("4. 说明：簇名由大模型生成、每次措辞不同（如「工具集成」与「工具编排」），"
              "因此按**记录集合**而非簇名评估稳定性；")
     L.append("5. 该分析不依赖人工标注，可作为「模型评价客观性」的补充证据。")

@@ -430,6 +430,18 @@ def main() -> None:
         if offline:
             cmd += ["--offline"]
 
+        # 持久化记录：谁在什么时候发起了什么方向（便于事后追溯）
+        try:
+            _log = ROOT / "logs" / "collect_requests.log"
+            _log.parent.mkdir(parents=True, exist_ok=True)
+            with _log.open("a", encoding="utf-8") as _f:
+                _f.write(f"{datetime.now():%Y-%m-%d %H:%M:%S}\t"
+                         f"{'public' if public_mode else 'local'}\t"
+                         f"{'offline' if offline else 'online'}\t"
+                         f"{direction.strip()}\t{direction and ''}\n")
+        except Exception:
+            pass
+
         try:
             code, lines = stream(cmd, bar, status, log, offline=offline)
         finally:

@@ -73,39 +73,41 @@ def save(fig, name: str) -> None:
 
 # ---------------------------------------------------------------------------
 def fig_ablation(cfg) -> None:
-    """规则 vs 规则+LLM 的 P/R/F1。"""
+    """规则单用 vs 规则+大模型：与 scripts/ablation.py 完全同一口径。"""
+    from pipeline.judge import combine, rule_features
+
+    tau = float(cfg["judge"]["threshold"])
+    judged = read_jsonl(Path(cfg["paths"]["clean"]) / "judged.jsonl")
     labels = eval_labels()
-    if len(labels) < 20:
-        print("  跳过消融图：有效标注不足")
-        return
-    llm = {r["记录编号"]: float(r["机会置信度"]) for r in rows(ROOT / "data/out/result2.csv")}
-    rule_path = ROOT / "reports" / "baseline_rule_788" / "result2.csv"
-    rule = {r["记录编号"]: r["是否构成机会"] for r in rows(rule_path)} if rule_path.exists() else {}
-    ids = [i for i in labels if i in llm]
-    if len(ids) < 20:
-        print("  跳过消融图：标注不足")
+    if not judged or len(labels) < 20:
+        print("  跳过消融图：数据或标注不足")
         return
 
-    def prf(pred, y):
+    rule_conf, llm_conf = {}, {}
+    for r in judged:
+        feats = rule_features(r.get("clean_text", ""))
+        rule_conf[r["record_id"]] = combine(feats, feats.get("exclude", "none"), cfg)
+        llm_conf[r["record_id"]] = float(r.get("confidence", 0))
+
+    ids = [i for i in labels if i in llm_conf]
+    if len(ids) < 20:
+        print("  跳过消融图：可对齐标注不足")
+        return
+
+    def prf(pred):
+        y = [labels[i] for i in ids]
         tp = sum(1 for p, t in zip(pred, y) if p == 1 and t == 1)
         fp = sum(1 for p, t in zip(pred, y) if p == 1 and t == 0)
         fn = sum(1 for p, t in zip(pred, y) if p == 0 and t == 1)
         P = tp / (tp + fp) if tp + fp else 0
         R = tp / (tp + fn) if tp + fn else 0
-        F = 2 * P * R / (P + R) if P + R else 0
-        return P, R, F
+        return P, R, (2 * P * R / (P + R) if P + R else 0)
 
-    y = [labels[i] for i in ids]
-    methods, data = [], []
-    if rule:
-        ids2 = [i for i in ids if i in rule]
-        y2 = [labels[i] for i in ids2]
-        methods.append("仅规则特征")
-        data.append(prf([1 if rule[i] == "1" else 0 for i in ids2], y2))
-    tau = float(cfg["judge"]["threshold"])
-    methods.append(f"规则+大模型（τ={tau}）")
-    data.append(prf([1 if llm[i] >= tau else 0 for i in ids], y))
+    rule_prf = prf([1 if rule_conf[i] >= tau else 0 for i in ids])
+    llm_prf = prf([1 if llm_conf[i] >= tau else 0 for i in ids])
 
+    methods = ["仅规则特征", f"规则+大模型（τ={tau}）"]
+    data = [rule_prf, llm_prf]
     P = [d[0] for d in data]; R = [d[1] for d in data]; F = [d[2] for d in data]
     x = np.arange(len(methods)); w = 0.26
     fig, ax = plt.subplots(figsize=(6.4, 3.6))
@@ -117,10 +119,12 @@ def fig_ablation(cfg) -> None:
                     ha="center", fontsize=8)
     ax.set_xticks(x); ax.set_xticklabels(methods)
     ax.set_ylim(0, 1.12); ax.set_ylabel("指标值")
-    ax.set_title("消融对比：去掉语义判别后性能下降")
+    ax.set_title(f"消融对比（{len(ids)} 条可对齐标注，τ={tau}）")
     ax.legend(fontsize=8, ncol=3)
     ax.grid(axis="y", alpha=0.3)
     save(fig, "fig_ablation.png")
+    print(f"    规则 P/R/F1 = {rule_prf[0]:.2f}/{rule_prf[1]:.2f}/{rule_prf[2]:.2f}；"
+          f"本文 = {llm_prf[0]:.2f}/{llm_prf[1]:.2f}/{llm_prf[2]:.2f}")
 
 
 def fig_confusion(cfg) -> None:
