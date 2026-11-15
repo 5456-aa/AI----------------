@@ -44,6 +44,8 @@ CODE_INCLUDE_SUFFIX = {".py", ".yaml", ".yml", ".md", ".txt", ".bat", ".json"}
 CODE_EXCLUDE_DIRS = {"data", "figs", "reports", "logs", "tools", "__pycache__", ".git",
                      "node_modules", ".venv", ".idea", ".vscode"}
 CODE_EXCLUDE_FILES = {".env", ".env.example", ".leak_alert", "LEAK_ALERT.txt"}
+# 内部协作文档（含本机路径），不进提交包
+CODE_EXCLUDE_PREFIX = ("论文交接说明",)
 
 
 def zip_code(dest: Path) -> Path:
@@ -63,7 +65,8 @@ def zip_code(dest: Path) -> Path:
                 continue
             if set(rel.parts) & CODE_EXCLUDE_DIRS:
                 continue
-            if rel.name in CODE_EXCLUDE_FILES or rel.name.startswith((".env.bak", ".leak_alert")):
+            if rel.name in CODE_EXCLUDE_FILES or rel.name.startswith(
+                    (".env.bak", ".leak_alert") + CODE_EXCLUDE_PREFIX):
                 continue
             if path.suffix.lower() not in CODE_INCLUDE_SUFFIX:
                 continue

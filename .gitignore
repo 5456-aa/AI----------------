@@ -45,3 +45,6 @@ tools/
 # 系统
 .DS_Store
 Thumbs.db
+
+# 内部交接文档（含本机路径）
+论文交接说明*.md

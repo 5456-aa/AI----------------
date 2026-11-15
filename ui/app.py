@@ -11,6 +11,7 @@ import json
 import sys
 from pathlib import Path
 
+import altair as alt
 import pandas as pd
 import streamlit as st
 
@@ -103,6 +104,23 @@ def render_llm_settings(cfg) -> None:
 
         st.caption("说明：Key 只写进本机 `.env`，不进代码、不进仓库、不进提交包。"
                    "换人使用时，对方填自己的即可。")
+
+
+C_BLUE, C_RED, C_GREY, C_GREEN = "#2563eb", "#e15759", "#94a3b8", "#59a14f"
+
+
+def hbar(df, xcol: str, ycol: str, color: str = C_BLUE,
+         fmt: str = ",.0f", height_per: int = 28, x_title: str = "") -> alt.Chart:
+    """横向条形图：按给定顺序排列，条尾标数值。"""
+    order = df[ycol].tolist()
+    base = alt.Chart(df).encode(
+        y=alt.Y(f"{ycol}:N", sort=order, title=None),
+        x=alt.X(f"{xcol}:Q", title=x_title or None,
+                axis=alt.Axis(format="~s", grid=True, gridColor="#eef1f6")))
+    bars = base.mark_bar(cornerRadius=4, color=color, height=16)
+    text = base.mark_text(align="left", dx=6, fontSize=12, color="#334155").encode(
+        text=alt.Text(f"{xcol}:Q", format=fmt))
+    return (bars + text).properties(height=max(140, height_per * len(df)))
 
 
 @st.cache_data(show_spinner=False)
@@ -200,11 +218,33 @@ def main() -> None:
         picked = st.multiselect("来源筛选", sources, default=sources)
         only_opp = st.checkbox("只看机会记录", value=False)
 
+        fc_all = sorted([x for x in clusters.get("func_category", pd.Series(dtype=str))
+                         .dropna().unique() if str(x).strip()])
+        ind_all = sorted([x for x in clusters.get("industry", pd.Series(dtype=str))
+                          .dropna().unique() if str(x).strip()])
+        st.caption("下面两个筛选作用于「主题簇」与下方图表")
+        picked_fc = st.multiselect("功能类别", fc_all, default=fc_all)
+        picked_ind = st.multiselect("所属行业", ind_all, default=ind_all)
+
     view = judged[judged["source"].isin(picked)] if picked else judged
     if only_opp:
         view = view[view["is_opportunity"] == 1]
+
+    cview = clusters.copy()
+    if not cview.empty:
+        if picked_fc:
+            cview = cview[cview["func_category"].isin(picked_fc)]
+        if picked_ind:
+            cview = cview[cview["industry"].isin(picked_ind)]
+
     st.sidebar.divider()
     st.sidebar.metric("当前筛选记录", len(view))
+    st.sidebar.metric("当前筛选主题簇", len(cview))
+    st.sidebar.download_button(
+        "⬇ 导出当前筛选明细 CSV",
+        view.to_csv(index=False).encode("utf-8-sig"),
+        file_name=f"{track}_筛选明细.csv", mime="text/csv",
+        use_container_width=True, key=f"dl_view_{track}")
 
     # ---------------- ① 总览 ----------------
     st.subheader("① 数据总览")
@@ -219,12 +259,24 @@ def main() -> None:
 
     col_a, col_b = st.columns(2)
     with col_a:
-        st.markdown("**来源分布**")
-        st.bar_chart(view["source"].value_counts())
+        st.markdown("**各来源记录数**")
+        vc = view["source"].value_counts()
+        df_src = pd.DataFrame({"来源": vc.index, "记录数": vc.values})
+        st.altair_chart(hbar(df_src, "记录数", "来源"), use_container_width=True)
+        st.download_button("⬇ 来源统计 CSV",
+                           df_src.to_csv(index=False).encode("utf-8-sig"),
+                           file_name=f"{track}_来源统计.csv", mime="text/csv",
+                           key=f"dl_src_{track}")
     with col_b:
-        st.markdown("**机会率（按来源）**")
-        rate = view.groupby("source")["is_opportunity"].mean().sort_values(ascending=False)
-        st.bar_chart(rate)
+        st.markdown("**各来源机会率**")
+        g = view.groupby("source").agg(记录=("is_opportunity", "size"),
+                                       机会=("is_opportunity", "sum"))
+        g["机会率"] = (g["机会"] / g["记录"]).round(3)
+        g = g.sort_values("机会率", ascending=False).reset_index()
+        g["标签"] = (g["机会率"] * 100).round(1).astype(str) + "%"
+        chart = hbar(g, "机会率", "source", color=C_GREEN, fmt=".1%",
+                     x_title="机会率")
+        st.altair_chart(chart, use_container_width=True)
 
     if funnel:
         f = funnel[0]
@@ -246,43 +298,103 @@ def main() -> None:
 
     # ---------------- ①c 清洗与去重漏斗 ----------------
     if funnel:
-        with st.expander("①c 清洗与去重漏斗（任务一过程）", expanded=False):
-            f0 = funnel[0]
-            st.markdown(
-                f"原始采集 **{f0.get('raw',0)}** → 清洗保留 **{f0.get('after_clean', f0.get('raw',0))}** → "
-                f"L1 URL 去重 **{f0.get('after_L1_url',0)}** → "
-                f"L2 SimHash **{f0.get('after_L2_simhash',0)}** → "
-                f"L3 语义 **{f0.get('after_L3_semantic',0)}**")
-            st.bar_chart(pd.Series({
-                "原始采集": f0.get("raw", 0),
-                "清洗保留": f0.get("after_clean", f0.get("raw", 0)),
-                "L1 后": f0.get("after_L1_url", 0),
-                "L2 后": f0.get("after_L2_simhash", 0),
-                "L3 后": f0.get("after_L3_semantic", 0),
-            }, name="记录数"))
+        f0 = funnel[0]
+        # 真实原始量取自审计文件（funnel.raw 是清洗后的数量）
+        raw_true = f0.get("raw", 0)
+        try:
+            audit = read_jsonl(Path(cfg["paths"]["clean"]) / "audit_clean.jsonl")
+            raw_true = sum(int(a.get("raw", 0)) for a in audit) or raw_true
+        except Exception:
+            pass
+        cleaned = f0.get("raw", raw_true)
+        steps = [
+            ("① 原始采集", raw_true, 0),
+            ("② 清洗保留", cleaned, raw_true - cleaned),
+            ("③ URL 去重", f0.get("after_L1_url", cleaned), f0.get("dropped_L1", 0)),
+            ("④ SimHash 去重", f0.get("after_L2_simhash", 0), f0.get("dropped_L2", 0)),
+            ("⑤ 语义去重", f0.get("after_L3_semantic", 0), f0.get("dropped_L3", 0)),
+        ]
+        df_f = pd.DataFrame(steps, columns=["阶段", "保留", "剔除"])
+        total_drop = raw_true - int(df_f.iloc[-1]["保留"])
+
+        with st.expander(f"①c 清洗与去重：{raw_true} → {df_f.iloc[-1]['保留']}"
+                         f"（共剔除 {total_drop} 条，保留率 "
+                         f"{df_f.iloc[-1]['保留'] / max(raw_true,1) * 100:.1f}%）",
+                         expanded=False):
+            cl, cr = st.columns([3, 2])
+            with cl:
+                st.markdown("**累计保留量**（条尾为剩余记录数）")
+                st.altair_chart(hbar(df_f, "保留", "阶段", height_per=34),
+                                use_container_width=True)
+            with cr:
+                st.markdown("**各阶段剔除量**")
+                d_drop = df_f[df_f["剔除"] > 0]
+                if d_drop.empty:
+                    st.info("本批次没有剔除记录（数据本身较干净）。")
+                else:
+                    st.altair_chart(
+                        hbar(d_drop, "剔除", "阶段", color=C_RED,
+                             height_per=34, x_title="剔除条数"),
+                        use_container_width=True)
+            st.caption("说明：去重率仅 "
+                       f"{(1 - df_f.iloc[-1]['保留'] / max(raw_true,1)) * 100:.1f}%，"
+                       "各阶段数量接近，因此左图柱高差异很小；"
+                       "右图单独展示剔除量，才是真正能看出差异的视图。")
 
     # ---------------- ② 主题簇 ----------------
-    st.subheader("② 主题簇与优先级")
-    if not clusters.empty:
-        scatter = clusters[["topic_name", "n_sources", "n_records", "value_score", "priority"]].copy()
+    st.subheader(f"② 主题簇与优先级（当前 {len(cview)} / {len(clusters)} 个）")
+    if not cview.empty:
+        scatter = cview[["topic_name", "n_sources", "n_records", "value_score", "priority"]].copy()
         scatter.columns = ["主题簇", "来源覆盖", "记录数", "价值分", "优先级"]
-        st.markdown("**气泡图：来源覆盖 × 记录数（点大小 = 价值分）**")
-        st.scatter_chart(scatter, x="来源覆盖", y="记录数", size="价值分", color="优先级")
+        # 主题簇一目了然：按优先级排序的横条（价值分），条上标注记录数与来源数
+        rank = cview.sort_values("priority")[["topic_name", "value_score",
+                                            "n_records", "n_sources", "priority"]].copy()
+        rank["标签"] = rank["topic_name"].str.slice(0, 18)
+        order = rank["标签"].tolist()
+        base = alt.Chart(rank).encode(
+            y=alt.Y("标签:N", sort=order, title=None),
+            x=alt.X("value_score:Q", title="机会价值分（0~100）",
+                    scale=alt.Scale(domain=[0, 100]),
+                    axis=alt.Axis(grid=True, gridColor="#eef1f6")),
+            tooltip=[alt.Tooltip("topic_name:N", title="主题簇"),
+                     alt.Tooltip("value_score:Q", title="价值分", format=".1f"),
+                     alt.Tooltip("n_records:Q", title="记录数"),
+                     alt.Tooltip("n_sources:Q", title="来源数"),
+                     alt.Tooltip("priority:Q", title="优先级")],
+        )
+        bars = base.mark_bar(cornerRadius=4, height=18).encode(
+            color=alt.Color("n_records:Q", title="记录数",
+                            scale=alt.Scale(scheme="blues", domain=[0, max(rank["n_records"].max(), 1)])))
+        text = base.mark_text(align="left", dx=6, fontSize=11, color="#334155").encode(
+            text=alt.Text("value_score:Q", format=".1f"))
+        inline = base.mark_text(align="right", dx=-8, fontSize=10,
+                                color="#ffffff").encode(
+            text=alt.Text("n_records:Q", format=".0f"))
+        st.altair_chart((bars + text + inline).properties(height=max(220, 30 * len(rank))),
+                        use_container_width=True)
+        st.caption("按优先级从高到低排列；条长 = 机会价值分，颜色深浅 = 簇内记录数。"
+                   "原来那张「来源覆盖 × 记录数」的散点图在绝大多数簇只有 1~2 个来源时"
+                   "会挤成一团、无法辨认，因此改为按价值分排序的条形图。")
 
-        show = clusters[["cluster_id", "topic_name", "func_category", "industry",
+        show = cview[["cluster_id", "topic_name", "func_category", "industry",
                          "n_records", "n_sources", "value_score", "priority"]].copy()
         show.columns = ["簇编号", "主题簇名称", "功能类别", "所属行业",
                         "记录数", "来源数", "机会价值分", "优先级"]
         st.dataframe(show.sort_values("优先级"), use_container_width=True, hide_index=True)
+        st.download_button(
+            "⬇ 导出当前主题簇表 CSV",
+            show.sort_values("优先级").to_csv(index=False).encode("utf-8-sig"),
+            file_name=f"{track}_主题簇.csv", mime="text/csv",
+            key=f"dl_clu_{track}")
     else:
         st.info("暂无主题簇。")
 
     # ---------------- ③ 单簇详情 ----------------
     st.subheader("③ 单簇详情（可溯源到原文）")
-    if not clusters.empty and "records" in clusters.columns:
-        names = [f"{r['cluster_id']} · {r['topic_name']}" for _, r in clusters.iterrows()]
+    if not cview.empty and "records" in cview.columns:
+        names = [f"{r['cluster_id']} · {r['topic_name']}" for _, r in cview.iterrows()]
         pick = st.selectbox("选择一个主题簇", names)
-        row = clusters.iloc[names.index(pick)]
+        row = cview.iloc[names.index(pick)]
 
         d1, d2 = st.columns([1, 2])
         with d1:
@@ -291,8 +403,16 @@ def main() -> None:
             st.metric("来源覆盖", f"{row['n_sources']} 个")
             st.caption("、".join(row["sources"]))
             if row.get("dim_scores"):
-                st.markdown("**各维度得分**")
-                st.bar_chart(pd.Series(row["dim_scores"]).rename("得分"))
+                st.markdown("**各维度得分（0~100）**")
+                dim_map = {"multi_source": "多源指向度", "scale": "记录规模",
+                           "heat": "互动热度", "need_strength": "需求强度"}
+                d = row["dim_scores"]
+                df_d = pd.DataFrame({
+                    "维度": [dim_map.get(k, k) for k in d.keys()],
+                    "得分": list(d.values())})
+                st.altair_chart(hbar(df_d, "得分", "维度", height_per=30,
+                                     fmt=".1f", x_title="得分（0~100）"),
+                                use_container_width=True)
         with d2:
             recs = pd.DataFrame(row["records"])
             keep = [c for c in ["record_id", "source", "title", "heat_str", "url"] if c in recs.columns]

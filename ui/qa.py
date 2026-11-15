@@ -27,6 +27,31 @@ from _init import page_config, sidebar_nav  # noqa: E402
 page_config("问答咨询", "💬")
 
 
+
+CSS = """
+<style>
+.block-container{padding-top:1.2rem;max-width:1100px}
+.qa-hero{background:linear-gradient(120deg,#0f172a 0%,#1e3a8a 60%,#2563eb 100%);
+  border-radius:16px;padding:22px 26px;color:#fff;margin-bottom:16px;
+  box-shadow:0 8px 24px rgba(30,58,138,.18)}
+.qa-hero h2{margin:0 0 4px;font-size:22px;color:#fff}
+.qa-hero p{margin:0;opacity:.85;font-size:13px}
+.qa-card{background:#fff;border:1px solid #e8edf5;border-left:4px solid #2563eb;
+  border-radius:12px;padding:16px 20px;margin:10px 0 14px;
+  box-shadow:0 4px 14px rgba(15,23,42,.05)}
+.qa-card .hd{font-size:12px;color:#64748b;margin-bottom:8px}
+.qa-card .body{font-size:15px;line-height:1.75;color:#0f172a}
+.chip{display:inline-block;background:#eef4ff;color:#1d4ed8;border-radius:999px;
+  padding:2px 10px;font-size:12px;margin:3px 4px 0 0;font-family:ui-monospace,monospace}
+.intent{display:inline-block;background:#ecfdf5;color:#047857;border-radius:6px;
+  padding:2px 8px;font-size:12px;margin-right:6px}
+div[data-testid="stButton"]>button{border-radius:10px;border:1px solid #e2e8f0;
+  background:#fff;font-size:13px}
+div[data-testid="stButton"]>button:hover{border-color:#2563eb;color:#1d4ed8}
+</style>
+"""
+
+
 @st.cache_data(show_spinner=False)
 def load_all():
     cfg = load_config(track="all")
@@ -188,7 +213,13 @@ def main() -> None:
 
     cfg, judged, scored, detail = load_all()
 
-    st.title("💬 问答咨询")
+    st.markdown(CSS, unsafe_allow_html=True)
+    st.markdown("""
+<div class="qa-hero">
+  <h2>💬 问答咨询</h2>
+  <p>用自然语言问结果：每个数字都来自结果文件，每条结论都能追到记录编号</p>
+</div>
+""", unsafe_allow_html=True)
 
     # 数据缺失时给明确提示，而不是抛 KeyError（云端可能只发布了部分数据）
     if judged is None or getattr(judged, "empty", True):
@@ -254,8 +285,23 @@ def main() -> None:
     except Exception:
         pass
 
-    st.markdown(f"**识别意图**：{kind}" + ("　·　由大模型润色" if llm_used else ""))
-    st.markdown(text)
+    ev = ""
+    if payload.get("type") in ("table", "records") and payload.get("df") is not None:
+        ids = []
+        for col in ("记录编号", "record_id"):
+            if col in payload["df"].columns:
+                ids = [str(x) for x in payload["df"][col].head(8)]
+                break
+        if ids:
+            ev = "<div style='margin-top:10px'>" + "".join(
+                f"<span class='chip'>{i}</span>" for i in ids) + "</div>"
+
+    st.markdown(
+        f"<div class='qa-card'>"
+        f"<div class='hd'><span class='intent'>{kind}</span>"
+        f"{'由大模型润色 · ' if llm_used else ''}数字取自结果文件</div>"
+        f"<div class='body'>{text.replace(chr(10), '<br>')}</div>{ev}</div>",
+        unsafe_allow_html=True)
 
     ch = payload.get("chart")
     if ch:

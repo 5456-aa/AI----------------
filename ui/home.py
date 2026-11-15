@@ -372,8 +372,7 @@ def main() -> None:
         st.info("🌐 公网模式：发起采集将使用**本地缓存与规则**（不调用任何外部 API，"
                 "不消耗系统管理员的额度）。想用在线模式？在左侧填你自己的 Key。", icon="💡")
     elif not allow_collect:
-        st.caption("🔒 当前为只读：可浏览已有批次结果；发起新需求需"
-                   "「需求发起者」或「系统管理员」权限。")
+        st.caption("🔒 当前角色无采集权限：可浏览已有批次结果。")
 
     _has_key = bool((st.session_state.get("visitor_llm") or {}).get("key"))
     if public_mode and _has_key:
@@ -483,7 +482,7 @@ def main() -> None:
     t1, t2, t3 = st.tabs(["角色与权限", "成本与资源", "部署与运行"])
     with t1:
         auth.panel()
-        st.caption("实现：`ui/auth.py`；公网部署时强制为决策者只读，不可切换。")
+        st.caption("实现：`ui/auth.py`；公网访问自动降为决策者（可浏览 + 离线采集）。")
     with t2:
         try:
             cost = (ROOT / "reports" / "成本与资源.md").read_text(encoding="utf-8")

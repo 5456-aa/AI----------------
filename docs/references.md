@@ -80,11 +80,11 @@
 
 [19] Pedregosa F, Varoquaux G, Gramfort A, et al. Scikit-learn: Machine learning in Python[J]. Journal of Machine Learning Research, 2011, 12: 2825-2830.
 
-[20] Sun J. jieba: 中文分词组件[CP/OL]. https://github.com/fxsjy/jieba, 2020.
+[20] Sun J. jieba: 中文分词组件[CP/OL]. (2020-01-01)[2026-11-20]. https://github.com/fxsjy/jieba.
 
 ## 七、竞赛文件与数据来源
 
-[21] 泰迪杯数据挖掘挑战赛组织委员会. 泰迪杯数据挖掘挑战赛章程[EB/OL]. https://www.tipdmcup.cn/sszx/2166.jhtml.
+[21] 泰迪杯数据挖掘挑战赛组织委员会. 泰迪杯数据挖掘挑战赛章程[EB/OL]. (2026-01-01)[2026-11-20]. https://www.tipdmcup.cn/sszx/2166.jhtml.
 
 [22] 甘肃省教育厅. 关于公布 2026 年大学生学科专业竞赛项目的通知（甘教高函〔2026〕6 号）[Z]. 2026.
 

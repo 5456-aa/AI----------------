@@ -11,7 +11,7 @@
 
 实现：
   * 本机默认「系统管理员」（自己的电脑自己说了算）
-  * `PUBLIC_DEMO=1` 时强制为「决策者」只读，不可切换
+  * `PUBLIC_DEMO=1` 时强制为「决策者」，不可切换
   * `ROLE=requester|decider|admin` 可显式指定（如给队友开"只能采集、不能改配置"的入口）
 """
 from __future__ import annotations
@@ -22,7 +22,7 @@ import streamlit as st
 
 ROLES: dict[str, dict] = {
     "decider": {
-        "label": "决策者（只读）",
+        "label": "决策者",
         "role_name": "决策者",
         "desc": "查看各批次结论、主题簇排序与立项策划案；不能发起采集，看不到原始链接",
         "perm": {"view", "export"},
@@ -68,7 +68,7 @@ def request_host() -> str:
 
 
 def is_public_request() -> bool:
-    """公网隧道（如 *.trycloudflare.com）来的请求 → 只读。
+    """公网隧道（如 *.trycloudflare.com）来的请求 → 受限访问（可浏览 + 离线采集）。
 
     本机（localhost / 127.0.0.1 / 局域网 IP）视为可信，可用管理模式。
     """
@@ -87,7 +87,7 @@ def is_public_request() -> bool:
 
 
 def is_public_demo() -> bool:
-    """兼容旧接口：等价于「当前请求只读」。"""
+    """兼容旧接口：等价于「当前请求来自公网」。"""
     return is_public_request()
 
 
@@ -100,7 +100,7 @@ def default_role() -> str:
     """默认角色：
        本机 localhost → 系统管理员（完整权限）
        局域网           → 需求发起者（可采集，不能改配置）
-       公网             → 决策者（只读，可离线采集）
+       公网             → 决策者（可浏览 + 离线采集）
     显式设置 ROLE 时以 ROLE 为准。
     """
     role = os.environ.get("ROLE", "")
@@ -180,7 +180,7 @@ def role_badge() -> None:
         if allow_public_collect():
             st.caption("公网访问：可浏览全部批次，可发起**离线采集**（不调 API）")
         else:
-            st.caption("公网访问：只读")
+            st.caption("公网访问：仅可浏览")
 
 
 def role_selector() -> None:
@@ -237,4 +237,4 @@ def panel() -> None:
 | 系统管理员 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 """)
     st.caption("数据可见范围：决策者只看聚合结论与策划案；原始记录链接仅需求发起者与管理员；"
-               "标注集与密钥仅管理员。公网部署时强制为决策者只读。")
+               "标注集与密钥仅管理员。公网部署时自动降为决策者，可浏览与离线采集。")

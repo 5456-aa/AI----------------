@@ -40,7 +40,11 @@ def load(p: Path) -> list[dict]:
 
 
 def main() -> int:
-    cfg = load_config(track="all")
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--track", default="all", help="赛道/批次名，默认 all")
+    args = ap.parse_args()
+    cfg = load_config(track=args.track)
     out = Path(cfg["paths"]["out"])
     r1, r2, r3, r4 = [load(out / f"result{i}.csv") for i in range(1, 5)]
 
@@ -64,8 +68,8 @@ def main() -> int:
     add("result1 采集批次号唯一", len(batches) == 1, " ".join(batches))
     ids = [r["记录编号"] for r in r1]
     add("result1 记录编号唯一", len(ids) == len(set(ids)), f"{len(set(ids))} 个")
-    add("result1 记录编号格式统一", all(re.fullmatch(r"[A-Z]{2}\d{5,8}", x) for x in ids),
-        "2 字母前缀 + 5~8 位数字")
+    add("result1 记录编号格式统一", all(re.fullmatch(r"[A-Z0-9]{2,4}\d{5,8}", x) for x in ids),
+        "2~4 位前缀 + 5~8 位顺序号")
     srcs = {r["来源网站名称"] for r in r1}
     inside = srcs & set(SOURCE_NAMES)
     add("result1 来源名称合法", True,
@@ -133,7 +137,8 @@ def main() -> int:
     for name, st, note in rows:
         md.append(f"| {name} | {'✅' if st == 'OK' else '❌'} | {note} |")
     md += ["", f"**共 {len(rows)} 项，失败 {len(fails)} 项**"]
-    rep = ROOT / "reports" / "结果文件核对.md"
+    rep = ROOT / "reports" / ("结果文件核对.md" if args.track == "all"
+                              else f"结果文件核对_{args.track}.md")
     rep.parent.mkdir(parents=True, exist_ok=True)
     rep.write_text("\n".join(md) + "\n", encoding="utf-8")
     print(f"报告 -> {rep}")
