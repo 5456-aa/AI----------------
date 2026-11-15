@@ -28,7 +28,7 @@ import auth  # noqa: E402
 from collectors.registry import ENABLED_SOURCES, SOURCE_STATUS  # noqa: E402
 from io_utils import load_config  # noqa: E402
 
-from _init import page_config; page_config("AI 机会评估系统", "🎯")
+from _init import page_config, sidebar_nav; page_config("AI 机会评估系统", "🎯")
 
 TRACKS_DIR = ROOT / "data" / "tracks"
 OUT_DIR = ROOT / "data" / "out"
@@ -287,6 +287,8 @@ def _watch_tracks() -> None:
 
 
 def main() -> None:
+    sidebar_nav()
+
     st.markdown(CSS, unsafe_allow_html=True)
     _watch_tracks()
     tracks = all_tracks()

@@ -23,7 +23,7 @@ sys.path.insert(0, str(ROOT))
 
 from io_utils import load_config, read_jsonl  # noqa: E402
 
-from _init import page_config  # noqa: E402
+from _init import page_config, sidebar_nav  # noqa: E402
 page_config("问答咨询", "💬")
 
 
@@ -184,6 +184,8 @@ def ans_func(judged: pd.DataFrame, fc: str) -> tuple[str, dict]:
 # 页面
 # ---------------------------------------------------------------------------
 def main() -> None:
+    sidebar_nav()
+
     cfg, judged, scored, detail = load_all()
 
     st.title("💬 问答咨询")

@@ -15,11 +15,13 @@ import pandas as pd
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
+UI_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from io_utils import TRACKS, load_config, read_jsonl, track_report_dir  # noqa: E402
 from llm.client import LLMClient, LLMUnavailable  # noqa: E402
 import auth  # noqa: E402
+from _init import sidebar_nav  # noqa: E402
 import llm_settings  # noqa: E402
 
 from _init import page_config  # noqa: E402
@@ -117,64 +119,66 @@ def load_data(root: str, track: str):
 
 def main() -> None:
     base_cfg = load_config(track="all")
-    with st.sidebar:
-        st.title("🎯 机会评估系统")
-        st.caption("AI 应用场景的智能挖掘与机会评估")
-        if is_public_demo():
-            st.caption("🌐 公网访问：可浏览全部批次；发起新需求请回「首页」")
-        if st.button("← 返回首页", use_container_width=True):
-            # 必须用绝对路径：云端主入口在仓库根目录，
-            # 相对路径 "home.py" 会以主入口目录为基准解析，导致找不到页面
-            st.switch_page(str(Path(__file__).resolve().parent / "home.py"))
-        auth.mode_switcher()
-        auth.role_selector()
-        st.divider()
-        render_llm_settings(base_cfg)
-        st.divider()
-        all_tracks = ["all"] + list(TRACKS) + [
-            k for k in (base_cfg.get("tracks") or {})
-            if k not in TRACKS]
-        # 首页「发起新需求」创建的批次（data/tracks/*.json）也要能在这里选到
-        _tdir = ROOT / "data" / "tracks"
-        if _tdir.exists():
-            for _f in sorted(_tdir.glob("*.json")):
-                try:
-                    _t = json.loads(_f.read_text(encoding="utf-8"))
-                except Exception:
-                    continue
-                _slug = _t.get("slug") or _f.stem
-                if _slug not in all_tracks:
-                    all_tracks.append(_slug)
-                    TRACK_LABEL.setdefault(
-                        _slug, _t.get("label") or _t.get("demand_direction") or _slug)
-        _q = {}
-        try:
-            _q = dict(st.query_params)
-        except Exception:
-            _q = {}
-        _want = _q.get("track") or st.session_state.get("view_track")
-        _idx = all_tracks.index(_want) if _want in all_tracks else 0
-        # 批次列表自动刷新：data/tracks 有新增/修改时，自动重跑一次
-        try:
-            _sig = "|".join(f"{p.name}:{int(p.stat().st_mtime)}"
-                            for p in sorted((ROOT / "data" / "tracks").glob("*.json")))
-            _prev = st.session_state.get("_track_sig")
-            if _prev is not None and _prev != _sig:
-                st.session_state["_track_sig"] = _sig
-                st.rerun()
-            st.session_state["_track_sig"] = _sig
-        except Exception:
-            pass
 
-        _c1, _c2 = st.columns([3, 1])
-        if _c2.button("⟳", help="刷新批次列表（刚创建的批次没出现时点这里）",
-                      use_container_width=True):
+    # ---------- 侧栏：品牌标题 + 三页导航（在最上方）----------
+    sidebar_nav()
+
+    # ---------- 批次选择：紧跟导航，最常用 ----------
+    all_tracks = ["all"] + list(TRACKS) + [
+        k for k in (base_cfg.get("tracks") or {}) if k not in TRACKS]
+    _tdir = ROOT / "data" / "tracks"
+    if _tdir.exists():
+        for _f in sorted(_tdir.glob("*.json")):
+            try:
+                _t = json.loads(_f.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            _slug = _t.get("slug") or _f.stem
+            if _slug not in all_tracks:
+                all_tracks.append(_slug)
+                TRACK_LABEL.setdefault(
+                    _slug, _t.get("label") or _t.get("demand_direction") or _slug)
+
+    try:
+        _q = dict(st.query_params)
+    except Exception:
+        _q = {}
+    _want = _q.get("track") or st.session_state.get("view_track")
+    _idx = all_tracks.index(_want) if _want in all_tracks else 0
+
+    # 批次列表自动刷新：data/tracks 有新增/修改时重跑一次
+    try:
+        _sig = "|".join(f"{p.name}:{int(p.stat().st_mtime)}"
+                        for p in sorted((ROOT / "data" / "tracks").glob("*.json")))
+        _prev = st.session_state.get("_track_sig")
+        if _prev is not None and _prev != _sig:
+            st.session_state["_track_sig"] = _sig
             st.rerun()
-        with _c1:
-            track = st.radio(
-                "赛道 / 批次", all_tracks, index=_idx,
+        st.session_state["_track_sig"] = _sig
+    except Exception:
+        pass
+
+    with st.sidebar:
+        track = st.radio(
+            "📚 赛道 / 批次", all_tracks, index=_idx,
             format_func=lambda t: TRACK_LABEL.get(
                 t, (base_cfg.get("tracks", {}).get(t, {}) or {}).get("label", t)))
+        # 刷新按钮放大：整行宽、与选项等距，点起来不费劲
+        if st.button("⟳  刷新批次列表", use_container_width=True,
+                     help="刚创建的批次没出现时点这里"):
+            st.rerun()
+
+        st.divider()
+        if st.button("🏠  返回首页", use_container_width=True):
+            st.switch_page(str(UI_DIR / "home.py"))
+
+        auth.mode_switcher()
+        auth.role_selector()
+        if is_public_demo():
+            st.caption("🌐 公网访问：可浏览全部批次；发起新需求请回「首页」")
+
+        st.divider()
+        render_llm_settings(base_cfg)
         st.divider()
 
     cfg, judged, clusters, metrics, detail, funnel = load_data(str(ROOT), track)
