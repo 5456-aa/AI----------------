@@ -1,0 +1,9 @@
+配置：base_url = https://api.deepseek.com/v1
+      model    = deepseek-chat
+      key      = sk-f…7254（长度 35）  （来源：.env 文件）
+客户端状态：enabled=True，缓存 1431 条
+
+[成功] 往返 0.00s，返回：{'ok': True, 'msg': 'pong'}
+
+LLM 可用，可以跑判别/翻译/主题名了：
+  python run_all.py --track all --batch B20261111-01 --force

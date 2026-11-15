@@ -1,0 +1,198 @@
+# =============================================================================
+# 全局配置。论文里出现的每一个数字都应该能在这里找到出处。
+# 改完参数请重跑 run_all.py，并同步更新论文中的对应表格。
+#
+# 双赛道：ecommerce（电商客服与运营）/ education（教育学习与教学管理）
+#   python run_all.py --track ecommerce    # 单跑一个赛道
+#   python run_all.py --track all          # 两赛道合并 -> data/out/（提交用）
+# =============================================================================
+
+merged:
+  label: "双赛道合并"
+  demand_direction: "电商客服与运营 + 教育学习与教学管理"
+
+project:
+  name: "AI 应用场景智能挖掘与机会评估系统"
+  demand_direction: "电商客服与运营"        # 默认赛道；--track 会覆盖
+  batch_prefix: "B"
+  record_prefix: "S"                        # 记录编号前缀，赛道可各自覆盖
+
+# ---------------------------------------------------------------------------
+# 赛道定义：选题、检索词、记录编号前缀、行业先验
+# ---------------------------------------------------------------------------
+tracks:
+  ecommerce:
+    label: "电商客服与运营"
+    demand_direction: "电商客服与运营"
+    record_prefix: "DS"                     # 电商 -> DS00001
+    keywords:
+      - "智能客服 工单 分类"
+      - "customer service ai bot"
+      - "电商 售后 自动回复"
+      - "客服 质检 录音"
+      - "知识库 客服 问答"
+      - "客服 排班 预测"
+      - "电商 退货 原因 分析"
+      - "客服 机器人 知识库 搭建"
+      - "售后 工单 自动化"
+      - "电商 评论 情感 分析"
+    industry_hint: ["电商", "零售", "物流", "营销广告"]
+    sources: ["GitHub", "掘金", "SegmentFault", "哔哩哔哩", "Stack Overflow",
+              "博客园", "InfoQ中国", "开源中国", "量子位", "IT之家", "少数派"]
+
+  education:
+    label: "教育学习与教学管理"
+    demand_direction: "教育学习与教学管理"
+    record_prefix: "JY"                     # 教育 -> JY00001
+    keywords:
+      - "AI 批改 作业"
+      - "ai tutor personalized learning"
+      - "教师 备课 效率 工具"
+      - "学情分析 成绩 预测"
+      - "智能答疑 辅导 系统"
+      - "在线教育 题库 组卷"
+      - "教育 大模型 应用"
+      - "错题 整理 自动 生成"
+      - "课堂 互动 数据 分析"
+      - "论文 查重 语法 检查"
+    industry_hint: ["教育", "科研"]
+    sources: ["GitHub", "掘金", "SegmentFault", "哔哩哔哩", "Stack Overflow",
+              "博客园", "InfoQ中国", "开源中国", "量子位", "IT之家", "少数派"]
+
+paths:
+  raw: "data/raw"            # 采集原始快照（jsonl，一源一文件）
+  clean: "data/clean"        # 清洗后
+  cache: "data/cache"        # LLM 调用缓存（两赛道共用）
+  out: "data/out"            # 四个结果 CSV
+  logs: "logs"
+  figs: "figs"
+  reports: "reports"
+
+# ---------------------------------------------------------------------------
+# 任务一：采集与清洗
+# ---------------------------------------------------------------------------
+collect:
+  keywords: []                  # 留空则用 tracks.*.keywords
+  max_per_source: 120
+  request_interval_sec: 1.2     # 礼貌间隔，论文合规章节要写
+  user_agent: "AI-Opportunity-Research/1.0 (academic competition; contact: team@example.edu)"
+  respect_robots: true
+  timeout_sec: 30
+  since: "2024-01-01"           # 只采集此日期之后的记录（时效性，论文要写）
+  rss:                          # RSS / Atom 类源（feed 无法检索，只能按关键词过滤）
+    少数派:
+      feed: "https://sspai.com/feed"
+      category: "技术内容与教程社区"
+      min_token_hits: 1
+    量子位:
+      feed: "https://www.qbitai.com/feed"
+      category: "科技与AI垂直资讯"
+      min_token_hits: 1
+    IT之家:
+      feed: "https://www.ithome.com/rss/"
+      category: "科技与AI垂直资讯"
+      min_token_hits: 2        # 资讯站噪声大，要求两个词同时命中
+    InfoQ中国:
+      feed: "https://www.infoq.cn/feed"
+      category: "技术内容与教程社区"
+      min_token_hits: 1
+    SegmentFault:
+      feed: "https://segmentfault.com/feeds/questions"   # 问答流（比首页 feed 多）
+      category: "问答与需求社区"
+      min_token_hits: 1
+    博客园:
+      feed: "https://www.cnblogs.com/rss"
+      category: "技术内容与教程社区"
+      min_token_hits: 1
+
+clean:
+  min_length: 15
+  # 0 = 不做中文占比过滤（英文源保留）。语言问题交给下面的 translate 层处理：
+  # 先翻译成中文，翻不了的也保留原文并标记 translated=false。
+  min_chinese_ratio: 0.0
+  strip_urls: true
+  strip_mentions: true
+  mask_pii: true
+  ad_patterns:
+    - "点击关注"
+    - "加微信"
+    - "私信领取"
+    - "扫码进群"
+    - "一键三连"
+    - "版权归原作者所有"
+  dedup:
+    simhash_hamming: 3
+    tfidf_cosine: 0.95
+
+# ---------------------------------------------------------------------------
+# 翻译层：英文来源（GitHub / Kaggle / Stack Overflow）先译成中文再入表
+#   触发：记录中文占比 < trigger_ratio
+#   溯源：原文保留在 orig_title / orig_content，source_lang 记录语言
+# ---------------------------------------------------------------------------
+translate:
+  enabled: true
+  trigger_ratio: 0.30
+  concurrency: 4
+  mark_in_content: false        # true 会在「内容」里加〔英译〕标记（利于溯源，但会干扰聚类词频）
+
+
+# ---------------------------------------------------------------------------
+# 任务二：机会判别
+# ---------------------------------------------------------------------------
+judge:
+  threshold: 0.36                # τ：由 scripts/tune_threshold.py 标定
+  weights:
+    has_need: 0.40
+    ai_core: 0.35
+    feasible: 0.25
+  bias: -1.925
+  slope: 3.5
+  use_llm: true
+  llm_concurrency: 4
+  few_shot_per_class: 2
+
+# ---------------------------------------------------------------------------
+# 任务三：主题聚类
+# ---------------------------------------------------------------------------
+cluster:
+  embedding: "tfidf_svd"         # tfidf_svd | sentence_transformers
+  st_model: "BAAI/bge-small-zh-v1.5"
+  svd_dims: 100
+  method: "auto"                 # auto | kmeans | distance
+  distance_threshold: 0.62
+  min_cluster_size: 2
+  merge_sim: 0.35
+  max_cluster_share: 0.70
+  k_range: [2, 12]
+  k_tolerance: 0.01
+  stability_trials: 10           # Bootstrap 稳定性检验次数（ARI）              # 简约原则：与最优轮廓系数差 <= tol 时取更小的 k
+  topic_name_max_chars: 20
+
+# ---------------------------------------------------------------------------
+# 任务四：价值评估
+# ---------------------------------------------------------------------------
+score:
+  dimensions: ["multi_source", "scale", "heat", "need_strength"]
+  normalize: "minmax"
+  weight_method: "entropy+ahp"
+  alpha: 0.5
+  ahp_weights:
+    multi_source: 0.40
+    scale: 0.30
+    heat: 0.15
+    need_strength: 0.15
+  sensitivity_perturb: 0.10
+  sensitivity_trials: 100
+
+# ---------------------------------------------------------------------------
+# LLM（OpenAI 兼容：DeepSeek / 通义 / Moonshot / vLLM）
+# ---------------------------------------------------------------------------
+llm:
+  base_url: "https://api.deepseek.com/v1"
+  model: "deepseek-chat"
+  api_key_env: "DEEPSEEK_API_KEY"   # 只从环境变量读
+  temperature: 0.0
+  max_tokens: 800
+  cache: true
+  # 没有 key 时：命中预置缓存就用（零配置演示），未命中才降级到纯规则
+  cache_only_when_no_key: true

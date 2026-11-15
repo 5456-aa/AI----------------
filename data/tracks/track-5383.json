@@ -1,0 +1,18 @@
+{
+  "slug": "track-5383",
+  "label": "医疗问诊",
+  "demand_direction": "医疗问诊",
+  "record_prefix": "T898",
+  "keywords": [
+    "在线问诊",
+    "病历结构化",
+    "分诊"
+  ],
+  "sources": [
+    "GitHub",
+    "掘金",
+    "Stack Overflow",
+    "博客园",
+    "哔哩哔哩"
+  ]
+}

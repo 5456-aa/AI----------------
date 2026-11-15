@@ -1,0 +1,100 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'>
+<title>全流程运行记录</title>
+<style>
+:root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--blue:#2563eb;--bg:#f9fafb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:14px/1.65 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:24px}
+.head{background:linear-gradient(135deg,#111827,#2563eb);color:#fff;border-radius:12px;
+padding:22px 26px;margin-bottom:18px}
+.head h1{margin:0 0 6px;font-size:22px}
+.head .sub{opacity:.85;font-size:13px}
+.stage{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;
+margin-bottom:16px}
+.stage h2{font-size:17px;margin:0 0 4px;color:var(--blue)}
+.stage .cmd{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--muted);
+background:#f3f4f6;padding:6px 10px;border-radius:6px;display:inline-block;margin:6px 0 12px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}
+th{background:#f3f4f6;font-weight:600}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:10px 0}
+.kv div{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kv b{display:block;font-size:19px}
+.kv span{font-size:12px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px}
+</style></head><body><div class='wrap'>
+<div class='head'><h1>AI 应用场景机会评估系统 · 全流程运行记录</h1>
+<div class='sub'>采集批次 B20261113-01　·　运行 2026-11-15 17:45　·　六个阶段均可在本机用一条命令复现</div></div>
+<div class='stage'><h2>阶段 1 / 6　多源数据采集</h2>
+<div class='cmd'>python run_collect.py --track all --limit 110</div>
+<div class='kv'>
+<div><b>761</b><span>原始采集条数</span></div>
+<div><b>11</b><span>来源站点数</span></div>
+<div><b>9</b><span>机器翻译条数</span></div>
+</div>
+<table><thead><tr><th>来源</th><th>清洗保留</th><th>机会数</th><th>机会率</th></tr></thead><tbody>
+<tr><td>哔哩哔哩</td><td class='n'>202</td><td class='n'>5</td><td class='n'>2.5%</td></tr>
+<tr><td>掘金</td><td class='n'>202</td><td class='n'>5</td><td class='n'>2.5%</td></tr>
+<tr><td>GitHub</td><td class='n'>174</td><td class='n'>20</td><td class='n'>11.5%</td></tr>
+<tr><td>开源中国</td><td class='n'>51</td><td class='n'>0</td><td class='n'>0.0%</td></tr>
+<tr><td>SegmentFault</td><td class='n'>46</td><td class='n'>22</td><td class='n'>47.8%</td></tr>
+<tr><td>博客园</td><td class='n'>24</td><td class='n'>0</td><td class='n'>0.0%</td></tr>
+<tr><td>InfoQ中国</td><td class='n'>17</td><td class='n'>0</td><td class='n'>0.0%</td></tr>
+<tr><td>少数派</td><td class='n'>6</td><td class='n'>0</td><td class='n'>0.0%</td></tr>
+<tr><td>量子位</td><td class='n'>6</td><td class='n'>0</td><td class='n'>0.0%</td></tr>
+<tr><td>IT之家</td><td class='n'>5</td><td class='n'>0</td><td class='n'>0.0%</td></tr>
+<tr><td>Stack Overflow</td><td class='n'>2</td><td class='n'>0</td><td class='n'>0.0%</td></tr>
+</tbody></table>
+<p class='note'>原始响应快照按来源存于 data/raw/&lt;批次&gt;/，可逐条回原文。</p></div>
+<div class='stage'><h2>阶段 2 / 6　文本清洗与三层去重</h2>
+<div class='cmd'>python run_all.py --track all --batch B20261113-01 --force</div>
+<table><thead><tr><th>阶段</th><th>记录数</th><th>本阶段剔除</th></tr></thead><tbody>
+<tr><td>原始采集</td><td class='n'>761</td><td class='n'>—</td></tr>
+<tr><td>清洗保留</td><td class='n'>749</td><td class='n'>12</td></tr>
+<tr><td>L1 URL 精确去重</td><td class='n'>741</td><td class='n'>8</td></tr>
+<tr><td>L2 SimHash 近似去重</td><td class='n'>735</td><td class='n'>6</td></tr>
+<tr><td>L3 语义去重</td><td class='n'>735</td><td class='n'>0</td></tr>
+</tbody></table>
+<p class='note'>去重后保留 735 条，去重率 3.4%。</p></div>
+<div class='stage'><h2>阶段 3 / 6　机会判别与归类</h2>
+<div class='cmd'>python scripts/tune_threshold.py --tune data/label/人工标注表.xlsx</div>
+<div class='kv'>
+<div><b>0.36</b><span>判别阈值 τ（P-R 标定）</span></div>
+<div><b>52</b><span>机会记录</span></div>
+<div><b>7.1%</b><span>机会率</span></div>
+</div>
+<table><thead><tr><th>排除类型</th><th>条数</th></tr></thead><tbody>
+<tr><td>tutorial</td><td class='n'>234</td></tr>
+<tr><td>news</td><td class='n'>170</td></tr>
+<tr><td>ad</td><td class='n'>118</td></tr>
+<tr><td>none</td><td class='n'>116</td></tr>
+<tr><td>other</td><td class='n'>68</td></tr>
+<tr><td>chitchat</td><td class='n'>25</td></tr>
+<tr><td>recruit</td><td class='n'>4</td></tr>
+</tbody></table></div>
+<div class='stage'><h2>阶段 4 / 6　主题聚类与评估</h2>
+<table><thead><tr><th>赛道</th><th>簇数</th><th>轮廓系数</th><th>Davies-Bouldin</th><th>稳定性 ARI（均值/最低）</th></tr></thead><tbody>
+<tr><td>ecommerce</td><td class='n'>4</td><td class='n'>0.0672</td><td class='n'>2.4896</td><td class='n'>0.903 / 0.491</td></tr>
+<tr><td>education</td><td class='n'>9</td><td class='n'>0.093</td><td class='n'>1.7609</td><td class='n'>0.809 / 0.596</td></tr>
+</tbody></table>
+<p class='note'>合并后共 13 个主题簇；少于 2 条的簇已并入最近簇。</p></div>
+<div class='stage'><h2>阶段 5 / 6　价值评估与排序</h2>
+<table><thead><tr><th>维度</th><th>熵权</th><th>AHP</th><th>组合权重</th></tr></thead><tbody>
+<tr><td>multi_source</td><td class='n'>0.1821</td><td class='n'>0.4</td><td class='n'>0.2911</td></tr>
+<tr><td>scale</td><td class='n'>0.3367</td><td class='n'>0.3</td><td class='n'>0.3183</td></tr>
+<tr><td>heat</td><td class='n'>0.4007</td><td class='n'>0.15</td><td class='n'>0.2754</td></tr>
+<tr><td>need_strength</td><td class='n'>0.0805</td><td class='n'>0.15</td><td class='n'>0.1152</td></tr>
+</tbody></table>
+<p class='note'>敏感性：权重 ±10% 扰动 100 次，Spearman 均值 0.9984，Top-3 稳定率 70%。</p></div>
+<div class='stage'><h2>阶段 6 / 6　结果导出与自检</h2>
+<div class='cmd'>python scripts/check_result_spec.py</div>
+<table><thead><tr><th>文件</th><th>行数</th><th>说明</th></tr></thead><tbody>
+<tr><td>result1.csv</td><td class='n'>735</td><td>清洗去重后的全部记录</td></tr>
+<tr><td>result2.csv</td><td class='n'>735</td><td>逐条判别 + 双标签</td></tr>
+<tr><td>result3.csv</td><td class='n'>13</td><td>主题簇 + 溯源</td></tr>
+<tr><td>result4.csv</td><td class='n'>13</td><td>价值分 + 优先级</td></tr>
+</tbody></table>
+<p class='note'>31 项合规核对全部通过（表头/BOM/编号/时区/交叉一致性）。</p></div>
+</div></body></html>

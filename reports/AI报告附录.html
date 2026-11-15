@@ -1,0 +1,95 @@
+<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'>
+<title>AI 使用情况说明 · 附录</title>
+<style>
+body{margin:0;background:#f8fafc;color:#111827;
+font:14px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:26px}
+h1{font-size:20px;margin:0 0 6px}
+.sub{color:#6b7280;font-size:12.5px;margin-bottom:18px}
+.sec{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.sec h2{font-size:15px;margin:0 0 8px;color:#2563eb}
+pre{background:#0f172a;color:#e2e8f0;padding:14px 16px;border-radius:8px;
+font:12px/1.65 ui-monospace,Consolas,monospace;overflow-x:auto;white-space:pre-wrap}
+.note{font-size:12px;color:#6b7280;margin-top:8px}
+.tag{display:inline-block;background:#ecfdf5;color:#047857;border-radius:4px;
+padding:1px 8px;font-size:11.5px;margin-left:6px}
+</style></head><body><div class='wrap'>
+<h1>AI 使用情况说明 · 附录证据</h1>
+<div class='sub'>以下截图均已在生成时自动脱敏：路径替换为 &lt;项目根&gt;，任何疑似密钥替换为 sk-****。</div>
+<div class='sec' id='s1'><h2>附录 A1　调用缓存：每次调用可回放<span class='tag'>共 1463 条</span></h2>
+<pre>{"key": "51df777759498f3f…（sha1，不可逆）", "model": "deepseek-chat", "ts": "2026-11-11T22:56:40",
+ "response": "{"ok": true, "msg": "pong"}…"}
+{"key": "67ce99ca5f4afab8…（sha1，不可逆）", "model": "deepseek-chat", "ts": "2026-11-11T22:57:32",
+ "response": "{"title_zh": "谁在招人？（2026年11月）", "content_zh": "这里是免费的程序员招聘服务。\n\n如果你们团队正在招人，欢迎把招聘信息发在这个帖子里面。请简要描述，岗位名称、工作地点、岗位要求、团队简介、联系方式等等。\n\n## 发帖规则\n\n请遵守以下规则，违者…"}
+{"key": "32d9f675ecdd51d1…（sha1，不可逆）", "model": "deepseek-chat", "ts": "2026-11-11T22:57:32",
+ "response": "{"title_zh": "谁在招人？（2026年10月）", "content_zh": "这里是免费的程序员招聘服务。\n\n如果你们团队正在招人，欢迎把招聘信息发在这个帖子里面。请简要描述，岗位名称、工作地点、岗位要求、团队简介、联系方式等等。\n\n## 发帖规则\n\n请遵守以下规则，违者…"}
+{"key": "e9f7c7363aece68f…（sha1，不可逆）", "model": "deepseek-chat", "ts": "2026-11-11T22:58:24",
+ "response": "{"has_need": 0.0, "ai_core": 0.0, "feasible": 0.0, "exclude": "other", "func_category": "推荐系统", "industry": "其他", "reason": "仓库候选清单，无具体用户痛点诉求"}…"}
+{"key": "1e87c023b18b6bca…（sha1，不可逆）", "model": "deepseek-chat", "ts": "2026-11-11T22:58:24",
+ "response": "{"has_need": 0.3, "ai_core": 0.2, "feasible": 0.4, "exclude": "none", "func_category": "智能体编排", "industry": "其他", "reason": "内部工程PRD，诉求是鉴权与工具接入，非AI能力需…"}</pre>
+<p class='note'>缓存以「模型名 + 温度 + 提示词」的 SHA1 作为键；同一请求重复执行不再计费，也保证答辩时结果可复现。缓存中<b>不含任何密钥</b>，密钥只存在于本机 .env，不进入仓库与提交包。</p></div>
+<div class='sec' id='s2'><h2>附录 A2　连通性自检输出</h2>
+<pre>配置：base_url = https://api.deepseek.com/v1
+      model    = deepseek-chat
+      key      = sk-f…7254（长度 35）  （来源：.env 文件）
+客户端状态：enabled=True，缓存 1431 条
+
+[成功] 往返 0.00s，返回：{'ok': True, 'msg': 'pong'}
+
+LLM 可用，可以跑判别/翻译/主题名了：
+  python run_all.py --track all --batch B20261111-01 --force</pre>
+<p class='note'>输出中的 Key 仅显示前 4 位与后 4 位（脱敏显示），完整值不落日志。</p></div>
+<div class='sec' id='s3'><h2>附录 A3　判别提示词与返回字段（真实样例）</h2>
+<p class='note'>提示词把赛题的四条判定标准写成结构化约束，要求只输出 JSON：</p>
+<pre>请判断下面这条来自「GitHub」的记录，是否构成一个"AI 应用机会"。
+
+判定标准（四条，缺一不可）：
+1. has_need（有真实需求）：记录里出现了具体的人在表达具体的问题、痛点、求助或期望，
+   例如"有没有工具能…""求推荐…""怎么才能…""太麻烦了""希望有个…"。纯陈述事实不算。
+2. ai_core（AI 是核心）：这个问题必须依赖 AI 能力（语义理解、生成、识别、预测、多模态）
+   才能解决；如果只是普通信息化/外包/人力就能解决，应判低分。
+3. feasible（技术可落地）：当前技术即可实现，不需要自研基础模型、不需要海量标注数据、
+   不需要专用硬件。
+4. exclude（排除情形）：如果记录属于以下任一类别，exclude 设为该类别，否则设为 "none"：
+   news（纯资讯报道）、ad（广告营销）、tutorial（教程科普）、recruit（招聘）、
+   policy（政策公告）、chitchat（纯情绪无诉求）、other。
+
+待判定记录：
+标题：[Feature] 增加淘宝/天猫可核验的固定只读取数流程
+正文：[Feature] 增加淘宝/天猫可核验的固定只读取数流程
+## 背景
+当前 Bot 通过模型临场操作卖家后台页面来取数，步骤耗时且重复执行不稳定；只读约束主要依赖提示，缺少能核对店铺、日期范围和数据完整性的证据。
+
+## 目标
+为“上品堂天猫”先建立一个专用、可重复的生意参谋数据流程，覆盖经营概况和商品表现，并使用该 Bot 自己的内置浏览器与登录态。
+
+流程需要固定或明确输入：
+- 报表类型与日期范围（按 Asia/Shanghai 解释）
+- 运行前确认当前店铺/账号与目标 Bot 一致
+- 读取官方报表页面或页面发起的只读数据请求，并等待报表完整加载
+- 校验返回的店铺标识、日期范围、必需指标/商品字段、分页/行数与异常状态
+- 保存可复核的来源证据（原始响应或导出文件引用、时间、字段/行数摘要与内容指纹）
+
+## 约束
+- 只读：不提交、修改、删除、付款或调用未知写入操作；不允许任意 POST/任意请求体作为取数捷径。
+- 不使用外部 Chrome 登录态；使用 Bot 自己的嵌入式浏览器。
+- 登录过期、验证码或权限不足时明确交还用户，不猜密码或验证码。
+- 先落地天猫样板；其他电商平台后续单独增加 recipe。
+
+## 验收条件
+- 有专用的类型化工具/流程，不依赖模型每次自行规划整段后台导航。
+- 账号/店铺不匹配、日期不匹配、必需字段缺失、数据为空/截断/分页不完整或下载/解析失败时，流程明确失败且不输出经营结论。
+- 成功结果同时给出经营指标和可复核的来源/完整性摘要。
+- 自动化覆盖只读边界、身份与日期校验、字段/行数完整性及失败路径。
+- 在“上品堂天猫” Bot …</pre>
+<p class='note'>对应记录最终落库的判别字段：</p>
+<pre>{
+  "has_need": 0.7,
+  "ai_core": 0.3,
+  "feasible": 0.8,
+  "exclude": "none",
+  "func_category": "自动化流程",
+  "industry": "电商",
+  "reason": "卖家需稳定只读取数，但核心是固定流程与校验，AI非必需"
+}</pre></div>
+</div></body></html>

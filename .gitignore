@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 数据与产物（体积大，不上传）
+data/raw/*
+data/clean/*
+data/cache/*
+data/out/*
+!data/raw/.gitkeep
+!data/clean/.gitkeep
+
+# 但云端演示（Streamlit Community Cloud）需要读这些，逐个放行
+# 注意：git 不会进入被忽略的目录，所以「目录」必须先放行
+!data/out/
+!data/out/*.csv
+!data/out/*/
+!data/out/*/*.csv
+!data/tracks/
+!data/tracks/*.json
+!data/cache/llm_calls.jsonl
+!data/clean/ecommerce/
+!data/clean/education/
+!data/clean/ecommerce/*.jsonl
+!data/clean/education/*.jsonl
+
+# 日志与临时
+logs/
+*.log
+
+# 密钥（绝不提交）
+.env
+.env.bak.*
+*.key
+.leak_alert
+LEAK_ALERT.txt
+
+# 本地工具（cloudflared 53MB，云端用不到）
+tools/
+
+# 系统
+.DS_Store
+Thumbs.db

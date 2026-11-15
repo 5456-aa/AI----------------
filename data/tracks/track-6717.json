@@ -1,0 +1,18 @@
+{
+  "slug": "track-6717",
+  "label": "法律合同审查",
+  "demand_direction": "法律合同审查",
+  "record_prefix": "T168",
+  "keywords": [
+    "合同审查",
+    "条款比对",
+    "法律问答"
+  ],
+  "sources": [
+    "GitHub",
+    "掘金",
+    "Stack Overflow",
+    "博客园",
+    "哔哩哔哩"
+  ]
+}
