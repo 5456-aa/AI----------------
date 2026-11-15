@@ -309,7 +309,7 @@ def main() -> None:
 """, unsafe_allow_html=True)
 
     with st.sidebar:
-        if auth.is_public_request() and not auth.is_cloud_host():
+        if (not auth.sees("see_settings")) and not auth.is_cloud_host():
             with st.expander("🔑 用我自己的 API Key（可选）", expanded=False):
                 import llm_settings as _ls
                 _keys = list(_ls.PROVIDERS)
@@ -358,6 +358,20 @@ def main() -> None:
                                  default=["GitHub", "掘金", "SegmentFault", "博客园"])
         offline = c4.checkbox("离线模式", value=True,
                               help="只用缓存，不调 API；快且结果可复现")
+        try:
+            import llm_settings as _ls
+            _st = _ls.status(load_config(track="all"))
+            _env_key = bool(_st.get("enabled"))
+        except Exception:
+            _env_key = False
+        _vis_key = bool((st.session_state.get("visitor_llm") or {}).get("key"))
+        if _vis_key:
+            st.caption("🔑 当前：**在线模式**（使用你自己填的 Key，仅本次会话）")
+        elif _env_key and not auth.is_cloud_host():
+            st.caption("🔑 当前：**在线模式**（使用本机 `.env` 中配置的 Key）")
+        else:
+            st.caption("💡 当前：**离线模式**（本地缓存 + 规则，**无需 Key**）；"
+                       "想要更好的判别质量，可配置 Key 或在左侧填写")
         with st.popover("哪些源不可用？"):
             for name, why in SOURCE_STATUS.items():
                 st.caption(f"- **{name}**：{why}")
@@ -394,6 +408,10 @@ def main() -> None:
         go = False
 
     visitor = st.session_state.get("visitor_llm") or {}
+    if go and not offline and not (visitor.get("key") or _env_key):
+        st.warning("未检测到 API Key：本次将自动使用**离线模式**（缓存 + 规则）。"
+                   "如需在线模式，请在左侧填写你自己的 Key，或在本机配置 .env。")
+        offline = True
     if go and cloud_mode:
         offline = True           # 云端强制离线
     elif go and visitor.get("key"):

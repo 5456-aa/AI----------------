@@ -148,8 +148,14 @@ def current_role() -> str:
 
 
 def mode_switcher() -> None:
-    """本机专用：管理模式开关（公网访客看不到）。"""
+    """本机专用：管理模式开关（公网访客看不到）。
+
+    注意只对 admin / decider 生效——需求发起者是独立的受限角色，
+    不能被这个开关顺手改成决策者（否则采集按钮会消失）。
+    """
     if is_public_request():
+        return
+    if current_role() not in ("admin", "decider"):
         return
     managing = current_role() == "admin"
     new = st.toggle("🔓 管理模式（仅本机可见）", value=managing,
