@@ -187,6 +187,12 @@ def main() -> None:
     cfg, judged, scored, detail = load_all()
 
     st.title("💬 问答咨询")
+
+    # 数据缺失时给明确提示，而不是抛 KeyError（云端可能只发布了部分数据）
+    if judged is None or getattr(judged, "empty", True):
+        st.warning("当前环境没有可用的明细数据，问答暂不可用。")
+        st.caption("本地可运行：`python run_all.py --track all --offline --force` 生成后再试。")
+        return
     st.caption("答案中的数字全部来自结果文件，可逐条溯源到原始记录。")
 
     q = st.text_input("问点什么", placeholder="例如：教育行业有哪些机会方向？")

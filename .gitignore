@@ -24,6 +24,7 @@ data/runtime/
 !data/tracks/
 !data/tracks/*.json
 !data/cache/llm_calls.jsonl
+!data/clean/*.jsonl
 !data/clean/*/
 !data/clean/*/*.jsonl
 
