@@ -18,6 +18,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+import pandas as pd
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -507,31 +508,52 @@ def main() -> None:
     st.markdown('<div class="section"><em>3</em>　系统说明</div>',
                 unsafe_allow_html=True)
     t1, t2, t3 = st.tabs(["角色与权限", "成本与资源", "部署与运行"])
+
     with t1:
-        auth.panel()
-        st.caption("实现：`ui/auth.py`；公网访问自动降为决策者（可浏览 + 离线采集）。")
+        st.dataframe(
+            pd.DataFrame({
+                "角色": ["决策者", "需求发起者", "系统管理员"],
+                "发起需求": ["❌", "✅", "✅"],
+                "查看批次": ["✅", "✅", "✅"],
+                "原始链接": ["❌", "✅", "✅"],
+                "导出策划案": ["✅", "✅", "✅"],
+                "模型设置": ["❌", "❌", "✅"],
+                "标注数据": ["❌", "❌", "✅"],
+            }),
+            use_container_width=True, hide_index=True, height=170)
+        st.caption("数据可见范围：决策者只看聚合结论与策划案；原始记录链接仅需求发起者与管理员；"
+                   "标注集与密钥仅系统管理员。公网 / 云端访问自动降为决策者。")
+
     with t2:
         try:
             cost = (ROOT / "reports" / "成本与资源.md").read_text(encoding="utf-8")
-            head = [ln for ln in cost.splitlines() if ln.startswith("- ")][:6]
-            st.markdown("\n".join(head) if head else "详见 reports/成本与资源.md")
+            bullets = [ln.strip()[2:].strip() for ln in cost.splitlines()
+                       if ln.strip().startswith("- ")]
+            keep = [b for b in bullets if b][:6]
+            st.markdown("\n".join(f"- {b}" for b in keep) if keep
+                        else "详见 reports/成本与资源.md")
         except Exception:
-            st.caption("详见 reports/成本与资源.md")
-        st.caption("成本控制：全量缓存复用、离线模式零费用复现、判别合并为一次调用。")
+            st.info("详见 reports/成本与资源.md")
+        st.caption("成本控制：全量缓存复用（重跑零成本）、离线模式（`--offline`）"
+                   "不产生 API 费用、判别合并为一次调用。")
+
     with t3:
-        st.markdown("""
-| 方式 | 成本 | 适用 |
-|---|---|---|
-| 本机双击 bat | 0 | 开发与答辩演示 |
-| 局域网 `http://本机IP:8500` | 0 | 队内多人查看 |
-| Cloudflare 临时隧道 | 0 | 评委临时查看 |
-| Streamlit Cloud | 0 | 长期只读展示 |
+        st.dataframe(
+            pd.DataFrame({
+                "部署方式": ["本机运行（双击 bat）", "局域网共享",
+                             "Cloudflare 临时隧道", "Streamlit Cloud"],
+                "成本": ["0", "0", "0", "0"],
+                "需要本机开机": ["是", "是", "是", "否"],
+                "适用场景": ["开发与答辩演示", "队内多人查看",
+                             "评委临时查看", "长期只读展示"],
+            }),
+            use_container_width=True, hide_index=True, height=190)
+        st.caption("运行环境：Python 3.10+　·　内存 400~600 MB　·　磁盘约 200 MB")
 
-运行环境：Python 3.10+｜内存 400~600 MB｜磁盘约 200 MB。
-""")
+    st.divider()
+    st.caption("页面入口：首页 / 分析看板 / 问答咨询（左侧导航切换）"
+               "　·　在线标注工具：本机 http://localhost:8504（不对外暴露）")
 
-    st.caption(f"其它入口：分析看板 {DASHBOARD}　·　问答咨询 {QA}　·　"
-               f"在线标注 http://localhost:8504")
 
 
 if __name__ == "__main__":
