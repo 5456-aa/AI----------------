@@ -12,9 +12,19 @@ _UI = Path(__file__).resolve().parent
 def page_config(title: str, icon: str = "🎯", layout: str = "wide") -> None:
     """st.set_page_config 一次运行只能调用一次，多页时由入口统一设置。"""
     try:
-        st.set_page_config(page_title=title, page_icon=icon, layout=layout)
+        st.set_page_config(page_title=title, page_icon=icon, layout=layout,
+                           initial_sidebar_state="expanded")
     except Exception:
         pass
+
+
+def page_style() -> None:
+    """统一主内容区宽度：默认 Streamlit 太窄，宽屏下两侧留白过多。"""
+    st.markdown(
+        "<style>"
+        ".main .block-container,section.main>div.block-container"
+        "{max-width:1180px;padding-top:2.2rem;}"
+        "</style>", unsafe_allow_html=True)
 
 
 def sidebar_nav() -> None:
@@ -41,3 +51,5 @@ def sidebar_nav() -> None:
         _link("app.py", "分析看板", "📊")
         _link("qa.py", "问答咨询", "💬")
         st.divider()
+
+    page_style()

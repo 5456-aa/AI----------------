@@ -17,7 +17,8 @@ for p in (str(ROOT), str(UI)):
     if p not in sys.path:
         sys.path.insert(0, p)
 
-st.set_page_config(page_title="AI 应用场景机会评估系统", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="AI 应用场景机会评估系统", page_icon="🎯",
+                   layout="wide", initial_sidebar_state="expanded")
 
 pages = [
     st.Page(str(UI / "home.py"), title="首页", icon="🏠", default=True),
