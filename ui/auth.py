@@ -91,12 +91,26 @@ def is_public_demo() -> bool:
     return is_public_request()
 
 
+def _is_loopback() -> bool:
+    h = request_host()
+    return h in ("localhost", "127.0.0.1", "::1", "0.0.0.0")
+
+
 def default_role() -> str:
-    role = os.environ.get("ROLE", "admin")
-    role = _ALIAS.get(role, role)
+    """默认角色：
+       本机 localhost → 系统管理员（完整权限）
+       局域网           → 需求发起者（可采集，不能改配置）
+       公网             → 决策者（只读，可离线采集）
+    显式设置 ROLE 时以 ROLE 为准。
+    """
+    role = os.environ.get("ROLE", "")
+    if role:
+        return _ALIAS.get(role, role if role in ROLES else "admin")
     if is_public_request():
         return "decider"
-    return role
+    if _is_loopback():
+        return "admin"
+    return "requester"
 
 
 def current_role() -> str:
@@ -122,6 +136,32 @@ def mode_switcher() -> None:
         st.rerun()
 
 
+def allow_public_collect() -> bool:
+    """公网访客能否发起「离线采集」。
+
+    默认开启：采集与分析只走本地缓存与规则，**不调用任何外部 API**，
+    因此不会消耗系统管理员的额度，也不需要访客提供 Key。
+
+    如需关闭（例如担心被频繁触发），把 config.yaml 里
+    `ui.allow_public_collect` 设为 false。
+    """
+    try:
+        import yaml
+        from pathlib import Path
+        cfg = yaml.safe_load((Path(__file__).resolve().parents[1] / "config.yaml")
+                             .read_text(encoding="utf-8"))
+        return bool((cfg.get("ui") or {}).get("allow_public_collect", True))
+    except Exception:
+        return True
+
+
+def can_collect() -> bool:
+    """当前会话能否发起采集：有权限，或（公网 + 允许离线采集）。"""
+    if can("collect"):
+        return True
+    return is_public_request() and allow_public_collect()
+
+
 def can(perm: str) -> bool:
     return perm in ROLES[current_role()]["perm"]
 
@@ -136,8 +176,11 @@ def role_badge() -> None:
     r = ROLES[role]
     icon = {"decider": "👁", "requester": "🛠", "admin": "🔑"}[role]
     st.caption(f"{icon} 当前角色：**{r['label']}**")
-    if is_public_demo():
-        st.caption("公网演示模式：权限已锁定为决策者（只读）")
+    if is_public_request():
+        if allow_public_collect():
+            st.caption("公网访问：可浏览全部批次，可发起**离线采集**（不调 API）")
+        else:
+            st.caption("公网访问：只读")
 
 
 def role_selector() -> None:

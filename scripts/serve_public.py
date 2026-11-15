@@ -25,7 +25,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CF = ROOT / "tools" / "cloudflared.exe"
-PORTS = [8500, 8501]
+PORTS = [8500]   # 单应用多页：只需一个端口
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore
@@ -73,10 +73,23 @@ def main() -> int:
         print("❌ 隧道建立失败：检查网络，或改用其它方案（见 docs/公网演示方案.md）")
         return 1
 
+    # 把地址写给界面用：公网访客点「看板」时要用对应的公网地址
+    try:
+        import json as _json
+        rt = ROOT / "data" / "runtime"
+        rt.mkdir(parents=True, exist_ok=True)
+        (rt / "public_urls.json").write_text(
+            _json.dumps({"home": found.get(8500, ""),
+                         "dashboard": found.get(8500, "")},
+                        ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"  地址已写入 {rt / 'public_urls.json'}（界面会自动引用）")
+    except Exception as exc:
+        print(f"  写入地址文件失败：{exc}")
+
     print("\n" + "=" * 64)
     print("  把这个地址发给评委（在浏览器或手机 4G 下都能打开）：")
     print(f"    首页（发起需求 / 批次总览）：{found.get(8500, '（未建立）')}")
-    print(f"    分析看板（榜单 / 下钻 / 策划案）：{found.get(8501, '（未建立）')}")
+    print("    进入后左侧可切换：首页 / 分析看板 / 问答咨询")
     print("=" * 64)
     print("\n注意：")
     print("  1. 地址每次重启都会变，重启后要重新发；")

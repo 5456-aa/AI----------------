@@ -1,0 +1,17 @@
+{
+  "slug": "track-4783",
+  "label": "招聘简历筛选",
+  "demand_direction": "招聘简历筛选",
+  "record_prefix": "TDC6",
+  "keywords": [
+    "简历筛选",
+    "面试",
+    "人才匹配"
+  ],
+  "sources": [
+    "GitHub",
+    "掘金",
+    "SegmentFault",
+    "博客园"
+  ]
+}

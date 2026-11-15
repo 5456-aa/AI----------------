@@ -73,6 +73,13 @@ def main() -> int:
     add("任务五", "问答页有提问输入框", count(qa, "text_input") >= 1)
     add("任务五", "问答页有示例问题按钮", len(qa.button) >= 4)
 
+    # ---------- 单应用入口 ----------
+    try:
+        main_at = run("main.py")
+        add("系统", "单应用入口（main.py）可启动", True)
+    except Exception:
+        add("系统", "单应用入口（main.py）可启动", False, "AppTest 不支持 navigation 时忽略")
+
     # 汇总
     tasks = ["任务一", "任务二", "任务三", "任务四", "任务五", "系统"]
     L = ["# 系统任务覆盖自检（界面级）", "",

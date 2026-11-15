@@ -5,33 +5,37 @@ setlocal
 
 set "PYEXE=python"
 if exist "%USERPROFILE%\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe" set "PYEXE=%USERPROFILE%\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe"
+set "CF=tools\cloudflared.exe"
 
-REM public demo mode: hide the API-key settings panel
-set "PUBLIC_DEMO=1"
+if not exist "%CF%" (
+  echo [ERROR] tools\cloudflared.exe not found.
+  echo Download from https://github.com/cloudflare/cloudflared/releases
+  pause
+  exit /b 1
+)
 
 echo.
 echo  ============================================================
-echo   PUBLIC DEMO MODE
+echo   PUBLIC DEMO - single link
 echo.
-echo   This starts the local services in read-only mode and
-echo   opens two Cloudflare quick tunnels (no account needed).
+echo   Step 1: start the app in another window (run 启动系统.bat)
+echo   Step 2: this window opens a tunnel and prints ONE url
 echo.
 echo   Requirements: internet + this computer stays on.
 echo  ============================================================
 echo.
 
-echo [1/3] Starting services (public mode) ...
-start "AI-Opp Home 8500" cmd /c "set PUBLIC_DEMO=1&&"%PYEXE%" -m streamlit run ui\home.py --server.port 8500 --server.address 0.0.0.0 --browser.gatherUsageStats false"
-timeout /t 4 >nul
-start "AI-Opp Dashboard 8501" cmd /c "set PUBLIC_DEMO=1&&"%PYEXE%" -m streamlit run ui\app.py --server.port 8501 --server.address 0.0.0.0 --browser.gatherUsageStats false"
-timeout /t 6 >nul
+echo [1/2] Checking local service on port 8500 ...
+curl -s -o nul -w "" http://127.0.0.1:8500/_stcore/health
+if errorlevel 1 (
+  echo [ERROR] port 8500 not responding. Run 启动系统.bat first.
+  pause
+  exit /b 1
+)
+echo       OK
 
-echo [2/3] Opening tunnels ...
-echo [3/3] Waiting for public URLs ...
+echo [2/2] Opening tunnel ...
 echo.
-
 "%PYEXE%" scripts\serve_public.py
 
-echo.
-echo Public demo stopped.
 pause

@@ -12,6 +12,9 @@ data/out/*
 !data/raw/.gitkeep
 !data/clean/.gitkeep
 
+# 运行时状态（隧道地址等），不需要进仓库
+data/runtime/
+
 # 但云端演示（Streamlit Community Cloud）需要读这些，逐个放行
 # 注意：git 不会进入被忽略的目录，所以「目录」必须先放行
 !data/out/

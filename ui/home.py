@@ -14,6 +14,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -26,7 +27,7 @@ import auth  # noqa: E402
 from collectors.registry import ENABLED_SOURCES, SOURCE_STATUS  # noqa: E402
 from io_utils import load_config  # noqa: E402
 
-st.set_page_config(page_title="AI 机会评估系统", page_icon="🎯", layout="wide")
+from _init import page_config; page_config("AI 机会评估系统", "🎯")
 
 TRACKS_DIR = ROOT / "data" / "tracks"
 OUT_DIR = ROOT / "data" / "out"
@@ -109,6 +110,15 @@ TEMPLATES: list[tuple[str, str, str]] = [
 
 
 # ---------------------------------------------------------------------------
+def public_urls() -> dict[str, str]:
+    """隧道启动时写入的公网地址（公网访客点「看板」要用它，不能给 localhost）。"""
+    p = ROOT / "data" / "runtime" / "public_urls.json"
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
 def all_tracks() -> dict[str, str]:
     cfg = load_config(track="all")
     m: dict[str, str] = {}
@@ -178,11 +188,25 @@ def _stage_of(line: str) -> str | None:
     return None
 
 
-def stream(cmd: list[str], bar, status, log_box) -> tuple[int, list[str]]:
+def stream(cmd: list[str], bar, status, log_box,
+           offline: bool = False) -> tuple[int, list[str]]:
     """只显示阶段与进度；原始日志收进折叠区（不刷屏）。"""
     lines: list[str] = []
     done: set[str] = set()
-    proc = subprocess.Popen(cmd, cwd=str(ROOT), stdout=subprocess.PIPE,
+    env = dict(os.environ)
+    if offline:
+        env["LLM_OFFLINE"] = "1"      # 硬保证：不发起任何 API 调用
+    else:
+        v = st.session_state.get("visitor_llm") or {}
+        if v.get("key"):
+            import llm_settings as _ls
+            pv = _ls.PROVIDERS.get(v["provider"], {})
+            env[pv.get("env", "LLM_API_KEY")] = v["key"]
+            env["LLM_BASE_URL"] = pv.get("base_url", "")
+            env["LLM_MODEL"] = pv.get("model", "")
+            env.pop("LLM_OFFLINE", None)
+    proc = subprocess.Popen(cmd, cwd=str(ROOT), env=env,
+                            stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True,
                             encoding="utf-8", errors="replace", bufsize=1)
     for line in proc.stdout:            # type: ignore[union-attr]
@@ -230,16 +254,13 @@ def result_block(slug: str, label: str) -> None:
                 f"<span style='color:#64748b'>{r['功能类别']} / {r['所属行业']}</span>　"
                 f"价值分 **{r['机会价值分']}**", unsafe_allow_html=True)
 
-    if os.environ.get("PUBLIC_DEMO"):
-        st.caption("🔒 公网演示模式：分析看板与问答需单独的公网地址（见运行窗口输出），"
-                   "本页已展示该批次的核心结论。")
-        return
-
     a, b = st.columns(2)
-    a.link_button("📊 打开分析看板", f"{DASHBOARD}/?track={slug}",
-                  use_container_width=True)
-    b.link_button("💬 就这批结果提问", QA, use_container_width=True)
-    st.caption("看板会自动切到该批次；若打不开，先双击对应的 .bat 启动服务。")
+    if a.button("📊 打开分析看板", use_container_width=True, key=f"go_dash_{slug}"):
+        st.session_state["view_track"] = slug
+        st.switch_page("app.py")
+    if b.button("💬 就这批结果提问", use_container_width=True, key=f"go_qa_{slug}"):
+        st.switch_page("qa.py")
+    st.caption("单应用多页：点按钮直接切换，不会跳出站点。")
 
 
 # ---------------------------------------------------------------------------
@@ -263,6 +284,23 @@ def main() -> None:
 """, unsafe_allow_html=True)
 
     with st.sidebar:
+        if auth.is_public_request():
+            with st.expander("🔑 用我自己的 API Key（可选）", expanded=False):
+                import llm_settings as _ls
+                _keys = list(_ls.PROVIDERS)
+                _pk = st.selectbox(
+                    "服务商", _keys, index=0,
+                    format_func=lambda k: _ls.PROVIDERS[k]["label"])
+                _vkey = st.text_input("Key", type="password",
+                                      placeholder="sk-...")
+                st.caption("仅用于本次会话，**不写入本机任何文件**；"
+                           "不填则走离线缓存与规则。")
+                if _vkey.strip():
+                    st.session_state["visitor_llm"] = {
+                        "provider": _pk, "key": _vkey.strip()}
+                    st.success("已填入，将使用你自己的 Key 调用")
+                elif st.session_state.get("visitor_llm"):
+                    st.session_state.pop("visitor_llm", None)
         auth.mode_switcher()
         st.markdown('<div class="side-title">🎫 当前角色</div>', unsafe_allow_html=True)
         auth.role_selector()
@@ -299,19 +337,61 @@ def main() -> None:
             for name, why in SOURCE_STATUS.items():
                 st.caption(f"- **{name}**：{why}")
 
-    allow_collect = auth.can("collect")
-    if not allow_collect:
-        st.caption("🔒 当前角色为只读：可浏览已有批次结果；发起新需求需"
+    public_mode = auth.is_public_request()
+    allow_collect = auth.can_collect()
+    _has_key0 = bool((st.session_state.get("visitor_llm") or {}).get("key"))
+    if public_mode and allow_collect and _has_key0:
+        st.info("🔑 已使用**你自己的 API Key**：本次采集走在线模式，"
+                "Key 仅存在本次会话，不写入本机文件、不进日志。", icon="✅")
+    elif public_mode and allow_collect:
+        st.info("🌐 公网模式：发起采集将使用**本地缓存与规则**（不调用任何外部 API，"
+                "不消耗系统管理员的额度）。想用在线模式？在左侧填你自己的 Key。", icon="💡")
+    elif not allow_collect:
+        st.caption("🔒 当前为只读：可浏览已有批次结果；发起新需求需"
                    "「需求发起者」或「系统管理员」权限。")
 
-    go = allow_collect and st.button("开始采集与分析", type="primary",
+    _has_key = bool((st.session_state.get("visitor_llm") or {}).get("key"))
+    if public_mode and _has_key:
+        label = "开始采集与分析（用我的 Key）"
+    elif public_mode:
+        label = "开始采集与分析（离线）"
+    else:
+        label = "开始采集与分析"
+    go = allow_collect and st.button(label, type="primary",
                                      disabled=not direction.strip(),
                                      use_container_width=True)
+    if allow_collect and not direction.strip():
+        st.caption("⬆ 按钮是灰色的：**先在上面输入方向，或点一个模板卡片**，按钮就会变亮。")
 
+    visitor = st.session_state.get("visitor_llm") or {}
+    if go and visitor.get("key"):
+        offline = False          # 用访客自己的 Key，走在线模式
     if go:
+        if public_mode and not visitor.get("key"):
+            offline = True
+            cap = 40
+            try:
+                import yaml as _y
+                _cfg = _y.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
+                cap = int((_cfg.get("ui") or {}).get("public_max_per_source", 40))
+            except Exception:
+                pass
+            limit = min(int(limit), cap)
+
+        lock = ROOT / "data" / "runtime" / "collecting.lock"
+        lock.parent.mkdir(parents=True, exist_ok=True)
+        if lock.exists():
+            age = time.time() - lock.stat().st_mtime
+            if age < 900:
+                st.warning(f"已有采集任务在运行（{int(age)} 秒前启动），请稍后再试。")
+                return
+            lock.unlink(missing_ok=True)
+        lock.write_text(datetime.now().isoformat(), encoding="utf-8")
+
         batch = next_batch_no()
         st.info(f"批次 **{batch}**　·　方向「{direction.strip()}」　·　"
-                f"{len(sources) or 4} 个来源 × 每源 {limit} 条")
+                f"{len(sources) or 4} 个来源 × 每源 {limit} 条"
+                + ("　·　**离线模式**" if offline else ""))
         bar = st.progress(0.0, text="准备中…")
         status = st.empty()
         with st.expander("运行日志（调试用，可忽略）", expanded=False):
@@ -325,7 +405,10 @@ def main() -> None:
         if offline:
             cmd += ["--offline"]
 
-        code, lines = stream(cmd, bar, status, log)
+        try:
+            code, lines = stream(cmd, bar, status, log, offline=offline)
+        finally:
+            lock.unlink(missing_ok=True)
         if code != 0:
             st.error("运行失败，日志见上")
             return

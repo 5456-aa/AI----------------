@@ -23,7 +23,8 @@ sys.path.insert(0, str(ROOT))
 
 from io_utils import load_config, read_jsonl  # noqa: E402
 
-st.set_page_config(page_title="问答咨询", page_icon="💬", layout="wide")
+from _init import page_config  # noqa: E402
+page_config("问答咨询", "💬")
 
 
 @st.cache_data(show_spinner=False)

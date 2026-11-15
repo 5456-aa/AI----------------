@@ -43,6 +43,9 @@ class LLMClient:
         # 强制离线（--offline / LLM_OFFLINE=1）：只用缓存，绝不发起网络请求，
         # 保证评委重跑时结果与提交时完全一致。
         import os
+        # 允许用环境变量临时覆盖（访客自带 Key 时由界面注入，不写入 .env）
+        self.base_url = os.environ.get("LLM_BASE_URL") or self.cfg.get("base_url", "")
+        self.model = os.environ.get("LLM_MODEL") or self.cfg.get("model", "")
         self.force_offline = bool(os.environ.get("LLM_OFFLINE")) or bool(self.cfg.get("force_offline"))
         self.cache_only = ((bool(self.cfg.get("cache_only_when_no_key", True)) and not self.api_key)
                            or self.force_offline)
@@ -55,7 +58,7 @@ class LLMClient:
             self._cache[row["key"]] = row["response"]
 
     def _key(self, prompt: str) -> str:
-        raw = f"{self.cfg.get('model')}||{self.cfg.get('temperature', 0)}||{prompt}"
+        raw = f"{self.model}||{self.cfg.get('temperature', 0)}||{prompt}"
         return hashlib.sha1(raw.encode("utf-8")).hexdigest()
 
     def cache_size(self) -> int:
@@ -76,14 +79,14 @@ class LLMClient:
         if not self.api_key:
             raise LLMUnavailable("未配置 API Key，且该请求不在预置缓存中")
 
-        url = self.cfg["base_url"].rstrip("/") + "/chat/completions"
+        url = self.base_url.rstrip("/") + "/chat/completions"
         messages = []
         if system:
             messages.append({"role": "system", "content": system})
         messages.append({"role": "user", "content": prompt})
 
         payload: Dict[str, Any] = {
-            "model": self.cfg["model"],
+            "model": self.model,
             "messages": messages,
             "temperature": self.cfg.get("temperature", 0.0),
             "max_tokens": self.cfg.get("max_tokens", 800),
@@ -125,7 +128,7 @@ class LLMClient:
         with self._lock:
             self._cache[key] = response
         append_jsonl(self.cache_path, {"key": key, "response": response,
-                                       "model": self.cfg.get("model"),
+                                       "model": self.model,
                                        "ts": time.strftime("%Y-%m-%dT%H:%M:%S")})
 
 

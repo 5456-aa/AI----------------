@@ -22,7 +22,8 @@ from llm.client import LLMClient, LLMUnavailable  # noqa: E402
 import auth  # noqa: E402
 import llm_settings  # noqa: E402
 
-st.set_page_config(page_title="AI 应用场景机会评估系统", page_icon="🎯", layout="wide")
+from _init import page_config  # noqa: E402
+page_config("分析看板", "📊")
 
 TRACK_LABEL = {
     "all": "两赛道合并（提交版）",
@@ -121,6 +122,8 @@ def main() -> None:
         st.caption("AI 应用场景的智能挖掘与机会评估")
         if is_public_demo():
             st.info("公网演示：仅展示已生成的批次结果，不提供采集与配置入口。", icon="🔒")
+        if st.button("← 返回首页", use_container_width=True):
+            st.switch_page("home.py")
         auth.mode_switcher()
         auth.role_selector()
         st.divider()
@@ -147,7 +150,7 @@ def main() -> None:
             _q = dict(st.query_params)
         except Exception:
             _q = {}
-        _want = _q.get("track")
+        _want = _q.get("track") or st.session_state.get("view_track")
         _idx = all_tracks.index(_want) if _want in all_tracks else 0
         track = st.radio(
             "赛道 / 批次", all_tracks, index=_idx,
