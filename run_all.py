@@ -50,15 +50,26 @@ def run_single(cfg, batch: str, stages, args) -> dict:
         elif stage == "judge":
             judge.run(cfg, _load(cfg, "records.jsonl", "clean"))
         elif stage == "cluster":
-            cluster_mod.run(cfg, _load(cfg, "judged.jsonl", "judge"))
+            try:
+                cluster_mod.run(cfg, _load(cfg, "judged.jsonl", "judge"))
+            except SystemExit as exc:
+                # 机会记录不足（新方向常见）：不终止整条流水线，继续导出空簇
+                log.warning("聚类跳过：%s", exc)
+                write_jsonl(Path(cfg["paths"]["clean"]) / "clusters.jsonl", [])
+                write_jsonl(Path(cfg["paths"]["clean"]) / "cluster_metrics.jsonl", [])
         elif stage == "score":
             cluster_mod_rows = read_jsonl(Path(cfg["paths"]["clean"]) / "clusters.jsonl")
-            score.run(cfg, cluster_mod_rows)
+            try:
+                score.run(cfg, cluster_mod_rows)
+            except SystemExit as exc:
+                log.warning("评分跳过：%s", exc)
+                write_jsonl(Path(cfg["paths"]["clean"]) / "scored.jsonl", [])
+                write_jsonl(Path(cfg["paths"]["clean"]) / "score_detail.jsonl", [])
         elif stage == "export":
             rows = _load(cfg, "judged.jsonl", "judge")
             clusters = read_jsonl(Path(cfg["paths"]["clean"]) / "scored.jsonl")
             if not clusters:
-                raise SystemExit("找不到 scored.jsonl，请先运行 --stage score")
+                log.warning("本批次未形成主题簇（机会记录不足），result3/result4 输出空表")
             to_csv.export_result1(cfg, rows)
             to_csv.export_result2(cfg, rows)
             to_csv.export_result3(cfg, clusters, batch)

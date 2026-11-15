@@ -244,6 +244,13 @@ def result_block(slug: str, label: str) -> None:
     c2.metric("机会记录", s["opp"], f"{s['opp']/max(s['n'],1)*100:.1f}%")
     c3.metric("主题簇", s["clusters"])
 
+    if s["opp"] == 0:
+        st.warning("本批次未识别到机会记录（0 条）。常见原因：\n\n"
+                   "- 方向太窄或太新，缓存里没有对应内容（离线模式会退回规则判别）\n"
+                   "- 采集来源太少，建议在「高级设置」里多选几个来源\n"
+                   "- 关键词太具体，可在高级设置里改写检索词\n\n"
+                   "result1/result2 仍会正常产出，result3/result4 为空表。")
+
     top = top_clusters(slug)
     if top:
         st.markdown('<div class="card-title">🏆 价值最高的方向</div>',
